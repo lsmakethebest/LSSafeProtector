@@ -26,6 +26,8 @@
 {
     NSLog(@"%@",NSStringFromClass([self class]));
     
-//    [self.con removeObserver:self forKeyPath:@"kvoTest"];
+    [self.con removeObserver:self forKeyPath:@"kvoTest"];
+    [self.con removeObserver:self forKeyPath:@"kvoTest111111"];
+    [self.con removeObserver:self forKeyPath:@"kvoTest2"];
 }
 @end

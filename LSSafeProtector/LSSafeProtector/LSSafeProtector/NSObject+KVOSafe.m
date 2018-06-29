@@ -13,6 +13,10 @@
 #import <objc/message.h>
 
 
+@interface NSObject(KVOSafe)
+@property (nonatomic,assign) BOOL safe_isKVOWillDealloc;
+@property (nonatomic,strong) NSMutableDictionary *safe_cacheKVODeallocDictionary;
+@end
 
 @implementation NSObject (KVOSafe)
 
@@ -157,8 +161,10 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         [self safe_removeObserver:observer forKeyPath:keyPath];
     }
     @catch (NSException *exception) {
-        // 打印crash信息
-        LSSafeProtectionCrashLog(exception);
+        if (!observer.safe_isKVOWillDealloc) {
+            // 打印crash信息
+            LSSafeProtectionCrashLog(exception);
+        }
     }
     @finally {
         
@@ -198,11 +204,7 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         }
         [observers removeObject:observer];
         [self.safe_beObservedKeyPathDictionary setObject:observers forKey:keyPath];
-        
-        
-        
-        
-        
+          
     }
 }
 
@@ -300,6 +302,7 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
     //    for (NSString *objectKey in self.safe_observedDictionary) {
     //         NSDictionary *dic=self.safe_observedDictionary[objectKey];
     //    }
+    self.safe_isKVOWillDealloc=YES;
     for (NSString *objectKey in self.safe_observedDictionary) {
         NSDictionary *dic=self.safe_observedDictionary[objectKey];
         NSMapTable *maptable=dic[@"observer"];
@@ -311,7 +314,24 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         }
     }
 }
+-
+(NSMutableDictionary *)safe_cacheKVODeallocDictionary
+{
+    return  objc_getAssociatedObject(self, _cmd);
+}
+-(void)setSafe_cacheKVODeallocDictionary:(NSMutableDictionary *)safe_cacheKVODeallocDictionary
+{
+    objc_setAssociatedObject(self, @selector(safe_cacheKVODeallocDictionary), safe_cacheKVODeallocDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
+-(BOOL)safe_isKVOWillDealloc
+{
+    return [objc_getAssociatedObject(self, _cmd)boolValue];
+}
+-(void)setSafe_isKVOWillDealloc:(BOOL)safe_isKVOWillDealloc
+{
+    return objc_setAssociatedObject(self, @selector(safe_isKVOWillDealloc), @(safe_isKVOWillDealloc), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 
 

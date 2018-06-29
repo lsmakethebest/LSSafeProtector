@@ -33,8 +33,8 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     //    [self testUnrecognizedSelector];
-    [self testKVO];
-    //    [self testNotification];
+        [self testKVO];
+//        [self testNotification];
     //    [self testArray];
     //    [self testMutableArray];
     //    [self testDictionary];
@@ -52,9 +52,6 @@
 
 -(void)testKVO
 {
-    
-    
-    
     //添加值为nil
     //    [self addObserver:nil forKeyPath:@"fsd" options:(NSKeyValueObservingOptionNew) context:nil];
     //    [self addObserver:self.testView1 forKeyPath:nil options:(NSKeyValueObservingOptionNew) context:nil];
@@ -72,13 +69,13 @@
     
     
     //重复移除
-    LSViewTestKVO *view1 =[LSViewTestKVO new];
-    [self.view addSubview:view1];
-    self.testView1=view1;
-    self.testView1.con=self;
-    [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
-    [self removeObserver:self.testView1 forKeyPath:@"kvoTest"];
-    [self removeObserver:self.testView1 forKeyPath:@"kvoTest" context:nil];
+//    LSViewTestKVO *view1 =[LSViewTestKVO new];
+//    [self.view addSubview:view1];
+//    self.testView1=view1;
+//    self.testView1.con=self;
+//    [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
+//    [self removeObserver:self.testView1 forKeyPath:@"kvoTest"];
+//    [self removeObserver:self.testView1 forKeyPath:@"kvoTest" context:nil];
     
     
     //重复添加
@@ -93,27 +90,32 @@
     
     
     //    dealloc时没有移除obverser
-    //    LSViewTestKVO *view1 =[LSViewTestKVO new];
-    //    [self.view addSubview:view1];
-    //    self.testView1=view1;
-    //    [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
+        LSViewTestKVO *view1 =[LSViewTestKVO new];
+        [self.view addSubview:view1];
+        self.testView1=view1;
+        self.testView1.con=self;
+        [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
     //
-    //    self.testObject=[[NSNotificationTestObject alloc]init];
-    //    [self addObserver:self.testObject forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
-    //
-    //    [self.testView1 removeFromSuperview];
-    //    self.testObject=nil;
-    //
-    //    self.kvoTest=YES;
+//        self.testObject=[[NSNotificationTestObject alloc]init];
+//        [self addObserver:self.testObject forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
+    
+        [self.testView1 removeFromSuperview];
+//        self.testObject=nil;
+    
+//        self.kvoTest=YES;
     
     
 }
 
 -(void)testNotification
 {
-    self.testObject=[[NSNotificationTestObject alloc]init];
+    if (self.testObject==nil) {    
+        self.testObject=[[NSNotificationTestObject alloc]init];
+    }
     [[NSNotificationCenter defaultCenter]addObserver:self.testObject selector:@selector(handle:) name:@"name" object:nil];
-    self.testObject=nil;
+    [[NSNotificationCenter defaultCenter]removeObserver:self.testObject name:@"name2" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self.testObject name:@"fsdf" object:nil];
+//    self.testObject=nil;
     [[NSNotificationCenter defaultCenter]postNotificationName:@"name" object:nil];
 }
 -(void)testArray

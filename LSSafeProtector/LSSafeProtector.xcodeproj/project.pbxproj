@@ -174,10 +174,10 @@
 		28C1871A20E628730045FE96 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				28C1871E20E628730045FE96 /* LSViewTestKVO.h */,
-				28C1871B20E628730045FE96 /* LSViewTestKVO.m */,
 				28C1872020E628730045FE96 /* ViewController.h */,
 				28C1871C20E628730045FE96 /* ViewController.m */,
+				28C1871E20E628730045FE96 /* LSViewTestKVO.h */,
+				28C1871B20E628730045FE96 /* LSViewTestKVO.m */,
 				28C1871D20E628730045FE96 /* NSNotificationTestObject.h */,
 				28C1871F20E628730045FE96 /* NSNotificationTestObject.m */,
 			);

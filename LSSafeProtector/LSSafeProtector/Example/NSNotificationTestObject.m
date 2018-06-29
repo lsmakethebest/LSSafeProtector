@@ -19,7 +19,9 @@
 -(void)dealloc
 {
     NSLog(@"%@  dealloc",NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
+
 //-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 //{
 //    NSLog(@"");

@@ -98,6 +98,9 @@ static NSMutableSet *NSNotificationCenterSafeSwizzledClasses() {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self safe_exchangeInstanceMethod:[NSNotificationCenter class] originalSel:@selector(addObserver:selector:name:object:) newSel:@selector(safe_addObserver:selector:name:object:)];
+        
+         [self safe_exchangeInstanceMethod:[NSNotificationCenter class] originalSel:@selector(removeObserver:name:object:) newSel:@selector(safe_removeObserver:name:object:)];
+         [self safe_exchangeInstanceMethod:[NSNotificationCenter class] originalSel:@selector(removeObserver:) newSel:@selector(safe_removeObserver:)];
     });
 }
 -(void)safe_addObserver:(id)observer selector:(SEL)aSelector name:(NSNotificationName)aName object:(id)anObject
@@ -106,6 +109,16 @@ static NSMutableSet *NSNotificationCenterSafeSwizzledClasses() {
     [observer safe_changeDidDeallocSignal];
     [self safe_addObserver:observer selector:aSelector name:aName object:anObject];
 }
+-(void)safe_removeObserver:(id)observer
+{
+    [self safe_removeObserver:observer];
+}
+-(void)safe_removeObserver:(id)observer name:(NSNotificationName)aName object:(id)anObject
+{
+    [self safe_removeObserver:observer name:aName object:anObject];
+    
+}
+
 
 
 
