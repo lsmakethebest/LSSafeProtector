@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		281C439C20E69BAA006F05AB /* UIViewController+ss.m in Sources */ = {isa = PBXBuildFile; fileRef = 281C439B20E69BAA006F05AB /* UIViewController+ss.m */; };
 		28C186EA20E628260045FE96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C186E920E628260045FE96 /* AppDelegate.m */; };
 		28C186F020E628260045FE96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28C186EE20E628260045FE96 /* Main.storyboard */; };
 		28C186F220E628270045FE96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28C186F120E628270045FE96 /* Assets.xcassets */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		281C439A20E69BAA006F05AB /* UIViewController+ss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ss.h"; sourceTree = "<group>"; };
+		281C439B20E69BAA006F05AB /* UIViewController+ss.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ss.m"; sourceTree = "<group>"; };
 		28C186E520E628260045FE96 /* LSSafeProtector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSSafeProtector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28C186E820E628260045FE96 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		28C186E920E628260045FE96 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				28C1871B20E628730045FE96 /* LSViewTestKVO.m */,
 				28C1871D20E628730045FE96 /* NSNotificationTestObject.h */,
 				28C1871F20E628730045FE96 /* NSNotificationTestObject.m */,
+				281C439A20E69BAA006F05AB /* UIViewController+ss.h */,
+				281C439B20E69BAA006F05AB /* UIViewController+ss.m */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 				28C1873E20E628D70045FE96 /* NSObject+KVOSafe.m in Sources */,
 				28C1874420E628D70045FE96 /* NSMutableDictionary+Safe.m in Sources */,
 				28C1874020E628D70045FE96 /* NSObject+Safe.m in Sources */,
+				281C439C20E69BAA006F05AB /* UIViewController+ss.m in Sources */,
 				28C1872120E628730045FE96 /* LSViewTestKVO.m in Sources */,
 				28C1873B20E628D70045FE96 /* NSMutableString+Safe.m in Sources */,
 				28C1874320E628D70045FE96 /* NSAttributedString+Safe.m in Sources */,

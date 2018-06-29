@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "NSObject+Safe.h"
+#import "UIViewController+ss.h"
 #import "NSNotificationTestObject.h"
 #import "LSViewTestKVO.h"
 @interface ViewController ()
@@ -22,11 +23,16 @@
 
 @implementation ViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [NSObject openAllSafeProtector];
+    [self haha];
+    self.kvoTest=YES;
     
+}
+-(void)haha
+{
+    NSLog(@"1111111");
 }
 
 
@@ -97,15 +103,35 @@
         [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
     //
 //        self.testObject=[[NSNotificationTestObject alloc]init];
-//        [self addObserver:self.testObject forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
+        [self addObserver:self.testObject forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
     
-        [self.testView1 removeFromSuperview];
+//        [self.testView1 removeFromSuperview];
 //        self.testObject=nil;
     
-//        self.kvoTest=YES;
+        self.kvoTest=YES;
+    
+    
     
     
 }
+-(void)setKvoTest:(BOOL)kvoTest
+{
+    
+    [self willChangeValueForKey:@"kvoTest"];
+    _kvoTest=kvoTest;
+    [self didChangeValueForKey:@"kvoTest"];
+}
+//+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey {
+//
+//    BOOL automatic = NO;
+//    if ([theKey isEqualToString:@"kvoTest"]) {
+//        automatic = NO;
+//    }
+//    else {
+//        automatic = [super automaticallyNotifiesObserversForKey:theKey];
+//    }
+//    return automatic;
+//}
 
 -(void)testNotification
 {

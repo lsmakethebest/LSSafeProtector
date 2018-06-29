@@ -161,7 +161,9 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         [self safe_removeObserver:observer forKeyPath:keyPath];
     }
     @catch (NSException *exception) {
-        if (!observer.safe_isKVOWillDealloc) {
+        NSArray *array= observer.safe_cacheKVODeallocDictionary[[NSString stringWithFormat:@"%@",self]];
+        if(array==nil||(array&&![array containsObject:keyPath])){
+//        if (!observer.safe_isKVOWillDealloc) {
             // 打印crash信息
             LSSafeProtectionCrashLog(exception);
         }
@@ -303,6 +305,12 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
     //         NSDictionary *dic=self.safe_observedDictionary[objectKey];
     //    }
     self.safe_isKVOWillDealloc=YES;
+    self.safe_cacheKVODeallocDictionary=[NSMutableDictionary dictionary];
+    for (NSString *objectKey in self.safe_observedDictionary) {
+        NSDictionary *dic=self.safe_observedDictionary[objectKey];
+        NSMutableArray *keypathArray=[dic[@"keyPaths"] mutableCopy];
+        self.safe_cacheKVODeallocDictionary[objectKey]=keypathArray;
+    }
     for (NSString *objectKey in self.safe_observedDictionary) {
         NSDictionary *dic=self.safe_observedDictionary[objectKey];
         NSMapTable *maptable=dic[@"observer"];
