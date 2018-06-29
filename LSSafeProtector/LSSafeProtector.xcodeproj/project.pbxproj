@@ -1,0 +1,678 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		28C186EA20E628260045FE96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C186E920E628260045FE96 /* AppDelegate.m */; };
+		28C186F020E628260045FE96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28C186EE20E628260045FE96 /* Main.storyboard */; };
+		28C186F220E628270045FE96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28C186F120E628270045FE96 /* Assets.xcassets */; };
+		28C186F520E628270045FE96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28C186F320E628270045FE96 /* LaunchScreen.storyboard */; };
+		28C186F820E628270045FE96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C186F720E628270045FE96 /* main.m */; };
+		28C1870220E628270045FE96 /* LSSafeProtectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1870120E628270045FE96 /* LSSafeProtectorTests.m */; };
+		28C1870D20E628270045FE96 /* LSSafeProtectorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1870C20E628270045FE96 /* LSSafeProtectorUITests.m */; };
+		28C1872120E628730045FE96 /* LSViewTestKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1871B20E628730045FE96 /* LSViewTestKVO.m */; };
+		28C1872220E628730045FE96 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1871C20E628730045FE96 /* ViewController.m */; };
+		28C1872320E628730045FE96 /* NSNotificationTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1871F20E628730045FE96 /* NSNotificationTestObject.m */; };
+		28C1873B20E628D70045FE96 /* NSMutableString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1872520E628D50045FE96 /* NSMutableString+Safe.m */; };
+		28C1873C20E628D70045FE96 /* NSMutableAttributedString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1872B20E628D50045FE96 /* NSMutableAttributedString+Safe.m */; };
+		28C1873D20E628D70045FE96 /* NSDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1872D20E628D50045FE96 /* NSDictionary+Safe.m */; };
+		28C1873E20E628D70045FE96 /* NSObject+KVOSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1872E20E628D50045FE96 /* NSObject+KVOSafe.m */; };
+		28C1873F20E628D70045FE96 /* NSNotificationCenter+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1872F20E628D60045FE96 /* NSNotificationCenter+Safe.m */; };
+		28C1874020E628D70045FE96 /* NSObject+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1873020E628D60045FE96 /* NSObject+Safe.m */; };
+		28C1874120E628D70045FE96 /* NSString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1873320E628D60045FE96 /* NSString+Safe.m */; };
+		28C1874220E628D70045FE96 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1873520E628D60045FE96 /* NSArray+Safe.m */; };
+		28C1874320E628D70045FE96 /* NSAttributedString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1873820E628D60045FE96 /* NSAttributedString+Safe.m */; };
+		28C1874420E628D70045FE96 /* NSMutableDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1873920E628D70045FE96 /* NSMutableDictionary+Safe.m */; };
+		28C1874520E628D70045FE96 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C1873A20E628D70045FE96 /* NSMutableArray+Safe.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		28C186FE20E628270045FE96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28C186DD20E628260045FE96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 28C186E420E628260045FE96;
+			remoteInfo = LSSafeProtector;
+		};
+		28C1870920E628270045FE96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28C186DD20E628260045FE96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 28C186E420E628260045FE96;
+			remoteInfo = LSSafeProtector;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		28C186E520E628260045FE96 /* LSSafeProtector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSSafeProtector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28C186E820E628260045FE96 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		28C186E920E628260045FE96 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		28C186EF20E628260045FE96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		28C186F120E628270045FE96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		28C186F420E628270045FE96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		28C186F620E628270045FE96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28C186F720E628270045FE96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		28C186FD20E628270045FE96 /* LSSafeProtectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSSafeProtectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		28C1870120E628270045FE96 /* LSSafeProtectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSSafeProtectorTests.m; sourceTree = "<group>"; };
+		28C1870320E628270045FE96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28C1870820E628270045FE96 /* LSSafeProtectorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LSSafeProtectorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		28C1870C20E628270045FE96 /* LSSafeProtectorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSSafeProtectorUITests.m; sourceTree = "<group>"; };
+		28C1870E20E628270045FE96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28C1871B20E628730045FE96 /* LSViewTestKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSViewTestKVO.m; sourceTree = "<group>"; };
+		28C1871C20E628730045FE96 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		28C1871D20E628730045FE96 /* NSNotificationTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNotificationTestObject.h; sourceTree = "<group>"; };
+		28C1871E20E628730045FE96 /* LSViewTestKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSViewTestKVO.h; sourceTree = "<group>"; };
+		28C1871F20E628730045FE96 /* NSNotificationTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNotificationTestObject.m; sourceTree = "<group>"; };
+		28C1872020E628730045FE96 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		28C1872520E628D50045FE96 /* NSMutableString+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Safe.m"; sourceTree = "<group>"; };
+		28C1872620E628D50045FE96 /* NSMutableString+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Safe.h"; sourceTree = "<group>"; };
+		28C1872720E628D50045FE96 /* NSNotificationCenter+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Safe.h"; sourceTree = "<group>"; };
+		28C1872820E628D50045FE96 /* NSObject+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Safe.h"; sourceTree = "<group>"; };
+		28C1872920E628D50045FE96 /* NSString+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Safe.h"; sourceTree = "<group>"; };
+		28C1872A20E628D50045FE96 /* NSMutableDictionary+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Safe.h"; sourceTree = "<group>"; };
+		28C1872B20E628D50045FE96 /* NSMutableAttributedString+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Safe.m"; sourceTree = "<group>"; };
+		28C1872C20E628D50045FE96 /* NSDictionary+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Safe.h"; sourceTree = "<group>"; };
+		28C1872D20E628D50045FE96 /* NSDictionary+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Safe.m"; sourceTree = "<group>"; };
+		28C1872E20E628D50045FE96 /* NSObject+KVOSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVOSafe.m"; sourceTree = "<group>"; };
+		28C1872F20E628D60045FE96 /* NSNotificationCenter+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Safe.m"; sourceTree = "<group>"; };
+		28C1873020E628D60045FE96 /* NSObject+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Safe.m"; sourceTree = "<group>"; };
+		28C1873120E628D60045FE96 /* NSAttributedString+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Safe.h"; sourceTree = "<group>"; };
+		28C1873220E628D60045FE96 /* NSObject+KVOSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVOSafe.h"; sourceTree = "<group>"; };
+		28C1873320E628D60045FE96 /* NSString+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Safe.m"; sourceTree = "<group>"; };
+		28C1873420E628D60045FE96 /* NSMutableAttributedString+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Safe.h"; sourceTree = "<group>"; };
+		28C1873520E628D60045FE96 /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
+		28C1873620E628D60045FE96 /* NSArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
+		28C1873720E628D60045FE96 /* NSMutableArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Safe.h"; sourceTree = "<group>"; };
+		28C1873820E628D60045FE96 /* NSAttributedString+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Safe.m"; sourceTree = "<group>"; };
+		28C1873920E628D70045FE96 /* NSMutableDictionary+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Safe.m"; sourceTree = "<group>"; };
+		28C1873A20E628D70045FE96 /* NSMutableArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Safe.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		28C186E220E628260045FE96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C186FA20E628270045FE96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C1870520E628270045FE96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		28C186DC20E628260045FE96 = {
+			isa = PBXGroup;
+			children = (
+				28C186E720E628260045FE96 /* LSSafeProtector */,
+				28C1870020E628270045FE96 /* LSSafeProtectorTests */,
+				28C1870B20E628270045FE96 /* LSSafeProtectorUITests */,
+				28C186E620E628260045FE96 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		28C186E620E628260045FE96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				28C186E520E628260045FE96 /* LSSafeProtector.app */,
+				28C186FD20E628270045FE96 /* LSSafeProtectorTests.xctest */,
+				28C1870820E628270045FE96 /* LSSafeProtectorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		28C186E720E628260045FE96 /* LSSafeProtector */ = {
+			isa = PBXGroup;
+			children = (
+				28C1872420E628C20045FE96 /* LSSafeProtector */,
+				28C1871A20E628730045FE96 /* Example */,
+				28C186E820E628260045FE96 /* AppDelegate.h */,
+				28C186E920E628260045FE96 /* AppDelegate.m */,
+				28C186EE20E628260045FE96 /* Main.storyboard */,
+				28C186F120E628270045FE96 /* Assets.xcassets */,
+				28C186F320E628270045FE96 /* LaunchScreen.storyboard */,
+				28C186F620E628270045FE96 /* Info.plist */,
+				28C186F720E628270045FE96 /* main.m */,
+			);
+			path = LSSafeProtector;
+			sourceTree = "<group>";
+		};
+		28C1870020E628270045FE96 /* LSSafeProtectorTests */ = {
+			isa = PBXGroup;
+			children = (
+				28C1870120E628270045FE96 /* LSSafeProtectorTests.m */,
+				28C1870320E628270045FE96 /* Info.plist */,
+			);
+			path = LSSafeProtectorTests;
+			sourceTree = "<group>";
+		};
+		28C1870B20E628270045FE96 /* LSSafeProtectorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				28C1870C20E628270045FE96 /* LSSafeProtectorUITests.m */,
+				28C1870E20E628270045FE96 /* Info.plist */,
+			);
+			path = LSSafeProtectorUITests;
+			sourceTree = "<group>";
+		};
+		28C1871A20E628730045FE96 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				28C1871E20E628730045FE96 /* LSViewTestKVO.h */,
+				28C1871B20E628730045FE96 /* LSViewTestKVO.m */,
+				28C1872020E628730045FE96 /* ViewController.h */,
+				28C1871C20E628730045FE96 /* ViewController.m */,
+				28C1871D20E628730045FE96 /* NSNotificationTestObject.h */,
+				28C1871F20E628730045FE96 /* NSNotificationTestObject.m */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		28C1872420E628C20045FE96 /* LSSafeProtector */ = {
+			isa = PBXGroup;
+			children = (
+				28C1872820E628D50045FE96 /* NSObject+Safe.h */,
+				28C1873020E628D60045FE96 /* NSObject+Safe.m */,
+				28C1873620E628D60045FE96 /* NSArray+Safe.h */,
+				28C1873520E628D60045FE96 /* NSArray+Safe.m */,
+				28C1873120E628D60045FE96 /* NSAttributedString+Safe.h */,
+				28C1873820E628D60045FE96 /* NSAttributedString+Safe.m */,
+				28C1872C20E628D50045FE96 /* NSDictionary+Safe.h */,
+				28C1872D20E628D50045FE96 /* NSDictionary+Safe.m */,
+				28C1873720E628D60045FE96 /* NSMutableArray+Safe.h */,
+				28C1873A20E628D70045FE96 /* NSMutableArray+Safe.m */,
+				28C1873420E628D60045FE96 /* NSMutableAttributedString+Safe.h */,
+				28C1872B20E628D50045FE96 /* NSMutableAttributedString+Safe.m */,
+				28C1872A20E628D50045FE96 /* NSMutableDictionary+Safe.h */,
+				28C1873920E628D70045FE96 /* NSMutableDictionary+Safe.m */,
+				28C1872620E628D50045FE96 /* NSMutableString+Safe.h */,
+				28C1872520E628D50045FE96 /* NSMutableString+Safe.m */,
+				28C1872720E628D50045FE96 /* NSNotificationCenter+Safe.h */,
+				28C1872F20E628D60045FE96 /* NSNotificationCenter+Safe.m */,
+				28C1873220E628D60045FE96 /* NSObject+KVOSafe.h */,
+				28C1872E20E628D50045FE96 /* NSObject+KVOSafe.m */,
+				28C1872920E628D50045FE96 /* NSString+Safe.h */,
+				28C1873320E628D60045FE96 /* NSString+Safe.m */,
+			);
+			path = LSSafeProtector;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		28C186E420E628260045FE96 /* LSSafeProtector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28C1871120E628270045FE96 /* Build configuration list for PBXNativeTarget "LSSafeProtector" */;
+			buildPhases = (
+				28C186E120E628260045FE96 /* Sources */,
+				28C186E220E628260045FE96 /* Frameworks */,
+				28C186E320E628260045FE96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LSSafeProtector;
+			productName = LSSafeProtector;
+			productReference = 28C186E520E628260045FE96 /* LSSafeProtector.app */;
+			productType = "com.apple.product-type.application";
+		};
+		28C186FC20E628270045FE96 /* LSSafeProtectorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28C1871420E628270045FE96 /* Build configuration list for PBXNativeTarget "LSSafeProtectorTests" */;
+			buildPhases = (
+				28C186F920E628270045FE96 /* Sources */,
+				28C186FA20E628270045FE96 /* Frameworks */,
+				28C186FB20E628270045FE96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				28C186FF20E628270045FE96 /* PBXTargetDependency */,
+			);
+			name = LSSafeProtectorTests;
+			productName = LSSafeProtectorTests;
+			productReference = 28C186FD20E628270045FE96 /* LSSafeProtectorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		28C1870720E628270045FE96 /* LSSafeProtectorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28C1871720E628270045FE96 /* Build configuration list for PBXNativeTarget "LSSafeProtectorUITests" */;
+			buildPhases = (
+				28C1870420E628270045FE96 /* Sources */,
+				28C1870520E628270045FE96 /* Frameworks */,
+				28C1870620E628270045FE96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				28C1870A20E628270045FE96 /* PBXTargetDependency */,
+			);
+			name = LSSafeProtectorUITests;
+			productName = LSSafeProtectorUITests;
+			productReference = 28C1870820E628270045FE96 /* LSSafeProtectorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		28C186DD20E628260045FE96 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = liusong;
+				TargetAttributes = {
+					28C186E420E628260045FE96 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					28C186FC20E628270045FE96 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = 28C186E420E628260045FE96;
+					};
+					28C1870720E628270045FE96 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = 28C186E420E628260045FE96;
+					};
+				};
+			};
+			buildConfigurationList = 28C186E020E628260045FE96 /* Build configuration list for PBXProject "LSSafeProtector" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 28C186DC20E628260045FE96;
+			productRefGroup = 28C186E620E628260045FE96 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				28C186E420E628260045FE96 /* LSSafeProtector */,
+				28C186FC20E628270045FE96 /* LSSafeProtectorTests */,
+				28C1870720E628270045FE96 /* LSSafeProtectorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		28C186E320E628260045FE96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28C186F520E628270045FE96 /* LaunchScreen.storyboard in Resources */,
+				28C186F220E628270045FE96 /* Assets.xcassets in Resources */,
+				28C186F020E628260045FE96 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C186FB20E628270045FE96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C1870620E628270045FE96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		28C186E120E628260045FE96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28C1872320E628730045FE96 /* NSNotificationTestObject.m in Sources */,
+				28C186F820E628270045FE96 /* main.m in Sources */,
+				28C1873C20E628D70045FE96 /* NSMutableAttributedString+Safe.m in Sources */,
+				28C1873F20E628D70045FE96 /* NSNotificationCenter+Safe.m in Sources */,
+				28C1874520E628D70045FE96 /* NSMutableArray+Safe.m in Sources */,
+				28C1874120E628D70045FE96 /* NSString+Safe.m in Sources */,
+				28C1874220E628D70045FE96 /* NSArray+Safe.m in Sources */,
+				28C186EA20E628260045FE96 /* AppDelegate.m in Sources */,
+				28C1872220E628730045FE96 /* ViewController.m in Sources */,
+				28C1873E20E628D70045FE96 /* NSObject+KVOSafe.m in Sources */,
+				28C1874420E628D70045FE96 /* NSMutableDictionary+Safe.m in Sources */,
+				28C1874020E628D70045FE96 /* NSObject+Safe.m in Sources */,
+				28C1872120E628730045FE96 /* LSViewTestKVO.m in Sources */,
+				28C1873B20E628D70045FE96 /* NSMutableString+Safe.m in Sources */,
+				28C1874320E628D70045FE96 /* NSAttributedString+Safe.m in Sources */,
+				28C1873D20E628D70045FE96 /* NSDictionary+Safe.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C186F920E628270045FE96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28C1870220E628270045FE96 /* LSSafeProtectorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28C1870420E628270045FE96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28C1870D20E628270045FE96 /* LSSafeProtectorUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		28C186FF20E628270045FE96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 28C186E420E628260045FE96 /* LSSafeProtector */;
+			targetProxy = 28C186FE20E628270045FE96 /* PBXContainerItemProxy */;
+		};
+		28C1870A20E628270045FE96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 28C186E420E628260045FE96 /* LSSafeProtector */;
+			targetProxy = 28C1870920E628270045FE96 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		28C186EE20E628260045FE96 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28C186EF20E628260045FE96 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		28C186F320E628270045FE96 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28C186F420E628270045FE96 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		28C1870F20E628270045FE96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		28C1871020E628270045FE96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		28C1871220E628270045FE96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 929467FPP6;
+				INFOPLIST_FILE = LSSafeProtector/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.liusong.LSSafeProtector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		28C1871320E628270045FE96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 929467FPP6;
+				INFOPLIST_FILE = LSSafeProtector/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.liusong.LSSafeProtector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		28C1871520E628270045FE96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 929467FPP6;
+				INFOPLIST_FILE = LSSafeProtectorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.liusong.LSSafeProtectorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LSSafeProtector.app/LSSafeProtector";
+			};
+			name = Debug;
+		};
+		28C1871620E628270045FE96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 929467FPP6;
+				INFOPLIST_FILE = LSSafeProtectorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.liusong.LSSafeProtectorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LSSafeProtector.app/LSSafeProtector";
+			};
+			name = Release;
+		};
+		28C1871820E628270045FE96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 929467FPP6;
+				INFOPLIST_FILE = LSSafeProtectorUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.liusong.LSSafeProtectorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LSSafeProtector;
+			};
+			name = Debug;
+		};
+		28C1871920E628270045FE96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 929467FPP6;
+				INFOPLIST_FILE = LSSafeProtectorUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.liusong.LSSafeProtectorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LSSafeProtector;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		28C186E020E628260045FE96 /* Build configuration list for PBXProject "LSSafeProtector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28C1870F20E628270045FE96 /* Debug */,
+				28C1871020E628270045FE96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28C1871120E628270045FE96 /* Build configuration list for PBXNativeTarget "LSSafeProtector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28C1871220E628270045FE96 /* Debug */,
+				28C1871320E628270045FE96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28C1871420E628270045FE96 /* Build configuration list for PBXNativeTarget "LSSafeProtectorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28C1871520E628270045FE96 /* Debug */,
+				28C1871620E628270045FE96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28C1871720E628270045FE96 /* Build configuration list for PBXNativeTarget "LSSafeProtectorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28C1871820E628270045FE96 /* Debug */,
+				28C1871920E628270045FE96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 28C186DD20E628260045FE96 /* Project object */;
+}
