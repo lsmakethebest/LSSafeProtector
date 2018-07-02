@@ -98,8 +98,9 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
 }
 
 // keyPath为对象的属性，通过keyPath作为Key创建对应对应的一条观察者关键路径：keyPath --> observers-self
-- (void)safe_addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {
-    if( !keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
+- (void)safe_addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context
+{
+    if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
         return;
     }
     @try {
@@ -107,26 +108,24 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
     }
     @catch (NSException *exception) {
         LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
-        
     }
     @finally {
-        //观察者为空 或者keypath为空
-        if (!observer || !keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)) {
-            return;
-        }
+     
         //存放每个keyPath的所有监听者
         //已经添加过对应keypath的观察者
-        NSHashTable *observers = self.safe_beObservedKeyPathDictionary[keyPath];
-        if (observers && [observers containsObject:observer]) {
+        NSMutableArray *observers = self.safe_beObservedKeyPathDictionary[keyPath];
+        if (observers && [observers containsObject:[NSString stringWithFormat:@"%p",observer]]) {
             return;
         }
         
         if (!observers) {
             //NSPointerFunctionsObjectPointerPersonality对于isEqual:和hash使用直接的指针比较
-            observers = [[NSHashTable alloc] initWithOptions:NSPointerFunctionsWeakMemory|NSPointerFunctionsObjectPointerPersonality capacity:0];
+//            observers = [[NSHashTable alloc] initWithOptions:NSPointerFunctionsWeakMemory|NSPointerFunctionsObjectPointerPersonality capacity:0];
+//            observers=[NSHashTable weakObjectsHashTable];
+            observers=[NSMutableArray array];
         }
         @synchronized(observers){
-            [observers addObject:observer];
+            [observers addObject:[NSString stringWithFormat:@"%p",observer]];
         }
         //每个keyPath的监听者数组存放在NSMutableDictionary中
         [self.safe_beObservedKeyPathDictionary setObject:observers forKey:keyPath];
@@ -155,6 +154,21 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
 //移除时不但要把 有哪些对象监听了自己字典移除，还要把observer的监听了哪些人字典移除
 - (void)safe_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath
 {
+    if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
+        return;
+    }
+    
+    //###########有哪些人监听自己处理
+    NSArray *observers = self.safe_beObservedKeyPathDictionary[keyPath];
+    // keyPath集合中未包含这个观察者
+    if (!observers) {
+        return;
+    }
+    // 重复删除观察者
+    if (![observers containsObject:[NSString stringWithFormat:@"%p",observer]]) {
+        return;
+    }
+    
     @try {
         [self safe_removeObserver:observer forKeyPath:keyPath];
     }
@@ -166,10 +180,6 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         }
     }
     @finally {
-        
-        if (!observer || !keyPath) {
-            return;
-        }
         
         //监听了哪些对象存储结构 移除目标
         NSString *key =[NSString stringWithFormat:@"%@",self];
@@ -189,16 +199,8 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         
         //当先dealloc时 NSHashTableo 里的元素也就为空了因为是weak指针销毁了 自动为nil
         NSHashTable *observers = self.safe_beObservedKeyPathDictionary[keyPath];
-        // keyPath集合中未包含这个观察者
-        if (!observers) {
-            return;
-        }
-        // 重复删除观察者
-        if (![observers containsObject:observer]) {
-            return;
-        }
         @synchronized(observers){
-            [observers removeObject:observer];
+            [observers removeObject:[NSString stringWithFormat:@"%p",observer]];
         }
         [self.safe_beObservedKeyPathDictionary setObject:observers forKey:keyPath];
     }
@@ -206,6 +208,21 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
 
 - (void)safe_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context
 {
+    if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
+        return;
+    }
+    
+    //###########有哪些人监听自己处理
+    NSArray *observers = self.safe_beObservedKeyPathDictionary[keyPath];
+    // keyPath集合中未包含这个观察者
+    if (!observers) {
+        return;
+    }
+    // 重复删除观察者
+    if (![observers containsObject:[NSString stringWithFormat:@"%p",observer]]) {
+        return;
+    }
+    
     @try {
         [self safe_removeObserver:observer forKeyPath:keyPath context:context];
     }
@@ -218,13 +235,8 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
     }
     @finally {
         
-        if (!observer || !keyPath) {
-            return;
-        }
-        
-        
-        //监听了哪些人处理
-        //监听了哪些对象存储结构 移除目标
+        //#########监听了哪些人处理
+        //###########监听了哪些对象存储结构 移除目标
         NSString *key =[NSString stringWithFormat:@"%@",self];
         NSMutableDictionary *listeningObjecteDic = observer.safe_observedDictionary[key];
         if(listeningObjecteDic==nil)return;
@@ -235,25 +247,15 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
             }
         }
         observer.safe_observedDictionary[key]=listeningObjecteDic;
-        
         if (array.count<=0) {
             [observer.safe_observedDictionary removeObjectForKey:key];
         }
         
         
-        
-        //有哪些人监听自己处理
+        //###########有哪些人监听自己处理
         NSHashTable *observers = self.safe_beObservedKeyPathDictionary[keyPath];
-        // keyPath集合中未包含这个观察者
-        if (!observers) {
-            return;
-        }
-        // 重复删除观察者
-        if (![observers containsObject:observer]) {
-            return;
-        }
         @synchronized(observers){
-            [observers removeObject:observer];
+            [observers removeObject:[NSString stringWithFormat:@"%p",observer]];
         }
         [self.safe_beObservedKeyPathDictionary setObject:observers forKey:keyPath];
         
@@ -304,8 +306,7 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
 
 -(void)safe_KVODealloc
 {
-//    NSLog(@"%@  safe_KVODealloc",[self class]);
-    if([NSStringFromClass([self class]) hasPrefix:@"_"])return;
+    //NSLog(@"%@  safe_KVODealloc",[self class]);
     
     self.safe_cacheKVODeallocDictionary=[NSMutableDictionary dictionary];
     for (NSString *objectKey in self.safe_observedDictionary) {
@@ -314,6 +315,12 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         self.safe_cacheKVODeallocDictionary[objectKey]=keypathArray;
     }
     
+    
+    //谁监听了自己 移除他们
+    
+    
+    
+    //监听了哪些人 让那些人移除自己
     NSMutableDictionary *newDic=[self.safe_observedDictionary mutableCopy];
     for (NSString *objectKey in newDic) {
         NSDictionary *dic=self.safe_observedDictionary[objectKey];
@@ -325,7 +332,14 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
 //        Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSDictionaryM: 0x170640de0> was mutated while being enumerated.'
         NSArray *newArray=[keypathArray mutableCopy];
         for (NSString *keypath in newArray) {
-            [observer removeObserver:self forKeyPath:keypath ];
+            if (observer) {
+                [observer removeObserver:self forKeyPath:keypath ];
+            }else{
+                //自己监听自己或者监听的是父类(父类先dealloc) 导致 observer值为nil  但是self却有值
+                if ([objectKey isEqualToString:[NSString stringWithFormat:@"%p",self]]) {
+                    [self removeObserver:self forKeyPath:keypath ];
+                }
+            }
         }
     }
 }

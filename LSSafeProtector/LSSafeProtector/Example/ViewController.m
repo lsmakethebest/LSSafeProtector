@@ -8,14 +8,15 @@
 
 #import "ViewController.h"
 #import "NSObject+Safe.h"
-#import "UIViewController+ss.h"
 #import "NSNotificationTestObject.h"
 #import "LSViewTestKVO.h"
+#import "LSViewTestKVOSuper.h"
 @interface ViewController ()
 
 @property (nonatomic,strong) NSNotificationTestObject *testObject;
 @property (nonatomic,assign) BOOL kvoTest;
 @property (nonatomic,weak) LSViewTestKVO *testView1;
+@property (nonatomic,weak) LSViewTestKVO *testView2;
 -(void)getName;
 -(void)getAge:(NSInteger)age;
 -(id)getSafeObject;
@@ -96,17 +97,18 @@
     
     
     //    dealloc时没有移除obverser
-        LSViewTestKVO *view1 =[LSViewTestKVO new];
+        LSViewTestKVO *view1 =[LSViewTestKVOSuper new];
         [self.view addSubview:view1];
         self.testView1=view1;
-        self.testView1.con=self;
-        [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
-    //
-//        self.testObject=[[NSNotificationTestObject alloc]init];
-        [self addObserver:self.testObject forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
+//        self.testView1.con=self;
+        [self.testView1 addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
+
     
-//        [self.testView1 removeFromSuperview];
-//        self.testObject=nil;
+//        self.testObject=[[NSNotificationTestObject alloc]init];
+//        [self addObserver:self.testObject forKeyPath:@"kvoTest2" options:(NSKeyValueObservingOptionNew) context:nil];
+    
+        [self.testView1 removeFromSuperview];
+        self.testObject=nil;
     
         self.kvoTest=YES;
     

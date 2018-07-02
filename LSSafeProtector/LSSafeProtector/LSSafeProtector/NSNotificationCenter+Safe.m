@@ -75,7 +75,6 @@ static NSMutableSet *NSNotificationCenterSafeSwizzledClasses() {
 -(void)safe_NotificationDealloc
 {
     //NSLog(@"%@  NSNotificationCenter+safe_Dealloc",[self class]);
-    if([NSStringFromClass([self class]) hasPrefix:@"_"])return;
     if ([self isNotification]) {
 //        NSException *exception=[NSException exceptionWithName:@"dealloc时通知中心未移除本对象" reason:[NSString stringWithFormat:@"dealloc时通知中心未移除本对象  Class:%@",[self class]] userInfo:nil]; LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSNotificationCenter);
         [[NSNotificationCenter defaultCenter]removeObserver:self];

@@ -20,13 +20,9 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
 @property (nonatomic,strong) NSException *exception;
 @property (nonatomic,weak) id safe_object;
 @end
-
 @implementation LSSafeProxy
-
 -(void)safe_crashLog{
-
 }
-
 @end
 
 
