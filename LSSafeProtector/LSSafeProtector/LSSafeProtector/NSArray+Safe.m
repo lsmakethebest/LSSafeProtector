@@ -33,7 +33,7 @@
         instance = [self safe_initWithObjects:objects count:cnt];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSArray);
         
         //以下是对错误数据的处理，把为nil的数据去掉,然后初始化数组
         NSInteger newObjsIndex = 0;
@@ -59,7 +59,7 @@
        object = [self safe_objectAtIndexedSubscriptI:index];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSArray);
     }
     @finally {
         return object;
@@ -72,7 +72,7 @@
         object = [self safe_objectAtIndexI:index];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSArray);
     }
     @finally {
         return object;
@@ -86,7 +86,7 @@
         object = [self safe_objectAtIndex0:index];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSArray);
     }
     @finally {
         return object;
@@ -99,7 +99,7 @@
         object = [self safe_objectAtIndexSI:index];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSArray);
     }
     @finally {
         return object;

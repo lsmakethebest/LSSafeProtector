@@ -20,8 +20,6 @@
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(setObject:forKeyedSubscript:) newSel:@selector(safe_setObject:forKeyedSubscript:)];
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(removeObjectForKey:) newSel:@selector(safe_removeObjectForKey:)];
     });
-    
-
 }
 
 
@@ -31,7 +29,7 @@
         [self safe_setObject:anObject forKey:aKey];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableDictionary);
     }
     @finally {
     }
@@ -43,7 +41,7 @@
         [self safe_setObject:anObject forKeyedSubscript:aKey];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableDictionary);
     }
     @finally {
     }
@@ -55,7 +53,7 @@
         [self safe_removeObjectForKey:aKey];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableDictionary);
     }
     @finally {
     }

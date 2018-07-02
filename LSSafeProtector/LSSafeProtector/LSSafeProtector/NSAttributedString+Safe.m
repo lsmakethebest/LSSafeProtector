@@ -38,7 +38,7 @@
         object = [self safe_initWithString:str];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSAttributedString);
     }
     @finally {
         return object;
@@ -53,7 +53,7 @@
         object = [self safe_initWithAttributedString:attrStr];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSAttributedString);
     }
     @finally {
         return object;
@@ -68,7 +68,7 @@
         object = [self safe_initWithString:str attributes:attrs];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSAttributedString);
     }
     @finally {
         return object;

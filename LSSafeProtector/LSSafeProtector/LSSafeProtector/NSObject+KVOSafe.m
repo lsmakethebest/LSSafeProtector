@@ -13,10 +13,6 @@
 #import <objc/message.h>
 
 
-@interface NSObject(KVOSafe)
-@property (nonatomic,assign) BOOL safe_isKVOWillDealloc;
-@property (nonatomic,strong) NSMutableDictionary *safe_cacheKVODeallocDictionary;
-@end
 
 @implementation NSObject (KVOSafe)
 
@@ -59,7 +55,6 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         __block void (*originalDealloc)(__unsafe_unretained id, SEL) = NULL;
         
         id newDealloc = ^(__unsafe_unretained id self) {
-            if([NSStringFromClass([self class]) hasPrefix:@"_"])return ;
             [self safe_KVODealloc];
             if (originalDealloc == NULL) {
                 struct objc_super superInfo = {
@@ -96,7 +91,7 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
     @try{
         [self safe_observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }@catch (NSException *exception){
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
     }@finally{
         
     }
@@ -111,7 +106,7 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         [self safe_addObserver:observer forKeyPath:keyPath options:options context:context];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
         
     }
     @finally {
@@ -127,17 +122,18 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         }
         
         if (!observers) {
-            //          NSPointerFunctionsObjectPointerPersonality对于isEqual:和hash使用直接的指针比较
+            //NSPointerFunctionsObjectPointerPersonality对于isEqual:和hash使用直接的指针比较
             observers = [[NSHashTable alloc] initWithOptions:NSPointerFunctionsWeakMemory|NSPointerFunctionsObjectPointerPersonality capacity:0];
         }
-        
-        [observers addObject:observer];
+        @synchronized(observers){
+            [observers addObject:observer];
+        }
         //每个keyPath的监听者数组存放在NSMutableDictionary中
         [self.safe_beObservedKeyPathDictionary setObject:observers forKey:keyPath];
         
         
         //监听了哪些对象存储结构
-        NSString *key =[NSString stringWithFormat:@"%@",self];
+        NSString *key =[NSString stringWithFormat:@"%p",self];
         NSMutableDictionary *listeningObjecteDic = observer.safe_observedDictionary[key];
         if (!listeningObjecteDic) {
             listeningObjecteDic = [NSMutableDictionary dictionary];
@@ -147,7 +143,9 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
             listeningObjecteDic[@"keyPaths"]=[NSMutableArray array];
         }
         NSMutableArray *array=listeningObjecteDic[@"keyPaths"];
-        [array addObject:keyPath];
+        @synchronized(array){
+            [array addObject:keyPath];
+        }
         [observer.safe_observedDictionary setObject:listeningObjecteDic forKey:key];
         [observer safe_KVOChangeDidDeallocSignal];
         
@@ -161,11 +159,10 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         [self safe_removeObserver:observer forKeyPath:keyPath];
     }
     @catch (NSException *exception) {
-        NSArray *array= observer.safe_cacheKVODeallocDictionary[[NSString stringWithFormat:@"%@",self]];
-        if(array==nil||(array&&![array containsObject:keyPath])){
-//        if (!observer.safe_isKVOWillDealloc) {
+        NSArray *array= observer.safe_cacheKVODeallocDictionary[[NSString stringWithFormat:@"%p",self]];
+        if(array==nil||(array&&keyPath&&![array containsObject:keyPath])){
             // 打印crash信息
-            LSSafeProtectionCrashLog(exception);
+            LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
         }
     }
     @finally {
@@ -178,17 +175,13 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         NSString *key =[NSString stringWithFormat:@"%@",self];
         NSMutableDictionary *listeningObjecteDic = observer.safe_observedDictionary[key];
         if(listeningObjecteDic==nil)return;//证明observer监听字典里已经没有了
-        //        if (!listeningObjecteDic) {
-        //            listeningObjecteDic = [NSMutableDictionary dictionary];
-        //            NSMapTable *mapTable =[NSMapTable weakToWeakObjectsMapTable];
-        //            [mapTable setObject:self forKey:@"observer"];
-        //            listeningObjecteDic[@"observer"]=mapTable;
-        //            listeningObjecteDic[@"keyPaths"]=[NSMutableArray array];
-        //        }
         NSMutableArray *array=listeningObjecteDic[@"keyPaths"];
-        [array removeObject:keyPath];
+        if (array!=nil) {
+            @synchronized(array){
+                [array removeObject:keyPath];
+            }
+        }
         observer.safe_observedDictionary[key]=listeningObjecteDic;
-        
         if (array.count<=0) {
             [observer.safe_observedDictionary removeObjectForKey:key];
         }
@@ -204,9 +197,10 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         if (![observers containsObject:observer]) {
             return;
         }
-        [observers removeObject:observer];
+        @synchronized(observers){
+            [observers removeObject:observer];
+        }
         [self.safe_beObservedKeyPathDictionary setObject:observers forKey:keyPath];
-          
     }
 }
 
@@ -216,8 +210,11 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         [self safe_removeObserver:observer forKeyPath:keyPath context:context];
     }
     @catch (NSException *exception) {
-        // 打印crash信息
-        LSSafeProtectionCrashLog(exception);
+        NSArray *array= observer.safe_cacheKVODeallocDictionary[[NSString stringWithFormat:@"%p",self]];
+        if(array==nil||(array&&keyPath&&![array containsObject:keyPath])){
+            // 打印crash信息
+            LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
+        }
     }
     @finally {
         
@@ -231,15 +228,12 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         NSString *key =[NSString stringWithFormat:@"%@",self];
         NSMutableDictionary *listeningObjecteDic = observer.safe_observedDictionary[key];
         if(listeningObjecteDic==nil)return;
-        //        if (!listeningObjecteDic) {
-        //            listeningObjecteDic = [NSMutableDictionary dictionary];
-        //            NSMapTable *mapTable =[NSMapTable weakToWeakObjectsMapTable];
-        //            [mapTable setObject:self forKey:@"observer"];
-        //            listeningObjecteDic[@"observer"]=mapTable;
-        //            listeningObjecteDic[@"keyPaths"]=[NSMutableArray array];
-        //        }
         NSMutableArray *array=listeningObjecteDic[@"keyPaths"];
-        [array removeObject:keyPath];
+        if (array!=nil) {
+            @synchronized(array){
+                [array removeObject:keyPath];
+            }
+        }
         observer.safe_observedDictionary[key]=listeningObjecteDic;
         
         if (array.count<=0) {
@@ -258,7 +252,9 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         if (![observers containsObject:observer]) {
             return;
         }
-        [observers removeObject:observer];
+        @synchronized(observers){
+            [observers removeObject:observer];
+        }
         [self.safe_beObservedKeyPathDictionary setObject:observers forKey:keyPath];
         
     }
@@ -297,33 +293,7 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
     objc_setAssociatedObject(self, @selector(safe_observedDictionary), safe_observedDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-
--(void)safe_KVODealloc
-{
-    NSLog(@"%@  safe_KVODealloc",[self class]);
-    //    for (NSString *objectKey in self.safe_observedDictionary) {
-    //         NSDictionary *dic=self.safe_observedDictionary[objectKey];
-    //    }
-    self.safe_isKVOWillDealloc=YES;
-    self.safe_cacheKVODeallocDictionary=[NSMutableDictionary dictionary];
-    for (NSString *objectKey in self.safe_observedDictionary) {
-        NSDictionary *dic=self.safe_observedDictionary[objectKey];
-        NSMutableArray *keypathArray=[dic[@"keyPaths"] mutableCopy];
-        self.safe_cacheKVODeallocDictionary[objectKey]=keypathArray;
-    }
-    for (NSString *objectKey in self.safe_observedDictionary) {
-        NSDictionary *dic=self.safe_observedDictionary[objectKey];
-        NSMapTable *maptable=dic[@"observer"];
-        id  observer=[maptable objectForKey:@"observer"];
-        NSMutableArray *keypathArray=dic[@"keyPaths"];
-        for (NSString *keypath in keypathArray) {
-            [observer removeObserver:self forKeyPath:keypath ];
-            NSLog(@"11111111111  %@",keypath);
-        }
-    }
-}
--
-(NSMutableDictionary *)safe_cacheKVODeallocDictionary
+-(NSMutableDictionary *)safe_cacheKVODeallocDictionary
 {
     return  objc_getAssociatedObject(self, _cmd);
 }
@@ -332,14 +302,34 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
     objc_setAssociatedObject(self, @selector(safe_cacheKVODeallocDictionary), safe_cacheKVODeallocDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
--(BOOL)safe_isKVOWillDealloc
+-(void)safe_KVODealloc
 {
-    return [objc_getAssociatedObject(self, _cmd)boolValue];
+//    NSLog(@"%@  safe_KVODealloc",[self class]);
+    if([NSStringFromClass([self class]) hasPrefix:@"_"])return;
+    
+    self.safe_cacheKVODeallocDictionary=[NSMutableDictionary dictionary];
+    for (NSString *objectKey in self.safe_observedDictionary) {
+        NSDictionary *dic=self.safe_observedDictionary[objectKey];
+        NSMutableArray *keypathArray=[dic[@"keyPaths"] mutableCopy];
+        self.safe_cacheKVODeallocDictionary[objectKey]=keypathArray;
+    }
+    
+    NSMutableDictionary *newDic=[self.safe_observedDictionary mutableCopy];
+    for (NSString *objectKey in newDic) {
+        NSDictionary *dic=self.safe_observedDictionary[objectKey];
+        NSMapTable *maptable=dic[@"observer"];
+        id  observer=[maptable objectForKey:@"observer"];
+        NSMutableArray *keypathArray=dic[@"keyPaths"];
+// 防止此种崩溃所以新创建个NSArray 遍历       Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSArrayM: 0x61800024f7b0> was mutated while being enumerated.'
+        
+//        Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSDictionaryM: 0x170640de0> was mutated while being enumerated.'
+        NSArray *newArray=[keypathArray mutableCopy];
+        for (NSString *keypath in newArray) {
+            [observer removeObserver:self forKeyPath:keypath ];
+        }
+    }
 }
--(void)setSafe_isKVOWillDealloc:(BOOL)safe_isKVOWillDealloc
-{
-    return objc_setAssociatedObject(self, @selector(safe_isKVOWillDealloc), @(safe_isKVOWillDealloc), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
+
 
 
 

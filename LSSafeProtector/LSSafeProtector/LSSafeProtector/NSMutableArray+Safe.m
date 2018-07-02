@@ -37,7 +37,7 @@
        object =  [self safe_objectAtIndexedSubscriptM:index];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableArray);
     }
     @finally {
         return object;
@@ -51,7 +51,7 @@
        object= [self safe_objectAtIndexM:index];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableArray);
     }
     @finally {
         return object;
@@ -65,7 +65,7 @@
         [self safe_insertObject:anObject atIndex:index];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableArray);
     }
     @finally {
         
@@ -79,7 +79,7 @@
         [self safe_removeObjectAtIndex:index];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+       LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableArray);
     }
     @finally {
         
@@ -93,7 +93,7 @@
         [self safe_replaceObjectAtIndex:index withObject:anObject];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableArray);
     }
     @finally {
         

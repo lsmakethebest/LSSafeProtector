@@ -79,7 +79,7 @@
         instance = [self safe_initWithString:aString];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
     }
     @finally {
         return instance;
@@ -93,7 +93,7 @@
         has = [self safe_hasPrefix:str];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
     }
     @finally {
         return has;
@@ -107,7 +107,7 @@
         has = [self safe_hasSuffix:str];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
     }
     @finally {
         return has;
@@ -121,7 +121,7 @@
         subString = [self safe_substringFromIndex:from];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
         subString = nil;
     }
     @finally {
@@ -137,7 +137,7 @@
         subString = [self safe_substringToIndex:index];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
         subString = nil;
     }
     @finally {
@@ -152,7 +152,7 @@
         subString = [self safe_substringWithRange:range];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
         subString = nil;
     }
     @finally {
@@ -167,7 +167,7 @@
         characteristic = [self safe_characterAtIndex:index];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
     }
     @finally {
         return characteristic;
@@ -183,7 +183,7 @@
         newStr = [self safe_stringByReplacingOccurrencesOfString:target withString:replacement options:options range:searchRange];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
         newStr = nil;
     }
     @finally {
@@ -200,7 +200,7 @@
         newStr = [self safe_stringByReplacingCharactersInRange:range withString:replacement];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+       LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
         newStr = nil;
     }
     @finally {
@@ -216,7 +216,7 @@
          [self safe_replaceCharactersInRange:range withString:aString];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
     }
     @finally {
     }
@@ -230,7 +230,7 @@
        index= [self safe_replaceOccurrencesOfString:target withString:replacement options:options range:searchRange];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
     }
     @finally {
         return index;
@@ -245,7 +245,7 @@
         [self safe_insertString:aString atIndex:loc];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
     }
     @finally {
     }
@@ -258,7 +258,7 @@
         [self safe_deleteCharactersInRange:range];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
     }
     @finally {
     }
@@ -271,7 +271,7 @@
         [self safe_appendString:aString];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
     }
     @finally {
     }
@@ -283,7 +283,7 @@
         [self safe_setString:aString];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableString);
     }
     @finally {
     }

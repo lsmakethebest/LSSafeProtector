@@ -14,11 +14,11 @@
 
 
 @interface NSObject (NSNotificationCenterSafe)
-
 @property (nonatomic,assign) BOOL isNotification;
 @end
 
 @implementation NSObject(NSNotificationCenterSafe)
+
 static NSMutableSet *NSNotificationCenterSafeSwizzledClasses() {
     static dispatch_once_t onceToken;
     static NSMutableSet *swizzledClasses = nil;
@@ -41,13 +41,7 @@ static NSMutableSet *NSNotificationCenterSafeSwizzledClasses() {
         __block void (*originalDealloc)(__unsafe_unretained id, SEL) = NULL;
         
         id newDealloc = ^(__unsafe_unretained id self) {
-            if ([self isNotification]) {
-                if([NSStringFromClass([self class]) hasPrefix:@"_"])return ;
-                NSException *exception=[NSException exceptionWithName:@"dealloc时通知中心未移除本对象" reason:[NSString stringWithFormat:@"dealloc时通知中心未移除本对象  Class:%@",[self class]] userInfo:nil];
-                LSSafeProtectionCrashLog(exception);
-                [[NSNotificationCenter defaultCenter]removeObserver:self];
-            }
-            
+            [self safe_NotificationDealloc];
             if (originalDealloc == NULL) {
                 struct objc_super superInfo = {
                     .receiver = self,
@@ -78,6 +72,15 @@ static NSMutableSet *NSNotificationCenterSafeSwizzledClasses() {
         [NSNotificationCenterSafeSwizzledClasses() addObject:className];
     }
 }
+-(void)safe_NotificationDealloc
+{
+    //NSLog(@"%@  NSNotificationCenter+safe_Dealloc",[self class]);
+    if([NSStringFromClass([self class]) hasPrefix:@"_"])return;
+    if ([self isNotification]) {
+//        NSException *exception=[NSException exceptionWithName:@"dealloc时通知中心未移除本对象" reason:[NSString stringWithFormat:@"dealloc时通知中心未移除本对象  Class:%@",[self class]] userInfo:nil]; LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSNotificationCenter);
+        [[NSNotificationCenter defaultCenter]removeObserver:self];
+    }
+}
 -(void)setIsNotification:(BOOL)isNotification
 {
     objc_setAssociatedObject(self, @selector(isNotification), @(isNotification), OBJC_ASSOCIATION_RETAIN);
@@ -98,9 +101,6 @@ static NSMutableSet *NSNotificationCenterSafeSwizzledClasses() {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self safe_exchangeInstanceMethod:[NSNotificationCenter class] originalSel:@selector(addObserver:selector:name:object:) newSel:@selector(safe_addObserver:selector:name:object:)];
-        
-         [self safe_exchangeInstanceMethod:[NSNotificationCenter class] originalSel:@selector(removeObserver:name:object:) newSel:@selector(safe_removeObserver:name:object:)];
-         [self safe_exchangeInstanceMethod:[NSNotificationCenter class] originalSel:@selector(removeObserver:) newSel:@selector(safe_removeObserver:)];
     });
 }
 -(void)safe_addObserver:(id)observer selector:(SEL)aSelector name:(NSNotificationName)aName object:(id)anObject
@@ -109,16 +109,6 @@ static NSMutableSet *NSNotificationCenterSafeSwizzledClasses() {
     [observer safe_changeDidDeallocSignal];
     [self safe_addObserver:observer selector:aSelector name:aName object:anObject];
 }
--(void)safe_removeObserver:(id)observer
-{
-    [self safe_removeObserver:observer];
-}
--(void)safe_removeObserver:(id)observer name:(NSNotificationName)aName object:(id)anObject
-{
-    [self safe_removeObserver:observer name:aName object:anObject];
-    
-}
-
 
 
 

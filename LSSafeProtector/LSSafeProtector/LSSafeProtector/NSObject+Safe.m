@@ -11,21 +11,20 @@
 #import <objc/runtime.h>
 #import "NSObject+KVOSafe.h"
 
+
+static  LSSafeProtectorLogType ls_safe_logType=LSSafeProtectorLogTypeIgnoreKVOAndNSNotificationCenter;
+static  LSSafeProtectorBlock lsSafeProtectorBlock;
+
+
 @interface LSSafeProxy:NSObject
 @property (nonatomic,strong) NSException *exception;
 @property (nonatomic,weak) id safe_object;
 @end
 
 @implementation LSSafeProxy
-+ (BOOL)resolveInstanceMethod:(SEL)sel {
-    class_addMethod([self class], sel, [self instanceMethodForSelector:@selector(safe_crashLog)], "v@:");
-    return YES;
-}
--(void) safe_crashLog
-{
-     NSString *reason= [NSString stringWithFormat:@"%@ unrecognized selector : %@",NSStringFromClass([self.safe_object class]),NSStringFromSelector(_cmd)];
-    NSException *exception=[NSException exceptionWithName:@"NSInvalidArgumentException" reason:reason userInfo:nil];
-    LSSafeProtectionCrashLog(exception);
+
+-(void)safe_crashLog{
+
 }
 
 @end
@@ -33,6 +32,10 @@
 
 @implementation NSObject (Safe)
 
++(void)setSafeProtectorLogType:(LSSafeProtectorLogType)safeProtectorLogType
+{
+    ls_safe_logType=safeProtectorLogType;
+}
 +(void)openSafeProtector
 {
      if ([NSStringFromClass([NSObject class]) isEqualToString:@"NSObject"]) {
@@ -42,27 +45,30 @@
              [self safe_exchangeInstanceMethod:[self class] originalSel:@selector(methodSignatureForSelector:) newSel:@selector(safe_methodSignatureForSelector:)];
              
                [self safe_exchangeInstanceMethod:[self class] originalSel:@selector(forwardInvocation:) newSel:@selector(safe_forwardInvocation:)];
-             
          });
      }else{
          //只有NSObject 能调用openSafeProtector其他类调用没效果
      }
 }
 //打开目前所支持的所有安全保护
-+(void)openAllSafeProtector
++(void)openAllSafeProtectorWithBlock:(LSSafeProtectorBlock)block
 {
     if ([NSStringFromClass([self class]) isEqualToString:@"NSObject"]) {
-        [NSObject openSafeProtector];
-        [NSArray openSafeProtector];
-        [NSMutableArray openSafeProtector];
-        [NSDictionary openSafeProtector];
-        [NSMutableDictionary openSafeProtector];
-        [NSString openSafeProtector];
-        [NSMutableString openSafeProtector];
-        [NSAttributedString openSafeProtector];
-        [NSMutableAttributedString openSafeProtector];
-        [NSNotificationCenter openSafeProtector];
-        [NSObject openKVOSafeProtector];
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [NSObject openSafeProtector];//开启防止selecetor crash
+            [NSArray openSafeProtector];
+            [NSMutableArray openSafeProtector];
+            [NSDictionary openSafeProtector];
+            [NSMutableDictionary openSafeProtector];
+            [NSString openSafeProtector];
+            [NSMutableString openSafeProtector];
+            [NSAttributedString openSafeProtector];
+            [NSMutableAttributedString openSafeProtector];
+            [NSNotificationCenter openSafeProtector];
+            [NSObject openKVOSafeProtector];
+            lsSafeProtectorBlock=block;
+        });
     }else{
         //只有NSObject 能调用openAllSafeProtector其他类调用没效果
         [self openSafeProtector];
@@ -72,26 +78,22 @@
 - (NSMethodSignature *)safe_methodSignatureForSelector:(SEL)aSelector
 {
     NSMethodSignature *ms = [self safe_methodSignatureForSelector:aSelector];
-    if (ms == nil) {
-        ms=[LSSafeProxy instanceMethodSignatureForSelector:@selector(safe_crashLog)];
+    if ([self respondsToSelector:aSelector] || ms){
+        return ms;
     }
-    
-    return ms;
+    else{
+        return [LSSafeProxy instanceMethodSignatureForSelector:@selector(safe_crashLog)];
+    }
 }
 
-- (void)safe_forwardInvocation:(NSInvocation *)anInvocation
-{
-    
+- (void)safe_forwardInvocation:(NSInvocation *)anInvocation{
     @try {
         [self safe_forwardInvocation:anInvocation];
         
     } @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception);
-        
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeSelector);
     } @finally {
-        
     }
-    
 }
 #pragma mark - 交换类方法
 + (void)safe_exchangeClassMethod:(Class) dClass
@@ -136,7 +138,7 @@
 }
 
 
-+ (void)safe_logCrashWithException:(NSException *)exception
++ (void)safe_logCrashWithException:(NSException *)exception crashType:(LSSafeProtectorCrashType)crashType
 {
     // 堆栈数据
     NSArray *callStackSymbolsArr = [NSThread callStackSymbols];
@@ -154,21 +156,34 @@
     NSString *crashLocation = [NSString stringWithFormat:@"\t\t[Crash Location]: %@",mainMessage];
 
     NSString *fullMessage = [NSString stringWithFormat:@"\n------------------------------------  Crash START -------------------------------------\n%@\n%@\n%@\n函数堆栈:\n%@\n------------------------------------   Crash END  -----------------------------------------", crashName, crashReason, crashLocation, exception.callStackSymbols];
-    LSSafeLog(@"%@", fullMessage);
     
-//   UIAlertController *alert= [UIAlertController alertControllerWithTitle:@"检测到崩溃信息" message:fullMessage preferredStyle:(UIAlertControllerStyleAlert)];
-//
-//    UIAlertAction *action =
-//    [UIAlertAction actionWithTitle:@"取消"
-//                             style:(UIAlertActionStyleCancel)
-//                           handler:^(UIAlertAction *_Nonnull action) {
-//                               [alert dismissViewControllerAnimated:YES completion:nil];
-//                           }];
-//    [alert addAction:action];
-//
-//    UIViewController *vc= [[[UIApplication sharedApplication] delegate] window].rootViewController;
-//    [vc presentViewController:alert animated:YES completion:nil];
-    
+    NSMutableDictionary *userInfo=[NSMutableDictionary dictionary];
+    userInfo[@"函数堆栈"]=[NSString stringWithFormat:@"%@",exception.callStackSymbols];
+    userInfo[@"崩溃位置"]=mainMessage;
+    NSException *newException = [NSException exceptionWithName:exception.name reason:exception.reason userInfo:userInfo];
+    if (lsSafeProtectorBlock) {
+        lsSafeProtectorBlock(newException,crashType);
+    }
+    LSSafeProtectorLogType logType=ls_safe_logType;
+    if (logType==LSSafeProtectorLogTypeIgnoreKVOAndNSNotificationCenter) {
+        if (crashType!=LSSafeProtectorCrashTypeNSNotificationCenter&&crashType!=LSSafeProtectorCrashTypeKVO) {
+            LSSafeLog(@"%@", fullMessage);
+        }
+    }
+    else if (logType==LSSafeProtectorLogTypeIgnoreKVO) {
+        if (crashType!=LSSafeProtectorCrashTypeKVO) {
+            LSSafeLog(@"%@", fullMessage);
+        }
+    }
+    else if (logType==LSSafeProtectorLogTypeIgnoreNSNotificationCenter) {
+        if (crashType!=LSSafeProtectorCrashTypeNSNotificationCenter) {
+            LSSafeLog(@"%@", fullMessage);
+        }
+    }else if (logType==LSSafeProtectorLogTypeNone) {
+    }
+    else if (logType==LSSafeProtectorLogTypeAll) {
+        LSSafeLog(@"%@", fullMessage);
+    }
 }
 
 #pragma mark -   获取堆栈主要崩溃精简化的信息<根据正则表达式匹配出来

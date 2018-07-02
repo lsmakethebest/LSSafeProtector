@@ -25,9 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [NSObject openAllSafeProtector];
-    [self haha];
-    self.kvoTest=YES;
+    [NSObject openAllSafeProtectorWithBlock:^(NSException *exception, LSSafeProtectorCrashType crashType) {
+        
+    }];
     
 }
 -(void)haha
@@ -114,24 +114,6 @@
     
     
 }
--(void)setKvoTest:(BOOL)kvoTest
-{
-    
-    [self willChangeValueForKey:@"kvoTest"];
-    _kvoTest=kvoTest;
-    [self didChangeValueForKey:@"kvoTest"];
-}
-//+ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey {
-//
-//    BOOL automatic = NO;
-//    if ([theKey isEqualToString:@"kvoTest"]) {
-//        automatic = NO;
-//    }
-//    else {
-//        automatic = [super automaticallyNotifiesObserversForKey:theKey];
-//    }
-//    return automatic;
-//}
 
 -(void)testNotification
 {

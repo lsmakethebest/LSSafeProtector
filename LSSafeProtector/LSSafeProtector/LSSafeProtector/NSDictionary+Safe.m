@@ -32,7 +32,7 @@
     }
     @catch (NSException *exception) {
         
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSDictionary);
         
         //处理错误的数据，重新初始化一个字典
         NSUInteger count=MIN(objects.count, keys.count);
@@ -59,7 +59,7 @@
     }
     @catch (NSException *exception) {
 
-        LSSafeProtectionCrashLog(exception);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSDictionary);
 
         //处理错误的数据，重新初始化一个字典
         NSUInteger index = 0;
