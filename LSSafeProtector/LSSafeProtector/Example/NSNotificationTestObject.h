@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LSViewTestKVO.h"
 
 @interface NSNotificationTestObject : NSObject
 
+@property (nonatomic,weak) LSViewTestKVO *kvo;
 @end
