@@ -97,16 +97,16 @@
     
     
     //    dealloc时没有移除obverser
-//        LSViewTestKVO *view1 =[LSViewTestKVO new];
-//        [self.view addSubview:view1];
-//        self.testView1=view1;
-//        self.testView1.con=self;
+        LSViewTestKVO *view1 =[LSViewTestKVO new];
+        [self.view addSubview:view1];
+        self.testView1=view1;
+        self.testView1.con=self;
 //        [self.testView1 addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
 
     
         self.testObject=[[NSNotificationTestObject alloc]init];
-//        self.testObject.kvo=self.testView1;
-        [self.testObject addObserver:self.testObject forKeyPath:@"kvo" options:(NSKeyValueObservingOptionNew) context:nil];
+        self.testObject.kvo=self.testView1;
+        [self.testView1 addObserver:self.testObject forKeyPath:@"kvo" options:(NSKeyValueObservingOptionNew) context:nil];
 //        [self.testView1 removeFromSuperview];
 
         self.testObject=nil;
