@@ -274,13 +274,12 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         }
     }
 }
-//为什么判断能否移除 而不是直接remove try catch 捕获异常，因为有的类remove两次，try直接就崩溃了
+//为什么判断能否移除 而不是直接remove try catch 捕获异常，因为有的类remove keypath两次，try直接就崩溃了
 -(BOOL)safe_contaninObserverOrKeypathWithObserver:(id)observer keyPath:(NSString*)keyPath
 {
     if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
         return NO;
     }
-    
     
     NSHashTable *observers = self.safe_downObservedKeyPathDictionary[keyPath];
     // keyPath集合为空证明没有正在监听的人
