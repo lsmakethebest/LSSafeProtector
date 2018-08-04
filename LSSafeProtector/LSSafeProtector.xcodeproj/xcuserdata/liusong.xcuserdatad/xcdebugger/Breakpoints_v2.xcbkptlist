@@ -15,8 +15,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
             endingLineNumber = "114"
-            landmarkName = "-safe_removeObserver:"
-            landmarkType = "7">
+            landmarkName = "NSNotificationCenter(Safe)"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,9 +30,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "-safe_removeObserver:name:object:"
-            landmarkType = "7">
+            endingLineNumber = "118">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -79,8 +77,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "117"
             endingLineNumber = "117"
-            landmarkName = "-safe_addObserver:forKeyPath:options:context:"
-            landmarkType = "7">
+            landmarkName = "NSObject(KVOSafe)"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -95,8 +93,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
             endingLineNumber = "122"
-            landmarkName = "-safe_addObserver:forKeyPath:options:context:"
-            landmarkType = "7">
+            landmarkName = "NSObject(KVOSafe)"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -126,9 +124,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "361"
-            endingLineNumber = "361"
-            landmarkName = "-safe_contaninObserverOrKeypathWithObserver:keyPath:"
-            landmarkType = "7">
+            endingLineNumber = "361">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -174,9 +170,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "-safe_contaninObserverOrKeypathWithObserver:keyPath:"
-            landmarkType = "7">
+            endingLineNumber = "368">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -206,9 +200,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "360"
-            endingLineNumber = "360"
-            landmarkName = "-safe_contaninObserverOrKeypathWithObserver:keyPath:"
-            landmarkType = "7">
+            endingLineNumber = "360">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -222,9 +214,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "365"
-            endingLineNumber = "365"
-            landmarkName = "-safe_contaninObserverOrKeypathWithObserver:keyPath:"
-            landmarkType = "7">
+            endingLineNumber = "365">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -238,9 +228,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "366"
-            endingLineNumber = "366"
-            landmarkName = "-safe_contaninObserverOrKeypathWithObserver:keyPath:"
-            landmarkType = "7">
+            endingLineNumber = "366">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

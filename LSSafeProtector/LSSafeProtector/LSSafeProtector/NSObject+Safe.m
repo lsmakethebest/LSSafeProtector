@@ -12,7 +12,7 @@
 #import "NSObject+KVOSafe.h"
 
 
-static  LSSafeProtectorLogType ls_safe_logType=LSSafeProtectorLogTypeIgnoreKVOAndNSNotificationCenter;
+static  LSSafeProtectorLogType ls_safe_logType=LSSafeProtectorLogTypeAll;
 static  LSSafeProtectorBlock lsSafeProtectorBlock;
 
 
@@ -161,21 +161,7 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
         lsSafeProtectorBlock(newException,crashType);
     }
     LSSafeProtectorLogType logType=ls_safe_logType;
-    if (logType==LSSafeProtectorLogTypeIgnoreKVOAndNSNotificationCenter) {
-        if (crashType!=LSSafeProtectorCrashTypeNSNotificationCenter&&crashType!=LSSafeProtectorCrashTypeKVO) {
-            LSSafeLog(@"%@", fullMessage);
-        }
-    }
-    else if (logType==LSSafeProtectorLogTypeIgnoreKVO) {
-        if (crashType!=LSSafeProtectorCrashTypeKVO) {
-            LSSafeLog(@"%@", fullMessage);
-        }
-    }
-    else if (logType==LSSafeProtectorLogTypeIgnoreNSNotificationCenter) {
-        if (crashType!=LSSafeProtectorCrashTypeNSNotificationCenter) {
-            LSSafeLog(@"%@", fullMessage);
-        }
-    }else if (logType==LSSafeProtectorLogTypeNone) {
+    if (logType==LSSafeProtectorLogTypeNone) {
     }
     else if (logType==LSSafeProtectorLogTypeAll) {
         LSSafeLog(@"%@", fullMessage);
