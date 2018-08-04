@@ -30,7 +30,11 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
 
 +(void)setSafeProtectorLogType:(LSSafeProtectorLogType)safeProtectorLogType
 {
-    ls_safe_logType=safeProtectorLogType;
+    if ([NSStringFromClass([self class]) isEqualToString:@"NSObject"]) {
+        ls_safe_logType=safeProtectorLogType;
+    }else{
+       LSSafeLog(@"------- 请用  [NSObject setSafeProtectorLogType:] 调用此方法");
+    }
 }
 +(void)openSafeProtector
 {
@@ -67,7 +71,7 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
         });
     }else{
         //只有NSObject 能调用openAllSafeProtector其他类调用没效果
-        [self openSafeProtector];
+        LSSafeLog(@"------- 请用  [NSObject openAllSafeProtectorWithBlock:] 调用此方法");
     }
 
 }

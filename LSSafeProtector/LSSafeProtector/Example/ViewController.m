@@ -27,9 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [NSObject openAllSafeProtectorWithBlock:^(NSException *exception, LSSafeProtectorCrashType crashType) {
-        
-    }];
     
+    }];
 }
 -(void)haha
 {
