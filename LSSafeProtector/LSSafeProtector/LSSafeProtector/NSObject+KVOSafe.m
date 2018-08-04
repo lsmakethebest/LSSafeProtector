@@ -13,7 +13,8 @@
 #import <objc/message.h>
 
 
-#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
+//#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
+#define LSKVOSafeLog(fmt, ...)
 
 @implementation NSObject (KVOSafe)
 
@@ -364,7 +365,6 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         }
     }];
 }
-
 
 
 @end
