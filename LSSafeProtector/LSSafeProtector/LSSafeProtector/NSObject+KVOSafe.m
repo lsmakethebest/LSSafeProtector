@@ -119,7 +119,13 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
     objc_setAssociatedObject(self, @selector(safe_upObservedDictionary), safe_upObservedDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-
+//存放dealloc之前还没有remove的keypaths
+-(NSMutableDictionary *)safe_cacheKVODeallocDictionary{
+    return  objc_getAssociatedObject(self, _cmd);
+}
+-(void)setSafe_cacheKVODeallocDictionary:(NSMutableDictionary *)safe_cacheKVODeallocDictionary{
+    objc_setAssociatedObject(self, @selector(safe_cacheKVODeallocDictionary), safe_cacheKVODeallocDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 -(void)safe_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     @try{
@@ -268,17 +274,57 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
         }
     }
 }
-
+//为什么判断能否移除 而不是直接remove try catch 捕获异常，因为有的类remove两次，try直接就崩溃了
+-(BOOL)safe_contaninObserverOrKeypathWithObserver:(id)observer keyPath:(NSString*)keyPath
+{
+    if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
+        return NO;
+    }
+    
+    
+    NSHashTable *observers = self.safe_downObservedKeyPathDictionary[keyPath];
+    // keyPath集合为空证明没有正在监听的人
+    if (!observers) {
+        return NO;
+    }
+    
+    NSString *objectKey=[NSString stringWithFormat:@"%p",self];
+    NSMutableDictionary *uploadDic=[observer safe_upObservedDictionary][objectKey];
+    NSMapTable *maptable=uploadDic[@"observer"];
+    BOOL have = [uploadDic[@"keyPaths"] containsObject:keyPath];
+    id uploadObserver = [maptable objectForKey:@"observer"];
+    
+    
+    // A的down包含B   或者B的up包含A 都可以remove,解决了A和B谁先移除，导致的NSMapTable里的值自动变为nil的问题
+    if ([observers containsObject:observer]||(uploadObserver!=nil&&have)) {
+        return YES;
+    }
+    
+    //自己监听自己情况
+    if (self == observer && have) {
+        return YES;
+    }
+    return NO;
+}
 
 /* 防止此种崩溃所以新创建个NSArray 和 NSMutableDictionary遍历
  Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSArrayM: 0x61800024f7b0> was mutated while being enumerated.'
  
  Terminating app due to uncaught exception 'NSGenericException', reason: '*** Collection <__NSDictionaryM: 0x170640de0> was mutated while being enumerated.'
- 
  */
 -(void)safe_KVODealloc
 {
     LSKVOSafeLog(@"%@  safe_KVODealloc",[self class]);
+    
+    
+    self.safe_cacheKVODeallocDictionary=[NSMutableDictionary dictionary];
+    for (NSString *objectKey in self.safe_upObservedDictionary) {
+        NSDictionary *dic=self.safe_upObservedDictionary[objectKey];
+        NSMutableArray *keypathArray=[dic[@"keyPaths"] mutableCopy];
+        self.safe_cacheKVODeallocDictionary[objectKey]=keypathArray;
+    }
+    
+
     
     //A->B A先销毁 B的safe_upObservedDictionary observer=nil  然后在B dealloc里在remove会导致移除不了，然后系统会报销毁时还持有某keypath的crash
     //A->B B先销毁 此时A remove 但事实上的A的safe_downObservedDictionary observer=nil  所以B remove里会判断observer是否有值，如果没值则不remove导致没有remove
@@ -320,35 +366,6 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
     }];
 }
 
--(BOOL)safe_contaninObserverOrKeypathWithObserver:(id)observer keyPath:(NSString*)keyPath
-{
-    if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
-        return NO;
-    }
-    
-    NSHashTable *observers = self.safe_downObservedKeyPathDictionary[keyPath];
-    // keyPath集合为空证明没有正在监听的人
-    if (!observers) {
-        return NO;
-    }
-    
-    NSString *objectKey=[NSString stringWithFormat:@"%p",self];
-    NSMutableDictionary *uploadDic=[observer safe_upObservedDictionary][objectKey];
-    NSMapTable *maptable=uploadDic[@"observer"];
-    BOOL have = [uploadDic[@"keyPaths"] containsObject:keyPath];
-    id uploadObserver = [maptable objectForKey:@"observer"];
-    
-    
-    // A的down包含B   或者B的up包含A 都可以remove,解决了A和B谁先移除，导致的NSMapTable里的值自动变为nil的问题
-    if ([observers containsObject:observer]||(uploadObserver!=nil&&have)) {
-        return YES;
-    }
-    
-    //自己监听自己情况
-    if (self == observer && have) {
-        return YES;
-    }
-    return NO;
-}
+
 
 @end
