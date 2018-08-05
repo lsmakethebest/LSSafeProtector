@@ -14,6 +14,7 @@
 @interface ViewController ()
 
 @property (nonatomic,strong) NSNotificationTestObject *testObject;
+@property (nonatomic,strong) NSNotificationTestObject *testObject2;
 @property (nonatomic,assign) BOOL kvoTest;
 @property (nonatomic,weak) LSViewTestKVO *testView1;
 @property (nonatomic,weak) LSViewTestKVO *testView2;
@@ -105,10 +106,18 @@
     
         self.testObject=[[NSNotificationTestObject alloc]init];
         self.testObject.kvo=self.testView1;
-        [self.testView1 addObserver:self.testObject forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
+        [self.view addObserver:self.testObject forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
 //        [self.testView1 removeFromSuperview];
 
+    
+    
+    
+    
+    self.testObject2=[[NSNotificationTestObject alloc]init];
+     [self.testView1 addObserver:self.testObject2 forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
+    
         self.testObject=nil;
+        self.testObject2=nil;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         self.testView1.frame=CGRectZero;

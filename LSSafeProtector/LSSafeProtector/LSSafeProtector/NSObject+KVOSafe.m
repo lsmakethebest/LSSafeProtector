@@ -273,7 +273,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     
     NSString *objectKey=[NSString stringWithFormat:@"%p",self];
     if (isUser) {
-        [KVOSafeDeallocCrashes()[objectKey][@"keyPaths"] removeObject:keyPath];
+        [KVOSafeDeallocCrashes()[[NSString stringWithFormat:@"%p",observer]][objectKey][@"keyPaths"] removeObject:keyPath];
     }
     
     NSHashTable *observers = self.safe_downObservedKeyPathDictionary[keyPath];
@@ -309,6 +309,8 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 -(void)safe_KVODealloc
 {
     LSKVOSafeLog(@"%@  safe_KVODealloc",[self class]);
+    NSString *currentKey=[NSString stringWithFormat:@"%p",self];
+    KVOSafeDeallocCrashes()[currentKey]=[NSMutableDictionary dictionary];
     self.safe_cacheKVODeallocDictionary=[NSMutableDictionary dictionary];
     for (NSString *objectKey in self.safe_upObservedDictionary) {
         NSDictionary *dic=self.safe_upObservedDictionary[objectKey];
@@ -317,7 +319,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         NSMutableDictionary *newDic=[NSMutableDictionary dictionary];
         newDic[@"className"]=dic[@"className"];
         newDic[@"keyPaths"]=keypathArray;
-        KVOSafeDeallocCrashes()[objectKey]=newDic;
+        KVOSafeDeallocCrashes()[currentKey][objectKey]=newDic;
     }
 
     
@@ -362,7 +364,17 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 }
 +(void)safe_dealloc_crash:(NSString*)classAddress
 {
-    LSSafeLog(@"");
+    NSDictionary *dic = KVOSafeDeallocCrashes()[classAddress];
+    for (NSString *key in dic) {
+        NSArray *array = dic[key][@"keyPaths"];
+        if (array.count>0) {
+            for (NSString *keyPath in array) {
+                NSString *reason=[NSString stringWithFormat:@"%@（%@） dealloc时仍然监听着 %@ 的keyPath of %@",[self class],classAddress,dic[key][@"className"],keyPath];
+            NSException *exception=[NSException exceptionWithName:@"KVO crash" reason:reason userInfo:nil]; LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
+            }
+        }
+    }
+    [KVOSafeDeallocCrashes() removeObjectForKey:classAddress];
     
     
     
