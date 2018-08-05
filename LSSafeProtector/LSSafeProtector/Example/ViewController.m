@@ -106,9 +106,9 @@
         self.testObject=[[NSNotificationTestObject alloc]init];
         self.testObject.kvo=self.testView1;
         [self.testView1 addObserver:self.testObject forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsdfs"];
-        [self.testView1 removeFromSuperview];
+//        [self.testView1 removeFromSuperview];
 
-//        self.testObject=nil;
+        self.testObject=nil;
 //        self.testView1.frame=CGRectZero;
 
 //        [self addObserver:self.testObject forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];

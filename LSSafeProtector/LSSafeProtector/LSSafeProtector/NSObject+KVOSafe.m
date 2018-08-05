@@ -298,7 +298,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     }
     
     NSString *objectKey=[NSString stringWithFormat:@"%p",self];
-//    [KVOSafeDeallocCrashes()[objectKey] removeObjectForKey:keyPath];
+    [KVOSafeDeallocCrashes()[objectKey] removeObjectForKey:keyPath];
     
     NSHashTable *observers = self.safe_downObservedKeyPathDictionary[keyPath];
     // keyPath集合为空证明没有正在监听的人
@@ -359,7 +359,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
             id context=newKeypathDic[keypath][@"context"];
             if (observer) {
                 LSKVOSafeLog(@"%@ dealloc的时候，仍然监听着 %@ 的keyPath of %@ ,框架自动remove",[self class],[observer class],keypath);
-                [self removeObserver:self forKeyPath:keypath context:(__bridge void * _Nullable)(context)];
+                [observer removeObserver:self forKeyPath:keypath context:(__bridge void * _Nullable)(context)];
             }
             else{
                 if ([objectKey isEqualToString:[NSString stringWithFormat:@"%p",self]]){
