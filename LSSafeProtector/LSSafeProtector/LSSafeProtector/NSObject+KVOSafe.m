@@ -190,17 +190,12 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
             NSMapTable *mapTable =[NSMapTable weakToWeakObjectsMapTable];
             [mapTable setObject:self forKey:@"observer"];
             listeningObjecteDic[@"observer"]=mapTable;
-            listeningObjecteDic[@"keyPaths"]=[NSMutableDictionary dictionary];
+            listeningObjecteDic[@"className"]=[NSString stringWithFormat:@"%@",[self class]];
+            listeningObjecteDic[@"keyPaths"]=[NSMutableArray array];
         }
-        NSMutableDictionary *keyPathsDic=listeningObjecteDic[@"keyPaths"];
-        @synchronized(keyPathsDic){
-            NSMutableDictionary *dic=[NSMutableDictionary dictionary];
-           id newContext=(__bridge id _Nonnull)(context);
-            if (newContext) {
-                dic[@"context"]=newContext;
-            }
-            dic[@"keyPath"]=keyPath;
-            keyPathsDic[keyPath]=dic;
+        NSMutableArray *keyPathsArray=listeningObjecteDic[@"keyPaths"];
+        @synchronized(keyPathsArray){
+            [keyPathsArray addObject:keyPath];
         }
         [observer.safe_upObservedDictionary setObject:listeningObjecteDic forKey:key];
         
@@ -212,54 +207,31 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 }
 
 //移除时不但要把 有哪些对象监听了自己字典移除，还要把observer的监听了哪些人字典移除
-- (void)safe_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath
-{
-    if ([self safe_contaninObserverOrKeypathWithObserver:observer keyPath:keyPath]==NO) {
-        // 重复删除观察者或不含有 或者keypath=nil  observer=nil
-        return;
-    }
-    
-    @try {
-        LSKVOSafeLog(@"%@ safe_removeObserver %@  keyPath:%@",[self class],[observer class],keyPath);
-            [self safe_removeObserver:observer forKeyPath:keyPath];
-    }
-    @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
-    }
-    @finally {
-        
-        //监听了哪些对象存储结构 移除目标
-        NSString *key =[NSString stringWithFormat:@"%p",self];
-        NSMutableDictionary *listeningObjecteDic = observer.safe_upObservedDictionary[key];
-        if(listeningObjecteDic==nil)return;//证明observer监听字典里已经没有了
-        NSMutableDictionary *keyPathDic=listeningObjecteDic[@"keyPaths"];
-        if (keyPathDic!=nil) {
-            @synchronized(keyPathDic){
-                [keyPathDic removeObjectForKey:keyPath];
-            }
-        }
-        observer.safe_upObservedDictionary[key]=listeningObjecteDic;
-        if ([keyPathDic.allKeys count]<=0) {
-            [observer.safe_upObservedDictionary removeObjectForKey:key];
-        }
-        
-        //当先dealloc时 NSHashTable 里的元素也就为空了因为是weak指针销毁了 自动为nil
-        NSHashTable *observers = self.safe_downObservedKeyPathDictionary[keyPath];
-        @synchronized(observers){
-            [observers removeObject:observer];
-            [self.safe_downObservedKeyPathDictionary setObject:observers forKey:keyPath];
-        }
-    }
+- (void)safe_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath{
+   [self safe_allRemoveObserver:observer forKeyPath:keyPath context:nil isContext:NO isUser:YES];
 }
 - (void)safe_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context{
-    if ([self safe_contaninObserverOrKeypathWithObserver:observer keyPath:keyPath]==NO) {
+    [self safe_allRemoveObserver:observer forKeyPath:keyPath context:context isContext:YES isUser:YES];
+}
+
+
+/**
+ @param isContext 是否有context
+ @param isUser 是否是用户移除的，而不是框架替用户移除的
+ */
+- (void)safe_allRemoveObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context isContext:(BOOL)isContext isUser:(BOOL)isUser{
+    if ([self safe_contaninObserverOrKeypathWithObserver:observer keyPath:keyPath isUser:isUser]==NO) {
         // 重复删除观察者或不含有 或者keypath=nil  observer=nil
         return;
     }
     
     @try {
         LSKVOSafeLog(@"%@ safe_removeObserver %@  keyPath:%@",[self class],[observer class],keyPath);
-        [self safe_removeObserver:observer forKeyPath:keyPath context:context];
+        if (isContext) {
+            [self safe_removeObserver:observer forKeyPath:keyPath context:context];
+        }else{
+            [self safe_removeObserver:observer forKeyPath:keyPath];
+        }
     }
     @catch (NSException *exception) {
         LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
@@ -270,14 +242,14 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         NSString *key =[NSString stringWithFormat:@"%p",self];
         NSMutableDictionary *listeningObjecteDic = observer.safe_upObservedDictionary[key];
         if(listeningObjecteDic==nil)return;//证明observer监听字典里已经没有了
-        NSMutableDictionary *keyPathDic=listeningObjecteDic[@"keyPaths"];
-        if (keyPathDic!=nil) {
-            @synchronized(keyPathDic){
-                [keyPathDic removeObjectForKey:keyPath];
+        NSMutableArray *keyPathArray=listeningObjecteDic[@"keyPaths"];
+        if (keyPathArray!=nil) {
+            @synchronized(keyPathArray){
+                [keyPathArray removeObject:keyPath];
             }
         }
         observer.safe_upObservedDictionary[key]=listeningObjecteDic;
-        if ([keyPathDic.allKeys count]<=0) {
+        if (keyPathArray.count<=0) {
             [observer.safe_upObservedDictionary removeObjectForKey:key];
         }
         
@@ -290,15 +262,19 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     }
 }
 
+
+
 //为什么判断能否移除 而不是直接remove try catch 捕获异常，因为有的类remove keypath两次，try直接就崩溃了
--(BOOL)safe_contaninObserverOrKeypathWithObserver:(id)observer keyPath:(NSString*)keyPath
+-(BOOL)safe_contaninObserverOrKeypathWithObserver:(id)observer keyPath:(NSString*)keyPath isUser:(BOOL)isUser
 {
     if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
         return NO;
     }
     
     NSString *objectKey=[NSString stringWithFormat:@"%p",self];
-    [KVOSafeDeallocCrashes()[objectKey] removeObjectForKey:keyPath];
+    if (isUser) {
+        [KVOSafeDeallocCrashes()[objectKey][@"keyPaths"] removeObject:keyPath];
+    }
     
     NSHashTable *observers = self.safe_downObservedKeyPathDictionary[keyPath];
     // keyPath集合为空证明没有正在监听的人
@@ -309,7 +285,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     
     NSMutableDictionary *uploadDic=[observer safe_upObservedDictionary][objectKey];
     NSMapTable *maptable=uploadDic[@"observer"];
-    BOOL have = ([uploadDic[@"keyPaths"] objectForKey:keyPath]!=nil);
+    BOOL have = [uploadDic[@"keyPaths"] containsObject:keyPath];
     id uploadObserver = [maptable objectForKey:@"observer"];
     
     
@@ -338,10 +314,11 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         NSDictionary *dic=self.safe_upObservedDictionary[objectKey];
         NSMutableArray *keypathArray=[dic[@"keyPaths"] mutableCopy];
 //        self.safe_cacheKVODeallocDictionary[objectKey]=keypathArray;
-        KVOSafeDeallocCrashes()[objectKey]=keypathArray;
+        NSMutableDictionary *newDic=[NSMutableDictionary dictionary];
+        newDic[@"className"]=dic[@"className"];
+        newDic[@"keyPaths"]=keypathArray;
+        KVOSafeDeallocCrashes()[objectKey]=newDic;
     }
-
-    
 
     
     //A->B A先销毁 B的safe_upObservedDictionary observer=nil  然后在B dealloc里在remove会导致移除不了，然后系统会报销毁时还持有某keypath的crash
@@ -353,19 +330,18 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         NSDictionary *dic=newDic[objectKey];
         NSMapTable *maptable=dic[@"observer"];
         id  observer=[maptable objectForKey:@"observer"];
-        NSMutableDictionary *keypathDic=dic[@"keyPaths"];
-        NSDictionary *newKeypathDic=[keypathDic mutableCopy];
-        for (NSString *keypath in newKeypathDic) {
-            id context=newKeypathDic[keypath][@"context"];
+        NSMutableArray *keypathArray=dic[@"keyPaths"];
+        NSArray *newKeypathArray=[keypathArray mutableCopy];
+        for (NSString *keypath in newKeypathArray) {
             if (observer) {
                 LSKVOSafeLog(@"%@ dealloc的时候，仍然监听着 %@ 的keyPath of %@ ,框架自动remove",[self class],[observer class],keypath);
-                [observer removeObserver:self forKeyPath:keypath context:(__bridge void * _Nullable)(context)];
+                [observer safe_allRemoveObserver:self forKeyPath:keypath context:nil isContext:NO isUser:NO];
             }
             else{
                 if ([objectKey isEqualToString:[NSString stringWithFormat:@"%p",self]]){
                     //自己监听自己 NSHashTable和NSMapTable里的值都没了，所以需要单独判断，这快移除完，下个字典就没值了，所以不用再处理
                     LSKVOSafeLog(@"%@ dealloc的时候，仍然监听着自己的keyPath of %@ ,框架自动remove",[self class],keypath);
-                    [self removeObserver:self forKeyPath:keypath context:(__bridge void * _Nullable)(context)];
+                    [self safe_allRemoveObserver:self forKeyPath:keypath context:nil isContext:NO isUser:NO];
                 }
             }
         }
@@ -380,14 +356,16 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         NSArray *array= [table.allObjects mutableCopy];
         for (id obj in array) {
             LSKVOSafeLog(@"%@ dealloc的时候，%@ 仍然监听着 %@ 的keyPath of %@ ,框架自动remove",[self class],[obj class],[self class],keyPath);
-            id context=[obj safe_upObservedDictionary][[NSString stringWithFormat:@"%p",self]][@"keyPaths"][keyPath][@"context"];
-            [self removeObserver:obj forKeyPath:keyPath context:(__bridge void * _Nullable)(context)];
+            [self safe_allRemoveObserver:obj forKeyPath:keyPath context:nil isContext:NO isUser:NO];
         }
     }];
 }
 +(void)safe_dealloc_crash:(NSString*)classAddress
 {
     LSSafeLog(@"");
+    
+    
+    
 }
 
 @end

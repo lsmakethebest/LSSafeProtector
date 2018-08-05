@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [NSObject openAllSafeProtectorWithBlock:^(NSException *exception, LSSafeProtectorCrashType crashType) {
-    
+
     }];
 }
 -(void)haha
@@ -105,11 +105,14 @@
     
         self.testObject=[[NSNotificationTestObject alloc]init];
         self.testObject.kvo=self.testView1;
-        [self.testView1 addObserver:self.testObject forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsdfs"];
+        [self.testView1 addObserver:self.testObject forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
 //        [self.testView1 removeFromSuperview];
 
         self.testObject=nil;
-//        self.testView1.frame=CGRectZero;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        self.testView1.frame=CGRectZero;
+    });
 
 //        [self addObserver:self.testObject forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
     
