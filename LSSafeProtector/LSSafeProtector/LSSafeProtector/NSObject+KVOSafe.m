@@ -336,13 +336,13 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         NSArray *newKeypathArray=[keypathArray mutableCopy];
         for (NSString *keypath in newKeypathArray) {
             if (observer) {
-                LSKVOSafeLog(@"%@ dealloc的时候，仍然监听着 %@ 的keyPath of %@ ,框架自动remove",[self class],[observer class],keypath);
+                LSKVOSafeLog(@"%@ dealloc的时候，仍然监听着 %@ 的 keyPath of %@ ,框架自动remove",[self class],[observer class],keypath);
                 [observer safe_allRemoveObserver:self forKeyPath:keypath context:nil isContext:NO isUser:NO];
             }
             else{
                 if ([objectKey isEqualToString:[NSString stringWithFormat:@"%p",self]]){
                     //自己监听自己 NSHashTable和NSMapTable里的值都没了，所以需要单独判断，这快移除完，下个字典就没值了，所以不用再处理
-                    LSKVOSafeLog(@"%@ dealloc的时候，仍然监听着自己的keyPath of %@ ,框架自动remove",[self class],keypath);
+                    LSKVOSafeLog(@"%@ dealloc的时候，仍然监听着自己的 keyPath of %@ ,框架自动remove",[self class],keypath);
                     [self safe_allRemoveObserver:self forKeyPath:keypath context:nil isContext:NO isUser:NO];
                 }
             }
@@ -357,7 +357,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         NSHashTable *table=downNewDic[keyPath];
         NSArray *array= [table.allObjects mutableCopy];
         for (id obj in array) {
-            LSKVOSafeLog(@"%@ dealloc的时候，%@ 仍然监听着 %@ 的keyPath of %@ ,框架自动remove",[self class],[obj class],[self class],keyPath);
+            LSKVOSafeLog(@"%@ dealloc的时候，%@ 仍然监听着 %@ 的 keyPath of %@ ,框架自动remove",[self class],[obj class],[self class],keyPath);
             [self safe_allRemoveObserver:obj forKeyPath:keyPath context:nil isContext:NO isUser:NO];
         }
     }];
@@ -369,7 +369,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         NSArray *array = dic[key][@"keyPaths"];
         if (array.count>0) {
             for (NSString *keyPath in array) {
-                NSString *reason=[NSString stringWithFormat:@"%@（%@） dealloc时仍然监听着 %@ 的keyPath of %@",[self class],classAddress,dic[key][@"className"],keyPath];
+                NSString *reason=[NSString stringWithFormat:@"%@（%@） dealloc时仍然监听着 %@ 的 keyPath of %@",[self class],classAddress,dic[key][@"className"],keyPath];
             NSException *exception=[NSException exceptionWithName:@"KVO crash" reason:reason userInfo:nil]; LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
             }
         }
