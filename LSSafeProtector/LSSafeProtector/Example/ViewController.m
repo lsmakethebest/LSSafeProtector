@@ -97,31 +97,31 @@
     
     
     //    dealloc时没有移除obverser
-        LSViewTestKVO *view1 =[LSViewTestKVO new];
-        [self.view addSubview:view1];
-        self.testView1=view1;
-        self.testView1.con=self;
+//        LSViewTestKVO *view1 =[LSViewTestKVO new];
+//        [self.view addSubview:view1];
+//        self.testView1=view1;
+//        self.testView1.con=self;
 //        [self.testView1 addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
 
     
         self.testObject=[[NSNotificationTestObject alloc]init];
-        self.testObject.kvo=self.testView1;
-        [self.view addObserver:self.testObject forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
-//        [self.testView1 removeFromSuperview];
-
+        self.testObject.kvo=self.testObject;
+        [self.testObject addObserver:self.testObject forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
+//        [self.testView1  removeFromSuperview];
+    self.testObject=nil;
     
     
     
     
-    self.testObject2=[[NSNotificationTestObject alloc]init];
-     [self.testView1 addObserver:self.testObject2 forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
-    
-        self.testObject=nil;
-        self.testObject2=nil;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        self.testView1.frame=CGRectZero;
-    });
+//    self.testObject2=[[NSNotificationTestObject alloc]init];
+//     [self.testView1 addObserver:self.testObject2 forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
+//
+//        self.testObject=nil;
+//        self.testObject2=nil;
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//
+//        self.testView1.frame=CGRectZero;
+//    });
 
 //        [self addObserver:self.testObject forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
     

@@ -72,7 +72,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
-            timestampString = "555178076.547359"
+            timestampString = "555214349.329923"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -88,27 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
-            timestampString = "555178076.54834"
+            timestampString = "555214349.329988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "-setSafe_cacheKVODeallocDictionary:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
-            timestampString = "555178076.549268"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "-safe_addObserver:forKeyPath:options:context:"
             landmarkType = "7">
          </BreakpointContent>
@@ -136,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
-            timestampString = "555178076.550282"
+            timestampString = "555214349.330073"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "-safe_contaninObserverOrKeypathWithObserver:keyPath:isUser:"
             landmarkType = "7">
          </BreakpointContent>
@@ -152,7 +136,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
-            timestampString = "555178076.55114"
+            timestampString = "555214349.330121"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
+            landmarkName = "-safe_contaninObserverOrKeypathWithObserver:keyPath:isUser:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
+            timestampString = "555214349.3301671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "294"
@@ -164,15 +164,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
-            timestampString = "555178076.5519561"
+            timestampString = "555214349.330211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "-safe_contaninObserverOrKeypathWithObserver:keyPath:isUser:"
             landmarkType = "7">
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
-            timestampString = "555178076.552705"
+            timestampString = "555214349.330253"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
             landmarkName = "-safe_KVODealloc"
             landmarkType = "7">
          </BreakpointContent>
@@ -200,27 +200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
-            timestampString = "555178076.553372"
+            timestampString = "555214349.330304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
-            landmarkName = "+safe_dealloc_crash:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
-            timestampString = "555178076.55393"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "-safe_contaninObserverOrKeypathWithObserver:keyPath:isUser:"
             landmarkType = "7">
          </BreakpointContent>
@@ -232,12 +216,75 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
-            timestampString = "555178076.554442"
+            timestampString = "555214349.330344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "+safe_dealloc_crash:"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
+            landmarkName = "-safe_KVODealloc"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[NSObject(KVOSafe) safe_KVODealloc]"
+                  moduleName = "LSSafeProtector"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liusong/LSSafeProtector/LSSafeProtector/LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
+                  timestampString = "555214318.283232"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "348"
+                  endingLineNumber = "348"
+                  offsetFromSymbolStart = "2412">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[NSObject(KVOSafe) safe_KVODealloc]_block_invoke"
+                  moduleName = "LSSafeProtector"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liusong/LSSafeProtector/LSSafeProtector/LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
+                  timestampString = "555214318.285796"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "348"
+                  endingLineNumber = "348"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.105"
+                  moduleName = "LSSafeProtector"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liusong/LSSafeProtector/LSSafeProtector/LSSafeProtector/LSSafeProtector/NSObject+KVOSafe.m"
+                  timestampString = "555214318.287971"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "348"
+                  endingLineNumber = "348"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LSSafeProtector/Example/NSNotificationTestObject.m"
+            timestampString = "555214349.330385"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "-dealloc"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

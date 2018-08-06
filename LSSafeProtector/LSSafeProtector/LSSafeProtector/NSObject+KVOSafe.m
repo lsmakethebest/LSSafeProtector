@@ -23,11 +23,9 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
     static NSMutableSet *swizzledClasses = nil;
     dispatch_once(&onceToken, ^{
         swizzledClasses = [[NSMutableSet alloc] init];
-    });
-    
+    });    
     return swizzledClasses;
 }
-
 
 static NSMutableDictionary *KVOSafeDeallocCrashes() {
     static dispatch_once_t onceToken;
@@ -35,13 +33,10 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     dispatch_once(&onceToken, ^{
         KVOSafeDeallocCrashes = [[NSMutableDictionary alloc] init];
     });
-    
     return KVOSafeDeallocCrashes;
 }
 
-+ (void)openKVOSafeProtector
-{
-    
++ (void)openKVOSafeProtector{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
@@ -55,8 +50,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     });
 }
 //最后添替换的dealloc 会最先调用倒序
--(void)safe_KVOChangeDidDeallocSignal
-{
+-(void)safe_KVOChangeDidDeallocSignal{
     //此处交换dealloc方法是借鉴RAC源码
     Class classToSwizzle=[self class];
     @synchronized (KVOSafeSwizzledClasses()) {
@@ -101,8 +95,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     }
 }
 #pragma mark - 被监听的所有keypath 字典
-- (NSMutableDictionary *)safe_downObservedKeyPathDictionary
-{
+- (NSMutableDictionary *)safe_downObservedKeyPathDictionary{
     NSMutableDictionary *dict = objc_getAssociatedObject(self, _cmd);
     if (!dict) {
         dict = [NSMutableDictionary new];
@@ -111,12 +104,9 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     return dict;
 }
 
-- (void)setSafe_downObservedKeyPathDictionary:(NSMutableDictionary *)safe_beObservedKeyPathDictionary
-{
+- (void)setSafe_downObservedKeyPathDictionary:(NSMutableDictionary *)safe_beObservedKeyPathDictionary{
     objc_setAssociatedObject(self, @selector(safe_downObservedKeyPathDictionary), safe_beObservedKeyPathDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-
-
 
 #pragma mark - 监听了哪些对象数组
 - (NSMutableDictionary *)safe_upObservedDictionary{
@@ -132,13 +122,6 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     objc_setAssociatedObject(self, @selector(safe_upObservedDictionary), safe_upObservedDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-//存放dealloc之前还没有remove的keypaths
--(NSMutableDictionary *)safe_cacheKVODeallocDictionary{
-    return  objc_getAssociatedObject(self, _cmd);
-}
--(void)setSafe_cacheKVODeallocDictionary:(NSMutableDictionary *)safe_cacheKVODeallocDictionary{
-    objc_setAssociatedObject(self, @selector(safe_cacheKVODeallocDictionary), safe_cacheKVODeallocDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
 -(void)safe_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     @try{
@@ -311,7 +294,6 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     LSKVOSafeLog(@"%@  safe_KVODealloc",[self class]);
     NSString *currentKey=[NSString stringWithFormat:@"%p",self];
     KVOSafeDeallocCrashes()[currentKey]=[NSMutableDictionary dictionary];
-    self.safe_cacheKVODeallocDictionary=[NSMutableDictionary dictionary];
     for (NSString *objectKey in self.safe_upObservedDictionary) {
         NSDictionary *dic=self.safe_upObservedDictionary[objectKey];
         NSMutableArray *keypathArray=[dic[@"keyPaths"] mutableCopy];
@@ -351,7 +333,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     
     
     
-    //谁监听了自己 移除他们
+    //谁监听了自己 移除他们 这块必须处理  不然 A->B   A先销毁了 在B里面调用A remove就无效了，因为A=nil
     NSMutableDictionary *downNewDic=[self.safe_downObservedKeyPathDictionary mutableCopy];
     [downNewDic enumerateKeysAndObjectsUsingBlock:^(NSString * keyPath, id  _Nonnull obj, BOOL * _Nonnull stop) {
         NSHashTable *table=downNewDic[keyPath];
@@ -375,9 +357,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         }
     }
     [KVOSafeDeallocCrashes() removeObjectForKey:classAddress];
-    
-    
-    
 }
+
 
 @end
