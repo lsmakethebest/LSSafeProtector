@@ -16,7 +16,6 @@
 //NSNotificationCenter 即使设置LogTypeAll 也不会打印，
 //iOS9之后系统已经优化了，即使不移除也不会崩溃， 所以仅iOS8系统会出现此类型carsh,但是有的类是在dealloc里移除通知，而我们是在所有类的dealloc方法之前检测是否移除，没移除则去移除所以会误报crash，干脆直接不报此类型crash了
 
-//LSSafeProtectorCrashTypeKVO crash会在dealloc放之前自动remove keypaths,和上面类似有的类在dealloc里移除，所以导致会误报crash，干脆直接不报此类型crash了
 typedef enum : NSUInteger {
     LSSafeProtectorLogTypeNone,//所有log都不打印
     LSSafeProtectorLogTypeAll,//打印所有log
