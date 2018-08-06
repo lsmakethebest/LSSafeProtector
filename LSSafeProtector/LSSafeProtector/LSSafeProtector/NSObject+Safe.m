@@ -28,14 +28,6 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
 
 @implementation NSObject (Safe)
 
-//+(void)setSafeProtectorLogType:(LSSafeProtectorLogType)safeProtectorLogType
-//{
-//    if ([NSStringFromClass([self class]) isEqualToString:@"NSObject"]) {
-//        ls_safe_logType=safeProtectorLogType;
-//    }else{
-//       LSSafeLog(@"------- 请用  [NSObject setSafeProtectorLogType:] 调用此方法");
-//    }
-//}
 +(void)openSafeProtector
 {
      if ([NSStringFromClass([NSObject class]) isEqualToString:@"NSObject"]) {
