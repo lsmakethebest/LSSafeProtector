@@ -45,15 +45,13 @@ typedef void(^LSSafeProtectorBlock)(NSException *exception,LSSafeProtectorCrashT
 
 @interface  NSObject (Safe)
 
-//设置打印哪些log
-+(void)setSafeProtectorLogType:(LSSafeProtectorLogType)safeProtectorLogType;
 
 //打开目前所支持的所有安全保护 回调block
-+ (void)openAllSafeProtectorWithBlock:(LSSafeProtectorBlock)block;
++ (void)openAllSafeProtectorWithIsDebug:(BOOL)isDebug block:(LSSafeProtectorBlock)block;
+
 
 //打开当前类安全保护
 + (void)openSafeProtector;
-
 
 //交换类方法
 + (void)safe_exchangeClassMethod:(Class)dClass    originalSel:(SEL)originalSelector newSel:(SEL)newSelector;
@@ -61,6 +59,7 @@ typedef void(^LSSafeProtectorBlock)(NSException *exception,LSSafeProtectorCrashT
 //交换对象方法
 + (void)safe_exchangeInstanceMethod:(Class)dClass originalSel:(SEL)originalSelector newSel: (SEL)newSelector;
 
+//打印crash信息
 + (void)safe_logCrashWithException:(NSException *)exception crashType:(LSSafeProtectorCrashType)crashType;
 
 

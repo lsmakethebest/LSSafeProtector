@@ -28,14 +28,14 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
 
 @implementation NSObject (Safe)
 
-+(void)setSafeProtectorLogType:(LSSafeProtectorLogType)safeProtectorLogType
-{
-    if ([NSStringFromClass([self class]) isEqualToString:@"NSObject"]) {
-        ls_safe_logType=safeProtectorLogType;
-    }else{
-       LSSafeLog(@"------- 请用  [NSObject setSafeProtectorLogType:] 调用此方法");
-    }
-}
+//+(void)setSafeProtectorLogType:(LSSafeProtectorLogType)safeProtectorLogType
+//{
+//    if ([NSStringFromClass([self class]) isEqualToString:@"NSObject"]) {
+//        ls_safe_logType=safeProtectorLogType;
+//    }else{
+//       LSSafeLog(@"------- 请用  [NSObject setSafeProtectorLogType:] 调用此方法");
+//    }
+//}
 +(void)openSafeProtector
 {
      if ([NSStringFromClass([NSObject class]) isEqualToString:@"NSObject"]) {
@@ -51,7 +51,7 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
      }
 }
 //打开目前所支持的所有安全保护
-+(void)openAllSafeProtectorWithBlock:(LSSafeProtectorBlock)block
++(void)openAllSafeProtectorWithIsDebug:(BOOL)isDebug block:(LSSafeProtectorBlock)block
 {
     if ([NSStringFromClass([self class]) isEqualToString:@"NSObject"]) {
         static dispatch_once_t onceToken;
@@ -67,6 +67,11 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
             [NSMutableAttributedString openSafeProtector];
             [NSNotificationCenter openSafeProtector];
             [NSObject openKVOSafeProtector];
+            if (isDebug) {
+                 ls_safe_logType=LSSafeProtectorLogTypeAll;
+            }else{
+                ls_safe_logType=LSSafeProtectorLogTypeNone;
+            }
             lsSafeProtectorBlock=block;
         });
     }else{
@@ -169,6 +174,7 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
     }
     else if (logType==LSSafeProtectorLogTypeAll) {
         LSSafeLog(@"%@", fullMessage);
+        NSAssert(NO, fullMessage);
     }
 }
 
