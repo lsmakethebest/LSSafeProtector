@@ -23,3 +23,4 @@
     [Bugly reportException:exception];
 }];
 ``
+## 目前发现个问题，就是用系统相机拍照，第一次拍没问题，第二次拍就闪退，正在找原因，会尽快解决，所以可以先关闭防止kvo闪退功能，到NSOBbject+Safe.m里的openAll方法里注释[NSObject openKVOSafe]这行代码，等到修复这个问题之后再打开
