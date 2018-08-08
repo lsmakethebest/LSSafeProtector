@@ -136,7 +136,8 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 // keyPath为对象的属性，通过keyPath作为Key创建对应对应的一条观察者关键路径：keyPath --> observers-self
 - (void)safe_addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context
 {
-    if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
+    if([self safe_contaninObserverOrKeypathWithObserver:observer keyPath:keyPath isUser:NO]){
+        //如果添加过了直接return
         return;
     }
     @try {
