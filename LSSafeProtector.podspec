@@ -9,7 +9,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/lsmakethebest/LSSafeProtector'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'liusong' => 'job@ysui.cn' }
-  s.source           = { :git => 'https://github.com/liusong/LSSafeProtector.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/lsmakethebest/LSSafeProtector.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
   s.source_files = 'LSSafeProtector/Classes/**/*'
