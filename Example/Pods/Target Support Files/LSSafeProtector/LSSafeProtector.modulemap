@@ -1,0 +1,6 @@
+framework module LSSafeProtector {
+  umbrella header "LSSafeProtector-umbrella.h"
+
+  export *
+  module * { export * }
+}

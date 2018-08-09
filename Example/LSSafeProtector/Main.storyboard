@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="wQg-tq-qST">
+            <objects>
+                <viewController id="whP-gf-Uak" customClass="LSViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uEw-UM-LJ8"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mvr-aV-6Um"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gr7-Nu-j47">
+                                <rect key="frame" x="145.5" y="40" width="84" height="30"/>
+                                <state key="normal" title="testSelector"/>
+                                <connections>
+                                    <action selector="testUnrecognizedSelector" destination="whP-gf-Uak" eventType="touchUpInside" id="ema-zL-oiI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQw-bv-Pwt">
+                                <rect key="frame" x="118" y="160" width="139" height="30"/>
+                                <state key="normal" title="testNSMutableArray"/>
+                                <connections>
+                                    <action selector="testMutableArray" destination="whP-gf-Uak" eventType="touchUpInside" id="XCd-bc-PHv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLj-2s-Afc">
+                                <rect key="frame" x="159" y="80" width="57" height="30"/>
+                                <state key="normal" title="testKVO"/>
+                                <connections>
+                                    <action selector="testKVO" destination="whP-gf-Uak" eventType="touchUpInside" id="CYi-Lg-g1F"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0y3-FZ-Bcj">
+                                <rect key="frame" x="129" y="200" width="117" height="30"/>
+                                <state key="normal" title="testNSDictionary"/>
+                                <connections>
+                                    <action selector="testDictionary" destination="whP-gf-Uak" eventType="touchUpInside" id="c3C-T5-gB7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hF7-Cr-AQh">
+                                <rect key="frame" x="145.5" y="120" width="84" height="30"/>
+                                <state key="normal" title="testNSArray"/>
+                                <connections>
+                                    <action selector="testArray" destination="whP-gf-Uak" eventType="touchUpInside" id="TEG-XT-wij"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIL-G2-56c">
+                                <rect key="frame" x="143.5" y="280" width="88" height="30"/>
+                                <state key="normal" title="testNSStirng"/>
+                                <connections>
+                                    <action selector="testString" destination="whP-gf-Uak" eventType="touchUpInside" id="4PB-1r-jmb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9q-6Z-cEj">
+                                <rect key="frame" x="101.5" y="240" width="172" height="30"/>
+                                <state key="normal" title="testNSMutableDictionary"/>
+                                <connections>
+                                    <action selector="testMutableDictionary" destination="whP-gf-Uak" eventType="touchUpInside" id="eoM-5Q-coX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4C-nI-5G0">
+                                <rect key="frame" x="109" y="360" width="157" height="30"/>
+                                <state key="normal" title="testNSAttributedString"/>
+                                <connections>
+                                    <action selector="testAttributedString" destination="whP-gf-Uak" eventType="touchUpInside" id="svC-P0-mot"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTU-av-WQ7">
+                                <rect key="frame" x="82" y="400" width="212" height="30"/>
+                                <state key="normal" title="testNSMutableAttributedString"/>
+                                <connections>
+                                    <action selector="testMutableAttributedString" destination="whP-gf-Uak" eventType="touchUpInside" id="ihE-KQ-vHM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NY8-r6-TNX">
+                                <rect key="frame" x="101" y="440" width="172" height="30"/>
+                                <state key="normal" title="testNSNotificationCenter"/>
+                                <connections>
+                                    <action selector="testNotification" destination="whP-gf-Uak" eventType="touchUpInside" id="Txq-1h-dB0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAr-27-Rtb">
+                                <rect key="frame" x="116" y="320" width="143" height="30"/>
+                                <state key="normal" title="testNSMutableString"/>
+                                <connections>
+                                    <action selector="testMutableString" destination="whP-gf-Uak" eventType="touchUpInside" id="IXi-Fb-qUL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aIL-G2-56c" firstAttribute="top" secondItem="I9q-6Z-cEj" secondAttribute="bottom" constant="10" id="3Yd-G6-fvR"/>
+                            <constraint firstItem="vLj-2s-Afc" firstAttribute="top" secondItem="Gr7-Nu-j47" secondAttribute="bottom" constant="10" id="79d-0C-mv0"/>
+                            <constraint firstItem="I9q-6Z-cEj" firstAttribute="top" secondItem="0y3-FZ-Bcj" secondAttribute="bottom" constant="10" id="7IL-jo-WWe"/>
+                            <constraint firstItem="BTU-av-WQ7" firstAttribute="centerX" secondItem="Gr7-Nu-j47" secondAttribute="centerX" id="D90-jz-93D"/>
+                            <constraint firstItem="0y3-FZ-Bcj" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="Db0-j3-up5"/>
+                            <constraint firstItem="NY8-r6-TNX" firstAttribute="centerX" secondItem="Gr7-Nu-j47" secondAttribute="centerX" id="GZa-X3-Z34"/>
+                            <constraint firstItem="CQw-bv-Pwt" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="H5U-O6-abl"/>
+                            <constraint firstItem="eAr-27-Rtb" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="HHI-Dz-KYw"/>
+                            <constraint firstItem="0y3-FZ-Bcj" firstAttribute="top" secondItem="CQw-bv-Pwt" secondAttribute="bottom" constant="10" id="KIm-25-0So"/>
+                            <constraint firstItem="u4C-nI-5G0" firstAttribute="top" secondItem="eAr-27-Rtb" secondAttribute="bottom" constant="10" id="MGW-2b-Opb"/>
+                            <constraint firstItem="Gr7-Nu-j47" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="Pox-aJ-bJG"/>
+                            <constraint firstItem="aIL-G2-56c" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="RCR-WD-ia4"/>
+                            <constraint firstItem="BTU-av-WQ7" firstAttribute="top" secondItem="u4C-nI-5G0" secondAttribute="bottom" constant="10" id="Wvg-4k-UuC"/>
+                            <constraint firstItem="u4C-nI-5G0" firstAttribute="centerX" secondItem="Gr7-Nu-j47" secondAttribute="centerX" id="akv-hR-ZkF"/>
+                            <constraint firstItem="CQw-bv-Pwt" firstAttribute="top" secondItem="hF7-Cr-AQh" secondAttribute="bottom" constant="10" id="dj2-3s-ypK"/>
+                            <constraint firstItem="hF7-Cr-AQh" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="fmv-ch-70y"/>
+                            <constraint firstItem="eAr-27-Rtb" firstAttribute="top" secondItem="aIL-G2-56c" secondAttribute="bottom" constant="10" id="uUj-eK-6jI"/>
+                            <constraint firstItem="I9q-6Z-cEj" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="ueC-hD-whz"/>
+                            <constraint firstItem="Gr7-Nu-j47" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="vPJ-P4-gzA"/>
+                            <constraint firstItem="Gr7-Nu-j47" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="20" id="yGP-mz-l07"/>
+                            <constraint firstItem="NY8-r6-TNX" firstAttribute="top" secondItem="BTU-av-WQ7" secondAttribute="bottom" constant="10" id="yvk-Bm-KHf"/>
+                            <constraint firstItem="hF7-Cr-AQh" firstAttribute="top" secondItem="vLj-2s-Afc" secondAttribute="bottom" constant="10" id="zIw-bk-1H3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60" y="399"/>
+        </scene>
+    </scenes>
+</document>

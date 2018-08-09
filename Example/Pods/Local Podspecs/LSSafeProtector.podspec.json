@@ -1,0 +1,22 @@
+{
+  "name": "LSSafeProtector",
+  "version": "0.1.0",
+  "summary": "A short description of LSSafeProtector.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/liusong/LSSafeProtector",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "liusong": "song.liu@mytogo.com"
+  },
+  "source": {
+    "git": "https://github.com/liusong/LSSafeProtector.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "LSSafeProtector/Classes/**/*"
+}
