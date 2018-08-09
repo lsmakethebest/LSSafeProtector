@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'LSSafeProtector'
-  s.version          = '0.1.0'
+  s.version          = '1.0.0'
   s.summary          = '强大的防止crash框架，支持自释放KVO等11种crash'
 
   s.description      = <<-DESC
