@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "NSObject+Safe.h"
+#import "LSSafeProtector.h"
 #import "NSNotificationTestObject.h"
 #import "LSViewTestKVO.h"
 #import "LSViewTestKVOSuper.h"
@@ -27,7 +27,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [NSObject openAllSafeProtectorWithIsDebug:NO block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
+    [LSSafeProtector openSafeProtectorWithIsDebug:YES block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
+        NSLog(@"");
+    }];
+    [LSSafeProtector openSafeProtectorWithIsDebug:YES block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
         NSLog(@"");
     }];
 }

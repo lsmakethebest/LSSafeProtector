@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2811DEC9211C01D1003A9E78 /* LSSafeProtector.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811DEC8211C01D1003A9E78 /* LSSafeProtector.m */; };
 		28849D1820EA7D2700B34AE0 /* LSViewTestKVOSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 28849D1720EA7D2700B34AE0 /* LSViewTestKVOSuper.m */; };
 		28C186EA20E628260045FE96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C186E920E628260045FE96 /* AppDelegate.m */; };
 		28C186F020E628260045FE96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28C186EE20E628260045FE96 /* Main.storyboard */; };
@@ -49,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2811DEC7211C01D1003A9E78 /* LSSafeProtector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSSafeProtector.h; sourceTree = "<group>"; };
+		2811DEC8211C01D1003A9E78 /* LSSafeProtector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSSafeProtector.m; sourceTree = "<group>"; };
 		28849D1620EA7D2700B34AE0 /* LSViewTestKVOSuper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSViewTestKVOSuper.h; sourceTree = "<group>"; };
 		28849D1720EA7D2700B34AE0 /* LSViewTestKVOSuper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSViewTestKVOSuper.m; sourceTree = "<group>"; };
 		28C186E520E628260045FE96 /* LSSafeProtector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LSSafeProtector.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +195,8 @@
 		28C1872420E628C20045FE96 /* LSSafeProtector */ = {
 			isa = PBXGroup;
 			children = (
+				2811DEC7211C01D1003A9E78 /* LSSafeProtector.h */,
+				2811DEC8211C01D1003A9E78 /* LSSafeProtector.m */,
 				28C1872820E628D50045FE96 /* NSObject+Safe.h */,
 				28C1873020E628D60045FE96 /* NSObject+Safe.m */,
 				28C1873620E628D60045FE96 /* NSArray+Safe.h */,
@@ -364,6 +369,7 @@
 				28C1872120E628730045FE96 /* LSViewTestKVO.m in Sources */,
 				28C1873B20E628D70045FE96 /* NSMutableString+Safe.m in Sources */,
 				28C1874320E628D70045FE96 /* NSAttributedString+Safe.m in Sources */,
+				2811DEC9211C01D1003A9E78 /* LSSafeProtector.m in Sources */,
 				28C1873D20E628D70045FE96 /* NSDictionary+Safe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
