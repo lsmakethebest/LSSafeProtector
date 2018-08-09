@@ -1,10 +1,9 @@
-
-
 //
 //  NSMutableAttributedString+Safe.m
+// https://github.com/lsmakethebest/LSSafeProtector
 //
 //  Created by liusong on 2018/4/20.
-//
+//  Copyright © 2018年 liusong. All rights reserved.
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>

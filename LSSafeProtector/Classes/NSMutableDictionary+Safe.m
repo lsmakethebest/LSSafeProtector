@@ -1,10 +1,9 @@
-
 //
 //  NSMutableDictionary+Safe.m
-//  test
+// https://github.com/lsmakethebest/LSSafeProtector
 //
-//  Created by liusong on 2018/6/27.
-//
+//  Created by liusong on 2018/4/20.
+//  Copyright © 2018年 liusong. All rights reserved.
 
 #import "NSMutableDictionary+Safe.h"
 #import "NSObject+Safe.h"
