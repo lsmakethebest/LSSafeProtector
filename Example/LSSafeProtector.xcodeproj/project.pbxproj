@@ -10,6 +10,7 @@
 		2811DED0211C05F6003A9E78 /* LSViewTestKVOSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811DECB211C05F5003A9E78 /* LSViewTestKVOSuper.m */; };
 		2811DED1211C05F6003A9E78 /* LSViewTestKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811DECC211C05F5003A9E78 /* LSViewTestKVO.m */; };
 		2811DED2211C05F6003A9E78 /* NSNotificationTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2811DECF211C05F6003A9E78 /* NSNotificationTestObject.m */; };
+		28B8B8EB211C5B3E00EFF43C /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B8B8EA211C5B3D00EFF43C /* Bugly.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -48,6 +49,7 @@
 		2811DECD211C05F6003A9E78 /* LSViewTestKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSViewTestKVO.h; sourceTree = "<group>"; };
 		2811DECE211C05F6003A9E78 /* NSNotificationTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNotificationTestObject.h; sourceTree = "<group>"; };
 		2811DECF211C05F6003A9E78 /* NSNotificationTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNotificationTestObject.m; sourceTree = "<group>"; };
+		28B8B8EA211C5B3D00EFF43C /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		35430DD7719F6996AE67D1BA /* Pods_LSSafeProtector_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LSSafeProtector_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		370C13EFA2277D6E459DF42C /* Pods-LSSafeProtector_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LSSafeProtector_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LSSafeProtector_Example/Pods-LSSafeProtector_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		50C852F3B2815B8D8E20668E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28B8B8EB211C5B3E00EFF43C /* Bugly.framework in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
@@ -104,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28B8B8E9211C5B3D00EFF43C /* Bugly */ = {
+			isa = PBXGroup;
+			children = (
+				28B8B8EA211C5B3D00EFF43C /* Bugly.framework */,
+			);
+			path = Bugly;
+			sourceTree = "<group>";
+		};
 		571696D33509E6DF6F8DE4F5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +163,7 @@
 		6003F593195388D20070C39A /* Example for LSSafeProtector */ = {
 			isa = PBXGroup;
 			children = (
+				28B8B8E9211C5B3D00EFF43C /* Bugly */,
 				6003F59C195388D20070C39A /* LSAppDelegate.h */,
 				6003F59D195388D20070C39A /* LSAppDelegate.m */,
 				6003F5A5195388D20070C39A /* LSViewController.h */,
@@ -223,7 +235,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				214EC7646196806DD744CC37 /* [CP] Embed Pods Frameworks */,
-				0DE37375A9080B013DC64FDB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -242,8 +253,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				60F581A0F5FAD98B94FCCA11 /* [CP] Embed Pods Frameworks */,
-				E975D7A32EC7AED702C4DE7F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -315,21 +324,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0DE37375A9080B013DC64FDB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LSSafeProtector_Example/Pods-LSSafeProtector_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		14034BF4D960803AB43CDF6F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -364,36 +358,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LSSafeProtector_Example/Pods-LSSafeProtector_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		60F581A0F5FAD98B94FCCA11 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LSSafeProtector_Tests/Pods-LSSafeProtector_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E975D7A32EC7AED702C4DE7F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LSSafeProtector_Tests/Pods-LSSafeProtector_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EE6CB7F5C26F3ED59BE7E575 /* [CP] Check Pods Manifest.lock */ = {
@@ -555,6 +519,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 929467FPP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/Bugly",
+					"$(PROJECT_DIR)/LSSafeProtector/Bugly",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LSSafeProtector/LSSafeProtector-Prefix.pch";
 				INFOPLIST_FILE = "LSSafeProtector/LSSafeProtector-Info.plist";
@@ -572,6 +541,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 929467FPP6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/Bugly",
+					"$(PROJECT_DIR)/LSSafeProtector/Bugly",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LSSafeProtector/LSSafeProtector-Prefix.pch";
 				INFOPLIST_FILE = "LSSafeProtector/LSSafeProtector-Info.plist";

@@ -1,19 +1,19 @@
 {
   "name": "LSSafeProtector",
-  "version": "0.1.0",
-  "summary": "A short description of LSSafeProtector.",
+  "version": "1.0.0",
+  "summary": "强大的防止crash框架，支持自释放KVO等11种crash",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/liusong/LSSafeProtector",
+  "homepage": "https://github.com/lsmakethebest/LSSafeProtector",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "liusong": "song.liu@mytogo.com"
+    "liusong": "job@ysui.cn"
   },
   "source": {
-    "git": "https://github.com/liusong/LSSafeProtector.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/lsmakethebest/LSSafeProtector.git",
+    "tag": "1.0.0"
   },
   "platforms": {
     "ios": "8.0"

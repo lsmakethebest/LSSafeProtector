@@ -11,6 +11,8 @@
 #import "NSNotificationTestObject.h"
 #import "LSViewTestKVO.h"
 #import "LSViewTestKVOSuper.h"
+#import <Bugly/Bugly.h>
+
 @interface LSViewController ()
     
     @property (nonatomic,strong) NSNotificationTestObject *testObject;
@@ -27,8 +29,11 @@
     
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [Bugly startWithAppId:@"5c825b6c8d"];
     [LSSafeProtector openSafeProtectorWithIsDebug:YES block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
-        NSLog(@"");
+        //[Bugly reportException:exception];
+        //此方法方便在bugly后台查看bug崩溃位置，而不用点击跟踪数据，再点击crash_attach.log来查看崩溃位置
+        [Bugly reportExceptionWithCategory:3 name:exception.name reason:[NSString stringWithFormat:@"%@  崩溃位置:%@",exception.reason,exception.userInfo[@"location"]] callStack:@[exception.userInfo[@"callStackSymbols"]] extraInfo:exception.userInfo terminateApp:NO];
     }];
  
 }
@@ -149,9 +154,9 @@
         strings[0]=@"000";
         strings[1]=value;
         strings[2]=@"222";
-        [NSMutableArray arrayWithObjects:strings count:3];
-        [[NSMutableArray alloc]initWithObjects:strings count:3];
-        
+//        [NSMutableArray arrayWithObjects:strings count:3];
+//        [[NSMutableArray alloc]initWithObjects:strings count:3];
+    
         NSMutableArray *a1=[NSMutableArray array];
         a1[10];
 }

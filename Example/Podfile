@@ -5,7 +5,7 @@ target 'LSSafeProtector_Example' do
 
   target 'LSSafeProtector_Tests' do
     inherit! :search_paths
+#pod 'Bugly'
 
-    
   end
 end

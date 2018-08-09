@@ -154,8 +154,8 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
     NSString *fullMessage = [NSString stringWithFormat:@"\n------------------------------------  Crash START -------------------------------------\n%@\n%@\n%@\n函数堆栈:\n%@\n------------------------------------   Crash END  -----------------------------------------", crashName, crashReason, crashLocation, exception.callStackSymbols];
     
     NSMutableDictionary *userInfo=[NSMutableDictionary dictionary];
-    userInfo[@"函数堆栈"]=[NSString stringWithFormat:@"%@",exception.callStackSymbols];
-    userInfo[@"崩溃位置"]=mainMessage;
+    userInfo[@"callStackSymbols"]=[NSString stringWithFormat:@"%@",exception.callStackSymbols];
+    userInfo[@"location"]=mainMessage;
     NSException *newException = [NSException exceptionWithName:exception.name reason:exception.reason userInfo:userInfo];
     if (lsSafeProtectorBlock) {
         lsSafeProtectorBlock(newException,crashType);

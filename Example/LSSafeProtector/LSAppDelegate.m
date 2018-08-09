@@ -7,7 +7,6 @@
 //
 
 #import "LSAppDelegate.h"
-
 @implementation LSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
