@@ -2,7 +2,6 @@ use_frameworks!
 
 target 'LSSafeProtector_Example' do
   pod 'LSSafeProtector', :path => '../'
-
   target 'LSSafeProtector_Tests' do
     inherit! :search_paths
 #pod 'Bugly'
