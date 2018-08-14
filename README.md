@@ -1,17 +1,28 @@
+## 中文说明
+#### `LSSafeProtector` 是一个可快速集成但功能强大的防止crash库,使用Objective-C编写.
 
 
-### 1.使用介绍
-- 1.更新cocoaPods库 
-- 2.pod repo update master
-- 3.修改Podfile文件，添加 pod 'LSSafeProtector'
-- 4.然后在终端里，cd 到指定目录，pod install
+## 须知
+LSSafeProtector 基于 "Xcode 7.3 , iOS 6+ 和ARC ，请使用最新正式版来编译JHUD,旧版本的Xcode可能有效，但不保证会出现一些兼容性问题。
 
-### 2.开启功能
+
+## CocoaPods
+
+推荐使用 CocoaPods 安装。
+
+1. 在 Podfile 中添加 `pod 'LSSafeProtector'`。
+2. 执行 `pod install` 或 `pod update`。
+3. 导入 `"LSSafeProtector.h"`。
+
+手动安装
+通过 Clone or download 下载 JHUD 文件夹内的所有内容。
+将 JHUD 内的源文件添加(拖放)到你的工程。
+导入 JHUD.h 。
+## 使用
+
 ` 通过如下方式开启防止闪退功能,debug模式会打印crash日志，同时会利用断言来让程序闪退，也会回调block,达到测试环境及时发现及时修改，Release模式既不打印也不会断言闪退，会回调block，自己可以上传exception到bugly
 `
 ```
-#import "LSSafeProtector.h"
-
 [LSSafeProtector openSafeProtectorWithIsDebug:YES block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
 //[Bugly reportException:exception];
 
@@ -19,9 +30,10 @@
 [Bugly reportExceptionWithCategory:3 name:exception.name reason:[NSString stringWithFormat:@"%@  崩溃位置:%@",exception.reason,exception.userInfo[@"location"]] callStack:@[exception.userInfo[@"callStackSymbols"]] extraInfo:exception.userInfo terminateApp:NO];
 }];
 ```
+更多的使用用例可以看Demo工程演示
 
 ### 
-### 3.目前支持以下类型crash
+### 目前支持以下类型crash
 -  1、LSSafeProtectorCrashTypeSelector
 ```
 1.捕获到未实现方法时，自动将消息转发，避免crash
@@ -121,10 +133,13 @@ iOS11之后（含11)  setObject:forKeyedSubscript:
 1. dealloc时自动将self从通知中心移除
 
 ```
+# 联系    
+If you wish to contact me, email at: song@ysui.cn
 
+If you wish to contact me, email at: song@ysui.cn
 
-
-
+## 许可
+LSSafeProtector 使用 MIT 许可证，详情可见 [LICENSE](LICENSE) 文件。
 
 
 
