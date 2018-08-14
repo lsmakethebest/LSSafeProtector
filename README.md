@@ -17,17 +17,18 @@
 ### 
 ## 目前支持以下类型crash
 
-##### LSSafeProtectorCrashTypeSelector
-##### LSSafeProtectorCrashTypeKVO,
-##### LSSafeProtectorCrashTypeNSArray,
-##### LSSafeProtectorCrashTypeNSMutableArray,
-##### LSSafeProtectorCrashTypeNSDictionary,
-##### LSSafeProtectorCrashTypeNSMutableDictionary,
-##### LSSafeProtectorCrashTypeNSStirng,
-##### LSSafeProtectorCrashTypeNSMutableString,
-##### LSSafeProtectorCrashTypeNSAttributedString,
-##### LSSafeProtectorCrashTypeNSMutableAttributedString,
-##### LSSafeProtectorCrashTypeNSNotificationCenter
+```
+LSSafeProtectorCrashTypeKVO,
+LSSafeProtectorCrashTypeNSArray,
+LSSafeProtectorCrashTypeNSMutableArray,
+LSSafeProtectorCrashTypeNSDictionary,
+LSSafeProtectorCrashTypeNSMutableDictionary,
+LSSafeProtectorCrashTypeNSStirng,
+LSSafeProtectorCrashTypeNSMutableString,
+LSSafeProtectorCrashTypeNSAttributedString,
+LSSafeProtectorCrashTypeNSMutableAttributedString,
+LSSafeProtectorCrashTypeNSNotificationCenter
+```
 
 
 
