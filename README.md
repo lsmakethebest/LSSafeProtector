@@ -14,7 +14,7 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 6+ 和ARC ，请使用最新正式版来
 2. 执行 `pod install` 或 `pod update`。
 3. 导入 `"LSSafeProtector.h"`。
 
-手动安装
+## 手动安装
 通过 Clone or download 下载 LSSafeProtector 文件夹内的所有内容。
 将 LSSafeProtector 内的源文件添加(拖放)到你的工程。
 导入 LSSafeProtector.h 。
