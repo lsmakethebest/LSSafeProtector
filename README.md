@@ -22,8 +22,6 @@
 
 ### 
 ### 3.目前支持以下类型crash
-
-``
 -  1、LSSafeProtectorCrashTypeSelector
 ```
 1.捕获到未实现方法时，自动将消息转发，避免crash
