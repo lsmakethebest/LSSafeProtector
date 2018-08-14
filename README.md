@@ -33,6 +33,7 @@
 3.添加了观察者但没有实现observeValueForKeyPath:ofObject:change:context:方法
 4.添加移除keypath=nil;
 5.添加移除observer=nil;
+6.dealloc时自动移除观察者，俗称自释放KVO
 ```
 - 3、LSSafeProtectorCrashTypeNSArray
 ```
