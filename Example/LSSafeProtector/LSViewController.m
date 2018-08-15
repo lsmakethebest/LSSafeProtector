@@ -7,34 +7,29 @@
 //
 
 #import "LSViewController.h"
-#import "LSSafeProtector.h"
 #import "NSNotificationTestObject.h"
 #import "LSViewTestKVO.h"
 #import "LSViewTestKVOSuper.h"
-#import <Bugly/Bugly.h>
+
 
 @interface LSViewController ()
     
-    @property (nonatomic,strong) NSNotificationTestObject *testObject;
-    @property (nonatomic,strong) NSNotificationTestObject *testObject2;
-    @property (nonatomic,assign) BOOL kvoTest;
-    @property (nonatomic,weak) LSViewTestKVO *testView1;
-    @property (nonatomic,weak) LSViewTestKVO *testView2;
+@property (nonatomic,strong) NSNotificationTestObject *testObject;
+@property (nonatomic,strong) NSNotificationTestObject *testObject2;
+@property (nonatomic,assign) BOOL kvoTest;
+@property (nonatomic,weak) LSViewTestKVO *testView1;
+@property (nonatomic,weak) LSViewTestKVO *testView2;
+@property (nonatomic,copy)NSString *name;
+
 -(void)getName;
 -(void)getAge:(NSInteger)age;
 -(id)getSafeObject;
-    @end
+@end
 
 @implementation LSViewController
     
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [Bugly startWithAppId:@"5c825b6c8d"];
-    [LSSafeProtector openSafeProtectorWithIsDebug:YES block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
-        //[Bugly reportException:exception];
-        //此方法方便在bugly后台查看bug崩溃位置，而不用点击跟踪数据，再点击crash_attach.log来查看崩溃位置
-        [Bugly reportExceptionWithCategory:3 name:exception.name reason:[NSString stringWithFormat:@"%@  崩溃位置:%@",exception.reason,exception.userInfo[@"location"]] callStack:@[exception.userInfo[@"callStackSymbols"]] extraInfo:exception.userInfo terminateApp:NO];
-    }];
  
 }
 -(void)haha
@@ -78,11 +73,11 @@
         
         
         //重复添加
-        //        LSViewTestKVO *view1 =[LSViewTestKVO new];
+//                LSViewTestKVO *view1 =[LSViewTestKVO new];
         //        [self.view addSubview:view1];
         //        self.testView1=view1;
         //        self.testView1.con=self;
-        //        [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
+                [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
         //        [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
         
         
@@ -92,16 +87,23 @@
         LSViewTestKVO *view1 =[LSViewTestKVO new];
         [self.view addSubview:view1];
         self.testView1=view1;
-        self.testView1.con=self;
+//        self.testView1.con=self;
         //        [self.testView1 addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
         
         
         self.testObject=[[NSNotificationTestObject alloc]init];
         self.testObject.kvo=self.testObject;
-        [self.testView1 addObserver:self.testObject forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
-        
+        [self.testObject addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
+//       [self addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:nil];
+//     [self addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:nil];
+
+//         [self removeObserver:self.testObject forKeyPath:@"name"];
+//        [self removeObserver:self.testObject forKeyPath:@"name"];
+//        [self removeObserver:self.testObject forKeyPath:@"name" context:@"fsd"];
+//        [self.testView1 removeFromSuperview];
+        self.testObject=nil;
+//          self.name=@"fs";
         //        [self.testView1  removeFromSuperview];
-            self.testObject=nil;
 
         
         

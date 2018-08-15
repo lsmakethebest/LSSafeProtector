@@ -28,6 +28,10 @@
 @end
 
 
+@interface LSKVOObserverInfo:NSObject
+
+@end
+
 
 
 

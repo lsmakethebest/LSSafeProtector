@@ -20,11 +20,12 @@
 {
     NSLog(@"%@  dealloc",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-//    [self removeObserver:self forKeyPath:@"frame"];
+    [self removeObserver:self forKeyPath:@"name"];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
-    NSLog(@"");
+    id con=(__bridge id)(context);
+    NSLog(@"11111111%@",con);
 }
 @end
