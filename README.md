@@ -11,7 +11,7 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 6+ 和ARC ，请使用最新正式版来
 推荐使用 CocoaPods 安装。
 
 1. 在 Podfile 中添加 `pod 'LSSafeProtector'`。
-2. 执行 `pod install` 或 `pod update`。
+2. 执行 `pod install` 或 `pod update`。(如搜索不到,请更新pod仓库)
 3. 导入 `"LSSafeProtector.h"`。
 
 ## 手动安装
