@@ -138,6 +138,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         return;
     }
     @try {
+         LSKVOSafeLog(@"%@:%p safe_addObserver %@:%p  keyPath:%@",[self class],self,[observer class],observer,keyPath);
         [self safe_addObserver:observer forKeyPath:keyPath options:options context:context];
     }
     @catch (NSException *exception) {
@@ -207,7 +208,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     }
     
     @try {
-        LSKVOSafeLog(@"%@ safe_removeObserver %@  keyPath:%@",[self class],[observer class],keyPath);
+        LSKVOSafeLog(@"%@:%p safe_removeObserver %@:%p  keyPath:%@",[self class],self,[observer class],observer,keyPath);
         if (isContext) {
             [self safe_removeObserver:observer forKeyPath:keyPath context:context];
         }else{
