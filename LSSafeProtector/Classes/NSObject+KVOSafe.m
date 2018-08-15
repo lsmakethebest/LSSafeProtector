@@ -9,7 +9,18 @@
 #import "NSObject+Safe.h"
 #import <objc/message.h>
 
-
+/*
+ 内部存储结构
+ down(NSMutableDictionary）-> keypath1->NSMapTable->id
+ keypath2->NSMapTable->id
+ keypath3->NSMapTable->id
+ 
+ 监听对象的地址
+ up(Dictionary)->0x03739239->Dictionary->observer-NSMapTable->observer-id
+ ->className->NSString
+ ->keyPaths(Array)->keyPath1
+ ->keyPath2
+ */
 //#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
 #define LSKVOSafeLog(fmt, ...)
 
@@ -20,7 +31,7 @@ static NSMutableSet *KVOSafeSwizzledClasses() {
     static NSMutableSet *swizzledClasses = nil;
     dispatch_once(&onceToken, ^{
         swizzledClasses = [[NSMutableSet alloc] init];
-    });    
+    });
     return swizzledClasses;
 }
 
@@ -138,7 +149,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         return;
     }
     @try {
-         LSKVOSafeLog(@"%@:%p safe_addObserver %@:%p  keyPath:%@",[self class],self,[observer class],observer,keyPath);
+        LSKVOSafeLog(@"%@:%p safe_addObserver %@:%p  keyPath:%@",[self class],self,[observer class],observer,keyPath);
         [self safe_addObserver:observer forKeyPath:keyPath options:options context:context];
     }
     @catch (NSException *exception) {
@@ -190,7 +201,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 
 //移除时不但要把 有哪些对象监听了自己字典移除，还要把observer的监听了哪些人字典移除
 - (void)safe_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath{
-   [self safe_allRemoveObserver:observer forKeyPath:keyPath context:nil isContext:NO isUser:YES];
+    [self safe_allRemoveObserver:observer forKeyPath:keyPath context:nil isContext:NO isUser:YES];
 }
 - (void)safe_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context{
     [self safe_allRemoveObserver:observer forKeyPath:keyPath context:context isContext:YES isUser:YES];
@@ -210,8 +221,10 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     @try {
         LSKVOSafeLog(@"%@:%p safe_removeObserver %@:%p  keyPath:%@",[self class],self,[observer class],observer,keyPath);
         if (isContext) {
+            [self safe_removeSuccessObserver:observer forKeyPath:keyPath];
             [self safe_removeObserver:observer forKeyPath:keyPath context:context];
         }else{
+            [self safe_removeSuccessObserver:observer forKeyPath:keyPath];
             [self safe_removeObserver:observer forKeyPath:keyPath];
         }
     }
@@ -219,32 +232,33 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
     }
     @finally {
-        
-        //监听了哪些对象存储结构 移除目标
-        NSString *key =[NSString stringWithFormat:@"%p",self];
-        NSMutableDictionary *listeningObjecteDic = observer.safe_upObservedDictionary[key];
-        if(listeningObjecteDic==nil)return;//证明observer监听字典里已经没有了
-        NSMutableArray *keyPathArray=listeningObjecteDic[@"keyPaths"];
-        if (keyPathArray!=nil) {
-            @synchronized(keyPathArray){
-                [keyPathArray removeObject:keyPath];
-            }
-        }
-        observer.safe_upObservedDictionary[key]=listeningObjecteDic;
-        if (keyPathArray.count<=0) {
-            [observer.safe_upObservedDictionary removeObjectForKey:key];
-        }
-        
-        //当先dealloc时 NSHashTable 里的元素也就为空了因为是weak指针销毁了 自动为nil
-        NSHashTable *observers = self.safe_downObservedKeyPathDictionary[keyPath];
-        @synchronized(observers){
-            [observers removeObject:observer];
-            [self.safe_downObservedKeyPathDictionary setObject:observers forKey:keyPath];
-        }
     }
 }
 
-
+-(void)safe_removeSuccessObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath
+{
+    //监听了哪些对象存储结构 移除目标
+    NSString *key =[NSString stringWithFormat:@"%p",self];
+    NSMutableDictionary *listeningObjecteDic = observer.safe_upObservedDictionary[key];
+    if(listeningObjecteDic==nil)return;//证明observer监听字典里已经没有了
+    NSMutableArray *keyPathArray=listeningObjecteDic[@"keyPaths"];
+    if (keyPathArray!=nil) {
+        @synchronized(keyPathArray){
+            [keyPathArray removeObject:keyPath];
+        }
+    }
+    observer.safe_upObservedDictionary[key]=listeningObjecteDic;
+    if (keyPathArray.count<=0) {
+        [observer.safe_upObservedDictionary removeObjectForKey:key];
+    }
+    
+    //当先dealloc时 NSHashTable 里的元素也就为空了因为是weak指针销毁了 自动为nil
+    NSHashTable *observers = self.safe_downObservedKeyPathDictionary[keyPath];
+    @synchronized(observers){
+        [observers removeObject:observer];
+        [self.safe_downObservedKeyPathDictionary setObject:observers forKey:keyPath];
+    }
+}
 
 //为什么判断能否移除 而不是直接remove try catch 捕获异常，因为有的类remove keypath两次，try直接就崩溃了
 -(BOOL)safe_contaninObserverOrKeypathWithObserver:(id)observer keyPath:(NSString*)keyPath isUser:(BOOL)isUser
@@ -296,13 +310,13 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     for (NSString *objectKey in self.safe_upObservedDictionary) {
         NSDictionary *dic=self.safe_upObservedDictionary[objectKey];
         NSMutableArray *keypathArray=[dic[@"keyPaths"] mutableCopy];
-//        self.safe_cacheKVODeallocDictionary[objectKey]=keypathArray;
+        //        self.safe_cacheKVODeallocDictionary[objectKey]=keypathArray;
         NSMutableDictionary *newDic=[NSMutableDictionary dictionary];
         newDic[@"className"]=dic[@"className"];
         newDic[@"keyPaths"]=keypathArray;
         KVOSafeDeallocCrashes()[currentKey][objectKey]=newDic;
     }
-
+    
     
     //A->B A先销毁 B的safe_upObservedDictionary observer=nil  然后在B dealloc里在remove会导致移除不了，然后系统会报销毁时还持有某keypath的crash
     //A->B B先销毁 此时A remove 但事实上的A的safe_downObservedDictionary observer=nil  所以B remove里会判断observer是否有值，如果没值则不remove导致没有remove
@@ -351,7 +365,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         if (array.count>0) {
             for (NSString *keyPath in array) {
                 NSString *reason=[NSString stringWithFormat:@"%@（%@） dealloc时仍然监听着 %@ 的 keyPath of %@",[self class],classAddress,dic[key][@"className"],keyPath];
-            NSException *exception=[NSException exceptionWithName:@"KVO crash" reason:reason userInfo:nil]; LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
+                NSException *exception=[NSException exceptionWithName:@"KVO crash" reason:reason userInfo:nil]; LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
             }
         }
     }
