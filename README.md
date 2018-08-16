@@ -33,7 +33,7 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 6+ 和ARC ，请使用最新正式版来
 更多的使用用例可以看Demo工程演示
 
 
-### 先来看下防止崩溃的效果吧
+### 下面是防止崩溃的效果
 
 - 可导致崩溃的代码
 ```
@@ -46,6 +46,8 @@ a1[10];
 ![image](https://github.com/lsmakethebest/LSSafeProtector/blob/master/images/2.png)
 - 来看看block回调回来的信息都有哪些
 ![image](https://github.com/lsmakethebest/LSSafeProtector/blob/master/images/3.png)
+- KVO  检测到dealloc时有没remove的keyPath
+![image](https://github.com/lsmakethebest/LSSafeProtector/blob/master/images/4.png)
 
 ### 
 ### 目前支持以下类型crash
