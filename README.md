@@ -136,7 +136,8 @@ iOS11之后（含11)  setObject:forKeyedSubscript:
 # 联系    
 If you wish to contact me, email at: song@ysui.cn
 
-If you wish to contact me, email at: song@ysui.cn
+If you wish to contact me, QQ at:623501561 
+
 
 ## 许可
 LSSafeProtector 使用 MIT 许可证，详情可见 [LICENSE](LICENSE) 文件。
