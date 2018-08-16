@@ -35,7 +35,7 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 6+ 和ARC ，请使用最新正式版来
 
 ### 先来看下防止崩溃的效果吧
 
-`可导致崩溃的代码`
+- 可导致崩溃的代码
 ```
 NSMutableArray *a1=[NSMutableArray array];
 a1[10];
