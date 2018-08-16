@@ -20,17 +20,19 @@
     5.添加移除observer=nil;
  */
 
+@interface LSKVOObserverInfo:NSObject
+@end
+
 @interface NSObject (KVOSafe)
 
 //打开KVO安全保护
 + (void)openKVOSafeProtector;
 
-@end
-
-
-@interface LSKVOObserverInfo:NSObject
 
 @end
+
+
+
 
 
 

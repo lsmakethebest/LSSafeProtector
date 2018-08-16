@@ -77,32 +77,35 @@
         //        [self.view addSubview:view1];
         //        self.testView1=view1;
         //        self.testView1.con=self;
-                [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
+//                [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
         //        [self addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
         
         
         
         
         //    dealloc时没有移除obverser
-        LSViewTestKVO *view1 =[LSViewTestKVO new];
-        [self.view addSubview:view1];
-        self.testView1=view1;
+//        LSViewTestKVO *view1 =[LSViewTestKVO new];
+//        [self.view addSubview:view1];
+//        self.testView1=view1;
 //        self.testView1.con=self;
         //        [self.testView1 addObserver:self.testView1 forKeyPath:@"kvoTest" options:(NSKeyValueObservingOptionNew) context:nil];
         
         
-        self.testObject=[[NSNotificationTestObject alloc]init];
-        self.testObject.kvo=self.testObject;
-        [self.testObject addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
+       self.testObject=[[NSNotificationTestObject alloc]init];
+       self.testObject.kvo=self;
+    [self addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
+    [self addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
 //       [self addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:nil];
 //     [self addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:nil];
 
 //         [self removeObserver:self.testObject forKeyPath:@"name"];
 //        [self removeObserver:self.testObject forKeyPath:@"name"];
+//        [self removeObserver:self.testObject forKeyPath:@"name"];
+//        [self removeObserver:self.testObject forKeyPath:@"name" ];
 //        [self removeObserver:self.testObject forKeyPath:@"name" context:@"fsd"];
 //        [self.testView1 removeFromSuperview];
         self.testObject=nil;
-//          self.name=@"fs";
+        self.name=@"fs";
         //        [self.testView1  removeFromSuperview];
 
         

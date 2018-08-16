@@ -9,32 +9,20 @@
 #import "NSObject+Safe.h"
 #import <objc/message.h>
 
-
-/*
- 内部存储结构
- down(NSMutableDictionary）-> keypath1->NSMapTable->id
- keypath2->NSMapTable->id
- keypath3->NSMapTable->id
- 
- 监听对象的地址
- up(Dictionary)->0x03739239->Dictionary->observer-NSMapTable->observer-id
- ->className->NSString
- ->keyPaths(Array)->keyPath1
- ->keyPath2
- */
-#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
-
-//#define LSKVOSafeLog(fmt, ...)
-
-
+//#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
+#define LSKVOSafeLog(fmt, ...)
 
 
 @interface LSKVOObserverInfo()
 
 @property (nonatomic,weak) id target;
-@property (nonatomic,weak) id observer;
 @property (nonatomic,copy)NSString *targetAddress;
+@property (nonatomic,copy)NSString *targetClassName;
+
+@property (nonatomic,weak) id observer;
 @property (nonatomic,copy)NSString *observerAddress;
+@property (nonatomic,copy)NSString *observerClassName;
+
 @property (nonatomic,copy)NSString *keyPath;
 @property (nonatomic,assign) void * context;
 
@@ -44,7 +32,11 @@
 @end
 
 
-
+@interface NSObject()
+@property (nonatomic,weak) LSKVOObserverInfo *safe_willRemoveObserverInfo;
+//dealloc时标记有多少没移除，然后手动替他移除，比如有7个 我都替他移除掉，数量还是7，然后用户手动移除时，数量会减少，然后计算最终剩多少就是用户没有移除的，提示用户有没移除的KVO
+@property (nonatomic,assign) BOOL needRemoveKeypathFromCrashArray;
+@end
 
 @implementation NSObject (KVOSafe)
 
@@ -151,8 +143,25 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 - (void)setSafe_upObservedArray:(NSMutableArray *)safe_upObservedArray{
     objc_setAssociatedObject(self, @selector(safe_upObservedArray), safe_upObservedArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+-(void)setSafe_willRemoveObserverInfo:(LSKVOObserverInfo *)safe_willRemoveObserverInfo{
+    objc_setAssociatedObject(self, @selector(safe_willRemoveObserverInfo), safe_willRemoveObserverInfo, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+-(LSKVOObserverInfo *)safe_willRemoveObserverInfo{
+    return  objc_getAssociatedObject(self, _cmd);
+}
 
-
+-(void)setNeedRemoveKeypathFromCrashArray:(BOOL)needRemoveKeypathFromCrashArray{
+    
+    NSString *value=@"";
+    if(needRemoveKeypathFromCrashArray){
+        value=@"needRemoveKeypathFromCrashArray";
+    }
+    objc_setAssociatedObject(self, @selector(needRemoveKeypathFromCrashArray),value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+-(BOOL)needRemoveKeypathFromCrashArray{
+    NSString * value=objc_getAssociatedObject(self, _cmd);
+    return   [value isEqualToString:@"needRemoveKeypathFromCrashArray"];
+}
 
 -(void)safe_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
@@ -168,9 +177,16 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 // keyPath为对象的属性，通过keyPath作为Key创建对应对应的一条观察者关键路径：keyPath --> observers-self
 - (void)safe_addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context
 {
-    if([self safe_canAddOrRemoveObserverWithKeypathWithObserver:observer keyPath:keyPath context:context isUser:NO isAdd:YES]==NO){
+    if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
+        return ;
+    }
+    NSLock *lock=[[NSLock alloc]init];
+    [lock lock];
+    LSKVOObserverInfo *info=[self safe_canAddOrRemoveObserverWithKeypathWithObserver:observer keyPath:keyPath context:context haveContext:YES isAdd:YES];
+    if(info!=nil){
         //如果添加过了直接return
         LSKVOSafeLog(@"添加失败%@:%p safe_addObserver %@:%p  keyPath:%@",[self class],self,[observer class],observer,keyPath);
+        [lock unlock];
         return;
     }
     @try {
@@ -178,23 +194,18 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         
         NSString *targetAddress=[NSString stringWithFormat:@"%p",self];
         NSString *observerAddress=[NSString stringWithFormat:@"%p",observer];
-        LSKVOObserverInfo *downInfo=[LSKVOObserverInfo new];
-        downInfo.target=self;
-        downInfo.observer=observer;
-        downInfo.keyPath=keyPath;
-        downInfo.context=context;
-        downInfo.targetAddress=targetAddress;
-        downInfo.observerAddress=observerAddress;
-        [self.safe_downObservedKeyPathArray addObject:downInfo];
+        LSKVOObserverInfo *info=[LSKVOObserverInfo new];
+        info.target=self;
+        info.observer=observer;
+        info.keyPath=keyPath;
+        info.context=context;
+        info.targetAddress=targetAddress;
+        info.observerAddress=observerAddress;
+        info.targetClassName=NSStringFromClass([self class]);
+        info.observerClassName=NSStringFromClass([observer class]);
         
-        LSKVOObserverInfo *upInfo=[LSKVOObserverInfo new];
-        upInfo.target=self;
-        upInfo.observer=observer;
-        upInfo.keyPath=keyPath;
-        upInfo.context=context;
-        upInfo.targetAddress=targetAddress;
-        upInfo.observerAddress=observerAddress;
-        [observer.safe_upObservedArray addObject:upInfo];
+        [self.safe_downObservedKeyPathArray addObject:info];
+        [observer.safe_upObservedArray addObject:info];
         
         [self safe_addObserver:observer forKeyPath:keyPath options:options context:context];
         
@@ -206,36 +217,57 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
     }
     @finally {
+        [lock unlock];
     }
 }
 
+//以下两个方法的区别
+//带context的方法只能移除监听了context的kvo，否则会崩溃，即使有相同kaypath不带context也会崩溃
+//不带context优先移除不带context的kvo，然后寻找keypath相同带context的kvo
 //移除时不但要把 有哪些对象监听了自己字典移除，还要把observer的监听了哪些人字典移除
 - (void)safe_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath{
-    [self safe_allRemoveObserver:observer forKeyPath:keyPath context:nil isContext:NO isUser:YES];
+    [self safe_allRemoveObserver:observer forKeyPath:keyPath context:nil isContext:NO];
 }
 - (void)safe_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context{
-    [self safe_allRemoveObserver:observer forKeyPath:keyPath context:context isContext:YES isUser:YES];
+    [self safe_allRemoveObserver:observer forKeyPath:keyPath context:context isContext:YES];
 }
-
 
 /**
  @param isContext 是否有context
- @param isUser 是否是用户移除的，而不是框架替用户移除的
  */
-- (void)safe_allRemoveObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context isContext:(BOOL)isContext isUser:(BOOL)isUser{
-    if ([self safe_canAddOrRemoveObserverWithKeypathWithObserver:observer keyPath:keyPath context:context isUser:isUser isAdd:NO]==NO) {
+- (void)safe_allRemoveObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context isContext:(BOOL)isContext{
+    
+    if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
+        return ;
+    }
+    NSLock *lock=[[NSLock alloc]init];
+    [lock lock];
+    LSKVOObserverInfo *info=[self safe_canAddOrRemoveObserverWithKeypathWithObserver:observer keyPath:keyPath context:context haveContext:isContext isAdd:NO];
+    if (info==nil) {
         // 重复删除观察者或不含有 或者keypath=nil  observer=nil
-        LSKVOSafeLog(@"移除失败%@:%p safe_removeObserver %@:%p  keyPath:%@",[self class],self,[observer class],observer,keyPath);
+        LSKVOSafeLog(@"移除失败:%d %@:%p safe_removeObserver %@:%p  keyPath:%@",isContext,[self class],self,[observer class],observer,keyPath);
+        [lock unlock];
         return;
     }
     
     @try {
-        LSKVOSafeLog(@"移除成功%@:%p safe_removeObserver %@:%p  keyPath:%@",[self class],self,[observer class],observer,keyPath);
+        LSKVOSafeLog(@"移除成功:%d %@:%p safe_removeObserver %@:%p  keyPath:%@",isContext, [self class],self,[observer class],observer,keyPath);
         if (isContext) {
-            [self safe_removeSuccessObserver:observer forKeyPath:keyPath context:context];
+            NSString *targetAddress=[NSString stringWithFormat:@"%p",self];
+            NSString *observerAddress=[NSString stringWithFormat:@"%p",observer];
+            //此处是因为remove  keypath context调用的还是remove keypath方法
+            LSKVOObserverInfo *info=[LSKVOObserverInfo new];
+            info.keyPath=keyPath;
+            info.context=context;
+            info.targetAddress=targetAddress;
+            info.observerAddress=observerAddress;
+            self.safe_willRemoveObserverInfo=info;
             [self safe_removeObserver:observer forKeyPath:keyPath context:context];
         }else{
-            [self safe_removeSuccessObserver:observer forKeyPath:keyPath context:context];
+            void *newContext=NULL;
+            if(self.safe_willRemoveObserverInfo){
+                newContext=self.safe_willRemoveObserverInfo.context;
+            }
             [self safe_removeObserver:observer forKeyPath:keyPath];
         }
     }
@@ -243,101 +275,112 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
     }
     @finally {
+        if(isContext){
+            self.safe_willRemoveObserverInfo=nil;
+        }
+        [self safe_removeSuccessObserver:observer info:info];
+        [lock unlock];
     }
 }
 
--(void)safe_removeSuccessObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void*)context
+-(void)safe_removeSuccessObserver:(NSObject*)observer info:(LSKVOObserverInfo*)info
 {
     //    NSString *key =[NSString stringWithFormat:@"%p",self];
-    
     //哪些对象监听了自己
     NSMutableArray *downArray = self.safe_downObservedKeyPathArray;
-    __block LSKVOObserverInfo *downInfo;
-    [downArray enumerateObjectsUsingBlock:^(LSKVOObserverInfo *  obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.targetAddress isEqualToString: [NSString stringWithFormat:@"%p",self]]&&[obj.observerAddress isEqualToString:[NSString stringWithFormat:@"%p",observer]]&&[obj.keyPath isEqualToString:keyPath]&&obj.context==context) {
-            downInfo=obj;
-            *stop=YES;
-        }
-    }];
-    if (downInfo) {
-        [downArray removeObject:downInfo];
-    }
-    
     
     //observer监听了哪些对象
     NSMutableArray *upArray = observer.safe_upObservedArray;
-    __block LSKVOObserverInfo *upInfo;
-    [upArray enumerateObjectsUsingBlock:^(LSKVOObserverInfo *  obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.targetAddress isEqualToString: [NSString stringWithFormat:@"%p",self]]&&[obj.observerAddress isEqualToString:[NSString stringWithFormat:@"%p",observer]]&&[obj.keyPath isEqualToString:keyPath]&&obj.context==context) {
-            upInfo=obj;
-            *stop=YES;
-        }
-    }];
-    if (upInfo) {
-        [upArray removeObject:upInfo];
+    
+    if(info){
+        [downArray removeObject:info];
+        [upArray removeObject:info];
     }
 }
 
 //为什么判断能否移除 而不是直接remove try catch 捕获异常，因为有的类remove keypath两次，try直接就崩溃了
--(BOOL)safe_canAddOrRemoveObserverWithKeypathWithObserver:(NSObject *)observer keyPath:(NSString*)keyPath context:(void*)context isUser:(BOOL)isUser isAdd:(BOOL)isAdd
+-(LSKVOObserverInfo*)safe_canAddOrRemoveObserverWithKeypathWithObserver:(NSObject *)observer keyPath:(NSString*)keyPath context:(void*)context haveContext:(BOOL)haveContext isAdd:(BOOL)isAdd
 {
-    if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
-        return NO;
+    if(observer.needRemoveKeypathFromCrashArray){
+        NSString *observerKey=[NSString stringWithFormat:@"%p",observer];
+        NSMutableDictionary *dic=KVOSafeDeallocCrashes()[observerKey];
+        NSMutableArray *array=dic[@"keyPaths"];
+        __block NSMutableDictionary *willRemoveDic;
+        if(array.count>0){
+            [array enumerateObjectsUsingBlock:^(NSMutableDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if([obj[@"targetName"] isEqualToString:NSStringFromClass([self class])]&&[obj[@"targetAddress"] isEqualToString:[NSString stringWithFormat:@"%p",self]]&&[keyPath isEqualToString:obj[@"keyPath"]]){
+                    willRemoveDic=obj;
+                    *stop=YES;
+                }
+            }];
+            if(willRemoveDic){
+                [array removeObject:willRemoveDic];
+            }
+        }
     }
     
+    if(haveContext==NO&&self.safe_willRemoveObserverInfo){
+        context=self.safe_willRemoveObserverInfo.context;
+    }
     
-    //    NSString *objectKey=[NSString stringWithFormat:@"%p",self];
-    //    if (isUser) {
-    //        [KVOSafeDeallocCrashes()[[NSString stringWithFormat:@"%p",observer]][objectKey][@"keyPaths"] removeObject:keyPath];
-    //    }
+    BOOL contextIsNULL=(context==NULL);
     
-    
-    __block BOOL have=NO;
     //哪些对象监听了自己
     NSMutableArray *downArray = self.safe_downObservedKeyPathArray;
+    NSMutableArray *downKeypathArray=[NSMutableArray array];
+    
+    __block LSKVOObserverInfo *info;
     [downArray enumerateObjectsUsingBlock:^(LSKVOObserverInfo *  obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.observer==observer&&[obj.keyPath isEqualToString:keyPath]&&obj.context==context) {
-            have=YES;
-            *stop=YES;
-        }
-    }];
-    
-    if (have) {
-        if (isAdd) {
-            return NO;
-        }
-        return YES;
-    }
-    //observer监听了哪些对象
-    NSMutableArray *upArray = observer.safe_upObservedArray;
-    [upArray enumerateObjectsUsingBlock:^(LSKVOObserverInfo *  obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.target==self&&[obj.keyPath isEqualToString:keyPath]&&obj.context==context) {
-            have=YES;
-            *stop=YES;
-        }
-    }];
-    
-    if (have) {
-        if (isAdd) {
-            return NO;
-        }
-        return YES;
-    }
-    
-    //自己监听自己情况
-    if (self == observer) {
-        [upArray enumerateObjectsUsingBlock:^(LSKVOObserverInfo *  obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj.targetAddress isEqualToString:obj.observerAddress]&&[obj.keyPath isEqualToString:keyPath]&&obj.context==context) {
-                have=YES;
-                *stop=YES;
+        if ([obj.observerAddress isEqualToString:[NSString stringWithFormat:@"%p",observer]]&&[obj.keyPath isEqualToString:keyPath]) {
+            if(contextIsNULL){
+                [downKeypathArray addObject:obj];
+            }else{
+                if(obj.context==context){
+                    info=obj;
+                    *stop=YES;
+                }
             }
-        }];
-    }
-    if (isAdd) {
-        return !have;
-    }
-    return have;
+        }
+    }];
     
+    if(info){
+        return info;
+    }
+    
+    //此处是为了添加了多个相同的keypath,一个不带context,其他的带,remove的时候没加context参数,移除不带context的KVO
+    //添加多个带context的kvo，remove时不带context会移除最后添加的那个带context的kvo
+    if(contextIsNULL){
+        if(isAdd){
+            [downKeypathArray enumerateObjectsUsingBlock:^(LSKVOObserverInfo * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if(obj.context==NULL){
+                    info=obj;
+                    *stop=YES;
+                }
+            }];
+            if(info){
+                return info;
+            }
+        }else{
+            __block BOOL have;
+            //寻找是否有不带context的KVO
+            if(downKeypathArray.count>0){
+                [downKeypathArray enumerateObjectsUsingBlock:^(LSKVOObserverInfo * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if(obj.context==NULL){
+                        have=YES;
+                        info=obj;
+                        *stop=YES;
+                    }
+                }];
+            }
+            if(info){return info;}
+            
+            ////没有不带context的KVO,都是带context的KVO,移除最后一个
+            if(downKeypathArray.count>0){
+                info=downKeypathArray.lastObject;
+            }
+        }
+    }
+    return info;
 }
 
 /* 防止此种崩溃所以新创建个NSArray 和 NSMutableDictionary遍历
@@ -349,50 +392,49 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 {
     LSKVOSafeLog(@"%@  safe_KVODealloc",[self class]);
     NSString *currentKey=[NSString stringWithFormat:@"%p",self];
-    KVOSafeDeallocCrashes()[currentKey]=[NSMutableDictionary dictionary];
-    //    for (LSKVOObserverInfo *info in self.safe_upObservedArray) {
-    //            NSDictionary *dic=self.safe_upObservedDictionary[objectKey];
-    //            NSMutableArray *keypathArray=[dic[@"keyPaths"] mutableCopy];
-    //            NSMutableDictionary *newDic=[NSMutableDictionary dictionary];
-    //            newDic[@"className"]=dic[@"className"];
-    //            newDic[@"keyPaths"]=keypathArray;
-    //            KVOSafeDeallocCrashes()[currentKey][objectKey]=newDic;
-    //    }
+    NSMutableDictionary *crashDic=[NSMutableDictionary dictionary];
+    NSMutableArray *array=[NSMutableArray array];
+    crashDic[@"keyPaths"]=array;
+    crashDic[@"className"]=NSStringFromClass([self class]);
+    KVOSafeDeallocCrashes()[currentKey]=crashDic;
+    for (LSKVOObserverInfo *info in self.safe_upObservedArray) {
+        NSMutableDictionary *newDic=[NSMutableDictionary dictionary];
+        newDic[@"targetName"]=info.targetClassName;
+        newDic[@"targetAddress"]=info.targetAddress;
+        newDic[@"keyPath"]=info.keyPath;
+        newDic[@"context"]=[NSString stringWithFormat:@"%p",info.context];
+        [array addObject:newDic];
+    }
     
     
-    //A->B A先销毁 B的safe_upObservedDictionary observer=nil  然后在B dealloc里在remove会导致移除不了，然后系统会报销毁时还持有某keypath的crash
-    //A->B B先销毁 此时A remove 但事实上的A的safe_downObservedDictionary observer=nil  所以B remove里会判断observer是否有值，如果没值则不remove导致没有remove
+    //A->B A先销毁 B的safe_upObservedArray 里的info.target=nil,然后在B dealloc里在remove会导致移除不了，然后系统会报销毁时还持有某keypath的crash
+    //A->B B先销毁 此时A remove 但事实上的A的safe_downObservedArray里info.observer=nil  所以B remove里会判断observer是否有值，如果没值则不remove导致没有remove
     
     //监听了哪些人 让那些人移除自己
     NSMutableArray *newUpArray=[self.safe_upObservedArray mutableCopy];
     for (LSKVOObserverInfo *upInfo in newUpArray) {
         id target=upInfo.target;
         if (target) {
-            [target safe_allRemoveObserver:self forKeyPath:upInfo.keyPath context:upInfo.context isContext:NO isUser:NO];
+            [target safe_allRemoveObserver:self forKeyPath:upInfo.keyPath context:upInfo.context isContext:upInfo.context!=NULL];
         }else if ([upInfo.targetAddress isEqualToString:[NSString stringWithFormat:@"%p",self]]){
-            [self safe_allRemoveObserver:self forKeyPath:upInfo.keyPath context:upInfo.context isContext:NO isUser:NO];
+            [self safe_allRemoveObserver:self forKeyPath:upInfo.keyPath context:upInfo.context isContext:upInfo.context!=NULL];
         }
     }
-    
     
     
     //谁监听了自己 移除他们 这块必须处理  不然 A->B   A先销毁了 在B里面调用A remove就无效了，因为A=nil
     NSMutableArray *downNewArray=[self.safe_downObservedKeyPathArray mutableCopy];
     for (LSKVOObserverInfo *downInfo in downNewArray) {
-            [self safe_allRemoveObserver:downInfo.observer forKeyPath:downInfo.keyPath context:downInfo.context isContext:NO isUser:NO];
+        [self safe_allRemoveObserver:downInfo.observer forKeyPath:downInfo.keyPath context:downInfo.context isContext:downInfo.context!=NULL];
     }
+    self.needRemoveKeypathFromCrashArray=YES;
 }
 +(void)safe_dealloc_crash:(NSString*)classAddress
 {
-    NSDictionary *dic = KVOSafeDeallocCrashes()[classAddress];
-    for (NSString *key in dic) {
-        NSArray *array = dic[key][@"keyPaths"];
-        if (array.count>0) {
-            for (NSString *keyPath in array) {
-                NSString *reason=[NSString stringWithFormat:@"%@（%@） dealloc时仍然监听着 %@ 的 keyPath of %@",[self class],classAddress,dic[key][@"className"],keyPath];
-                NSException *exception=[NSException exceptionWithName:@"KVO crash" reason:reason userInfo:nil]; LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
-            }
-        }
+    NSDictionary *crashDic = KVOSafeDeallocCrashes()[classAddress];
+    for (NSMutableDictionary *dic in crashDic[@"keyPaths"]) {
+        NSString *reason=[NSString stringWithFormat:@"%@:(%@） dealloc时仍然监听着 %@:%@ 的 keyPath of %@ context:%@",[self class],classAddress,dic[@"targetName"],dic[@"targetAddress"],dic[@"keyPath"],dic[@"context"]];
+        NSException *exception=[NSException exceptionWithName:@"KVO crash" reason:reason userInfo:nil]; LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
     }
     [KVOSafeDeallocCrashes() removeObjectForKey:classAddress];
 }
