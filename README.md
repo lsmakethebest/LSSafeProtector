@@ -41,10 +41,13 @@ NSMutableArray *a1=[NSMutableArray array];
 a1[10];
 ```
 - `若没有防止崩溃，则会直接崩溃，如下图所示`
+## 
 ![image](https://github.com/lsmakethebest/LSSafeProtector/blob/master/images/1.png)
 - `用本框架来防止崩溃，则会捕获到崩溃信息并打印出来(测试环境会利用断言闪退达到及时发现及时修改)，如下图`
+- ## 
 ![image](https://github.com/lsmakethebest/LSSafeProtector/blob/master/images/2.png)
-- `block回调回来的信息都有哪些`
+- `来看看block回调回来的信息都有哪些`
+- ## 
 ![image](https://github.com/lsmakethebest/LSSafeProtector/blob/master/images/3.png)
 
 ### 
