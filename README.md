@@ -152,9 +152,10 @@ iOS11之后（含11)  setObject:forKeyedSubscript:
 
 ```
 # 联系    
-If you wish to contact me, email at: song@ysui.cn
+- 如果使用过程中遇到什么问题或有什么建议可以联系我，我会在收到后尽快回复您
+- email at: song@ysui.cn
 
-If you wish to contact me, QQ at:623501561 
+- QQ at:623501561 
 
 
 ## 许可
