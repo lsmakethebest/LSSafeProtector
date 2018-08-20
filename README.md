@@ -1,5 +1,5 @@
 ## 中文说明
-#### `LSSafeProtector` 是一个可快速集成但功能强大的防止crash库,使用Objective-C编写.
+#### `LSSafeProtector` 是一个可快速集成但功能强大的防止crash库,不改变原代码支持KVO自释放，等11种crash,使用Objective-C编写.
 
 
 ## 须知
