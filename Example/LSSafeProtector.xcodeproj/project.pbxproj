@@ -77,7 +77,7 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A0C20E3079AEFA5200801AF7 /* Pods-LSSafeProtector_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LSSafeProtector_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LSSafeProtector_Tests/Pods-LSSafeProtector_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B9DC1AF93B472FD819843A89 /* Pods_LSSafeProtector_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LSSafeProtector_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E70A551071CD6D163A7441E5 /* LSSafeProtector.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LSSafeProtector.podspec; path = ../LSSafeProtector.podspec; sourceTree = "<group>"; };
+		E70A551071CD6D163A7441E5 /* LSSafeProtector.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LSSafeProtector.podspec; path = ../LSSafeProtector.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
