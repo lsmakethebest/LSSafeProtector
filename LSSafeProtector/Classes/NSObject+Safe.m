@@ -140,7 +140,7 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
     NSArray *callStackSymbolsArr = [NSThread callStackSymbols];
 
     //获取在哪个类的哪个方法中实例化的数组
-    NSString *mainMessage = [self safe_getMainCallStackSymbolMessageWithCallStackSymbolString:callStackSymbolsArr[2]];
+    NSString *mainMessage = [self safe_getMainCallStackSymbolMessageWithCallStackSymbolArray: callStackSymbolsArr index:2 first:YES];
     
     if (mainMessage == nil) {
         mainMessage = @"崩溃方法定位失败,请您查看函数调用栈来查找crash原因";
@@ -170,9 +170,15 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
 }
 
 #pragma mark -   获取堆栈主要崩溃精简化的信息<根据正则表达式匹配出来
-+ (NSString *)safe_getMainCallStackSymbolMessageWithCallStackSymbolString:(NSString *)callStackSymbolString
++ (NSString *)safe_getMainCallStackSymbolMessageWithCallStackSymbolArray:(NSArray *)callStackSymbolArray index:(NSInteger)index first:(BOOL)first
 {
-    
+    NSString *  callStackSymbolString;
+    if (callStackSymbolArray.count<=0) {
+        return nil;
+    }
+    if (index<callStackSymbolArray.count) {
+        callStackSymbolString=callStackSymbolArray[index];
+    }
     //正则表达式
     //http://www.jianshu.com/p/b25b05ef170d
     
@@ -191,6 +197,18 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
         }
     }];
     
+    if (index==0) {
+        return mainCallStackSymbolMsg;
+    }
+    if (mainCallStackSymbolMsg==nil) {
+        NSInteger newIndex=0;
+        if (first) {
+            newIndex=callStackSymbolArray.count-1;
+        }else{
+            newIndex=index-1;
+        }
+        mainCallStackSymbolMsg = [self safe_getMainCallStackSymbolMessageWithCallStackSymbolArray:callStackSymbolArray index:newIndex first:NO];
+    }
     return mainCallStackSymbolMsg;
 }
 

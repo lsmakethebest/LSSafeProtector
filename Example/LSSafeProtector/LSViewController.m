@@ -164,17 +164,17 @@
         strings[1]=value;
         strings[2]=@"222";
         [NSArray arrayWithObjects:strings count:3];
-        [[NSArray alloc]initWithObjects:strings count:3];
-        
-        NSArray *a1=[NSArray array];
-        a1[10];
-        
-        
-        NSArray *a2=@[@"fs"];
-        a2[10];
-        
-        NSArray *a3=@[@"fs",@"fsd"];
-        a3[10];
+//        [[NSArray alloc]initWithObjects:strings count:3];
+    
+//        NSArray *a1=[NSArray array];
+//        a1[10];
+//        
+//        
+//        NSArray *a2=@[@"fs"];
+//        a2[10];
+//        
+//        NSArray *a3=@[@"fs",@"fsd"];
+//        a3[10];
 }
     
 -(IBAction)testMutableArray
