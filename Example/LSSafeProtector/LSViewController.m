@@ -117,9 +117,10 @@
         
         
        self.testObject=[[NSNotificationTestObject alloc]init];
-       self.testObject.kvo=self;
-    [self addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
-    [self addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
+//       self.testObject.kvo=self;
+    self.testObject=[[NSProgress alloc]init];
+    [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
+//    [self.testObject addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:nil];
 //       [self addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:nil];
 //     [self addObserver:self.testObject forKeyPath:@"name" options:(NSKeyValueObservingOptionNew) context:nil];
 
@@ -130,7 +131,7 @@
 //        [self removeObserver:self.testObject forKeyPath:@"name" context:@"fsd"];
 //        [self.testView1 removeFromSuperview];
         self.testObject=nil;
-        self.name=@"fs";
+//        self.name=@"fs";
         //        [self.testView1  removeFromSuperview];
 
         

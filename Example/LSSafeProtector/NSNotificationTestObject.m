@@ -20,7 +20,7 @@
 {
     NSLog(@"%@  dealloc",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-    [self.kvo removeObserver:self forKeyPath:@"name"];
+    [self removeObserver:self forKeyPath:@"name"];
 //    [self.kvo removeObserver:self forKeyPath:@"name"];
 }
 

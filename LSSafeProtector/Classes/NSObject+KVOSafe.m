@@ -34,8 +34,8 @@
 
 @interface NSObject()
 @property (nonatomic,weak) LSKVOObserverInfo *safe_willRemoveObserverInfo;
-//dealloc时标记有多少没移除，然后手动替他移除，比如有7个 我都替他移除掉，数量还是7，然后用户手动移除时，数量会减少，然后计算最终剩多少就是用户没有移除的，提示用户有没移除的KVO
-@property (nonatomic,assign) BOOL needRemoveKeypathFromCrashArray;
+//dealloc时标记有多少没移除，然后手动替他移除，比如有7个 我都替他移除掉，数量还是7，然后用户手动移除时，数量会减少，然后计算最终剩多少就是用户没有移除的，提示用户有没移除的KVO  默认为YES dealloc时改为NO
+@property (nonatomic,assign) BOOL safe_notNeedRemoveKeypathFromCrashArray;
 @end
 
 @implementation NSObject (KVOSafe)
@@ -150,17 +150,11 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     return  objc_getAssociatedObject(self, _cmd);
 }
 
--(void)setNeedRemoveKeypathFromCrashArray:(BOOL)needRemoveKeypathFromCrashArray{
-    
-    NSString *value=@"";
-    if(needRemoveKeypathFromCrashArray){
-        value=@"needRemoveKeypathFromCrashArray";
-    }
-    objc_setAssociatedObject(self, @selector(needRemoveKeypathFromCrashArray),value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+-(void)setSafe_notNeedRemoveKeypathFromCrashArray:(BOOL)safe_notNeedRemoveKeypathFromCrashArray{
+    objc_setAssociatedObject(self, @selector(safe_notNeedRemoveKeypathFromCrashArray),@(safe_notNeedRemoveKeypathFromCrashArray), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
--(BOOL)needRemoveKeypathFromCrashArray{
-    NSString * value=objc_getAssociatedObject(self, _cmd);
-    return   [value isEqualToString:@"needRemoveKeypathFromCrashArray"];
+-(BOOL)safe_notNeedRemoveKeypathFromCrashArray{
+    return  [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 -(void)safe_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -180,17 +174,18 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
         return ;
     }
+    observer.safe_notNeedRemoveKeypathFromCrashArray=YES;
     NSLock *lock=[[NSLock alloc]init];
     [lock lock];
     LSKVOObserverInfo *info=[self safe_canAddOrRemoveObserverWithKeypathWithObserver:observer keyPath:keyPath context:context haveContext:YES isAdd:YES];
     if(info!=nil){
         //如果添加过了直接return
-        LSKVOSafeLog(@"添加失败%@:%p safe_addObserver %@:%p  keyPath:%@",[self class],self,[observer class],observer,keyPath);
+        LSKVOSafeLog(@"添加失败:%d %@:%p safe_addObserver %@:%p  keyPath:%@",(context!=NULL),[self class],self,[observer class],observer,keyPath);
         [lock unlock];
         return;
     }
     @try {
-        LSKVOSafeLog(@"添加成功%@:%p safe_addObserver %@:%p  keyPath:%@",[self class],self,[observer class],observer,keyPath);
+        LSKVOSafeLog(@"添加成功:%d %@:%p safe_addObserver %@:%p  keyPath:%@",(context!=NULL),[self class],self,[observer class],observer,keyPath);
         
         NSString *targetAddress=[NSString stringWithFormat:@"%p",self];
         NSString *observerAddress=[NSString stringWithFormat:@"%p",observer];
@@ -301,7 +296,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 //为什么判断能否移除 而不是直接remove try catch 捕获异常，因为有的类remove keypath两次，try直接就崩溃了
 -(LSKVOObserverInfo*)safe_canAddOrRemoveObserverWithKeypathWithObserver:(NSObject *)observer keyPath:(NSString*)keyPath context:(void*)context haveContext:(BOOL)haveContext isAdd:(BOOL)isAdd
 {
-    if(observer.needRemoveKeypathFromCrashArray){
+    if(observer.safe_notNeedRemoveKeypathFromCrashArray==NO){
         NSString *observerKey=[NSString stringWithFormat:@"%p",observer];
         NSMutableDictionary *dic=KVOSafeDeallocCrashes()[observerKey];
         NSMutableArray *array=dic[@"keyPaths"];
@@ -427,7 +422,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     for (LSKVOObserverInfo *downInfo in downNewArray) {
         [self safe_allRemoveObserver:downInfo.observer forKeyPath:downInfo.keyPath context:downInfo.context isContext:downInfo.context!=NULL];
     }
-    self.needRemoveKeypathFromCrashArray=YES;
+    self.safe_notNeedRemoveKeypathFromCrashArray=NO;
 }
 +(void)safe_dealloc_crash:(NSString*)classAddress
 {
