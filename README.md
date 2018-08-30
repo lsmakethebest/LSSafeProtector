@@ -31,8 +31,6 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 6+ 和ARC ，请使用最新正式版来
 [Bugly reportExceptionWithCategory:3 name:exception.name reason:[NSString stringWithFormat:@"%@  崩溃位置:%@",exception.reason,exception.userInfo[@"location"]] callStack:@[exception.userInfo[@"callStackSymbols"]] extraInfo:exception.userInfo terminateApp:NO];
 }];
 ```
-更多的使用用例可以看Demo工程演示
-
 
 ### 下面是防止崩溃的效果
 
@@ -49,6 +47,8 @@ a1[10];
 ![image](https://github.com/lsmakethebest/LSSafeProtector/blob/master/images/3.png)
 - KVO  检测到dealloc时有没remove的keyPath
 ![image](https://github.com/lsmakethebest/LSSafeProtector/blob/master/images/4.png)
+
+- 更多的使用用例可以看Demo工程演示
 
 ### 
 ### 目前支持以下类型crash
