@@ -313,7 +313,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
             if(willRemoveDic){
                 [array removeObject:willRemoveDic];
                 if (array.count<=0) {
-                    @synchronized(array){
+                    @synchronized(KVOSafeDeallocCrashes()){
                         [KVOSafeDeallocCrashes() removeObjectForKey:observerKey];
                     }
                 }
@@ -394,19 +394,21 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 {
     LSKVOSafeLog(@"%@  safe_KVODealloc",[self class]);
     if (self.safe_upObservedArray.count>0) {
-        NSString *currentKey=LSFormatterStringFromObject(self);
-        NSMutableDictionary *crashDic=[NSMutableDictionary dictionary];
-        NSMutableArray *array=[NSMutableArray array];
-        crashDic[@"keyPaths"]=array;
-        crashDic[@"className"]=NSStringFromClass([self class]);
-        KVOSafeDeallocCrashes()[currentKey]=crashDic;
-        for (LSKVOObserverInfo *info in self.safe_upObservedArray) {
-            NSMutableDictionary *newDic=[NSMutableDictionary dictionary];
-            newDic[@"targetName"]=info.targetClassName;
-            newDic[@"targetAddress"]=info.targetAddress;
-            newDic[@"keyPath"]=info.keyPath;
-            newDic[@"context"]=[NSString stringWithFormat:@"%p",info.context];
-            [array addObject:newDic];
+        @synchronized(KVOSafeDeallocCrashes()){
+            NSString *currentKey=LSFormatterStringFromObject(self);
+            NSMutableDictionary *crashDic=[NSMutableDictionary dictionary];
+            NSMutableArray *array=[NSMutableArray array];
+            crashDic[@"keyPaths"]=array;
+            crashDic[@"className"]=NSStringFromClass([self class]);
+            KVOSafeDeallocCrashes()[currentKey]=crashDic;
+            for (LSKVOObserverInfo *info in self.safe_upObservedArray) {
+                NSMutableDictionary *newDic=[NSMutableDictionary dictionary];
+                newDic[@"targetName"]=info.targetClassName;
+                newDic[@"targetAddress"]=info.targetAddress;
+                newDic[@"keyPath"]=info.keyPath;
+                newDic[@"context"]=[NSString stringWithFormat:@"%p",info.context];
+                [array addObject:newDic];
+            }
         }
     }
     
@@ -435,14 +437,16 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 }
 +(void)safe_dealloc_crash:(NSString*)classAddress
 {
-    //比如A先释放了 然后地址被B使用了，A先调用safe_KVODealloc 会给KVOSafeDeallocCrashes添加值以地址为key，然后系统去移除A的监听，同时B可能又销毁了，又重新赋值了KVOSafeDeallocCrashes的key因为地址相等所以覆盖了，在系统移除A的过程中，会遍历KVOSafeDeallocCrashes字典里的kaypaths，info.target是否相等，此时已经被赋值成B的相关内容了，所以肯定移除不了，然后A走到此方法时，KVOSafeDeallocCrashes里以地址为key的kaypaths数组还有值，导致误报(A还监听着B监听的内容)，赋值KVOSafeDeallocCrashes以地址为kay的字典的时候，导致字典被释放其他地方又使用，导致野指针
-    NSString *currentKey=[NSString stringWithFormat:@"%@-%@",classAddress,NSStringFromClass(self)];
-    NSDictionary *crashDic = KVOSafeDeallocCrashes()[currentKey];
-    for (NSMutableDictionary *dic in crashDic[@"keyPaths"]) {
-        NSString *reason=[NSString stringWithFormat:@"%@:(%@） dealloc时仍然监听着 %@:%@ 的 keyPath of %@ context:%@",[self class],classAddress,dic[@"targetName"],dic[@"targetAddress"],dic[@"keyPath"],dic[@"context"]];
-        NSException *exception=[NSException exceptionWithName:@"KVO crash" reason:reason userInfo:nil]; LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
+    //比如A先释放了然后走到此处，然后地址又被B重新使用了，A又释放了走了safe_KVODealloc方法，KVOSafeDeallocCrashes以地址为key的值又被重新赋值，导致误报(A还监听着B监听的内容)，赋值KVOSafeDeallocCrashes以地址为kay的字典的时候，导致字典被释放其他地方又使用，导致野指针
+    @synchronized(KVOSafeDeallocCrashes()){
+        NSString *currentKey=[NSString stringWithFormat:@"%@-%@",classAddress,NSStringFromClass(self)];
+        NSDictionary *crashDic = KVOSafeDeallocCrashes()[currentKey];
+        for (NSMutableDictionary *dic in crashDic[@"keyPaths"]) {
+            NSString *reason=[NSString stringWithFormat:@"%@:(%@） dealloc时仍然监听着 %@:%@ 的 keyPath of %@ context:%@",[self class],classAddress,dic[@"targetName"],dic[@"targetAddress"],dic[@"keyPath"],dic[@"context"]];
+            NSException *exception=[NSException exceptionWithName:@"KVO crash" reason:reason userInfo:nil]; LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
+        }
+        [KVOSafeDeallocCrashes() removeObjectForKey:currentKey];
     }
-    [KVOSafeDeallocCrashes() removeObjectForKey:currentKey];
 }
 NSString * LSFormatterStringFromObject(id object) {
     return   [NSString stringWithFormat:@"%p-%@",object,NSStringFromClass([object class])];
