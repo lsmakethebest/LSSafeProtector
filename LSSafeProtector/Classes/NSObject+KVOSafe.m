@@ -442,7 +442,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         NSString *currentKey=[NSString stringWithFormat:@"%@-%@",classAddress,NSStringFromClass(self)];
         NSDictionary *crashDic = KVOSafeDeallocCrashes()[currentKey];
         for (NSMutableDictionary *dic in crashDic[@"keyPaths"]) {
-            NSString *reason=[NSString stringWithFormat:@"%@:(%@） dealloc时仍然监听着 %@:%@ 的 keyPath of %@ context:%@",[self class],classAddress,dic[@"targetName"],dic[@"targetAddress"],dic[@"keyPath"],dic[@"context"]];
+            NSString *reason=[NSString stringWithFormat:@"%@:(%@） dealloc时仍然监听着 %@:%@ 的 keyPath of %@ context:%@",crashDic[@"className"],classAddress,dic[@"targetName"],dic[@"targetAddress"],dic[@"keyPath"],dic[@"context"]];
             NSException *exception=[NSException exceptionWithName:@"KVO crash" reason:reason userInfo:nil]; LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
         }
         [KVOSafeDeallocCrashes() removeObjectForKey:currentKey];
