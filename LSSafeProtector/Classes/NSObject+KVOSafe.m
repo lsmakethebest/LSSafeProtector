@@ -9,8 +9,8 @@
 #import "NSObject+Safe.h"
 #import <objc/message.h>
 
-//#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
-#define LSKVOSafeLog(fmt, ...)
+#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
+//#define LSKVOSafeLog(fmt, ...)
 
 
 @interface LSKVOObserverInfo()
@@ -26,12 +26,10 @@
 @property (nonatomic,copy)NSString *keyPath;
 @property (nonatomic,assign) void * context;
 
-@end
 
+@end
 @implementation LSKVOObserverInfo
 @end
-
-
 @interface NSObject()
 @property (nonatomic,weak) LSKVOObserverInfo *safe_willRemoveObserverInfo;
 //dealloc时标记有多少没移除，然后手动替他移除，比如有7个 我都替他移除掉，数量还是7，然后用户手动移除时，数量会减少，然后计算最终剩多少就是用户没有移除的，提示用户有没移除的KVO  默认为YES dealloc时改为NO
@@ -177,44 +175,46 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         return ;
     }
     observer.safe_notNeedRemoveKeypathFromCrashArray=YES;
-    NSLock *lock=[[NSLock alloc]init];
-    [lock lock];
-    LSKVOObserverInfo *info=[self safe_canAddOrRemoveObserverWithKeypathWithObserver:observer keyPath:keyPath context:context haveContext:YES isAdd:YES];
-    if(info!=nil){
-        //如果添加过了直接return
-        LSKVOSafeLog(@"添加失败:%d %@:%p safe_addObserver %@:%p  keyPath:%@",(context!=NULL),[self class],self,[observer class],observer,keyPath);
-        [lock unlock];
-        return;
-    }
-    @try {
-        LSKVOSafeLog(@"添加成功:%d %@:%p safe_addObserver %@:%p  keyPath:%@",(context!=NULL),[self class],self,[observer class],observer,keyPath);
+    @synchronized(self){
+        LSKVOObserverInfo *info=[self safe_canAddOrRemoveObserverWithKeypathWithObserver:observer keyPath:keyPath context:context haveContext:YES isAdd:YES];
         
-        NSString *targetAddress=[NSString stringWithFormat:@"%p",self];
-        NSString *observerAddress=[NSString stringWithFormat:@"%p",observer];
-        LSKVOObserverInfo *info=[LSKVOObserverInfo new];
-        info.target=self;
-        info.observer=observer;
-        info.keyPath=keyPath;
-        info.context=context;
-        info.targetAddress=targetAddress;
-        info.observerAddress=observerAddress;
-        info.targetClassName=NSStringFromClass([self class]);
-        info.observerClassName=NSStringFromClass([observer class]);
-        
-        [self.safe_downObservedKeyPathArray addObject:info];
-        [observer.safe_upObservedArray addObject:info];
-        
-        [self safe_addObserver:observer forKeyPath:keyPath options:options context:context];
-        
-        //交换dealloc方法
-        [observer safe_KVOChangeDidDeallocSignal];
-        [self safe_KVOChangeDidDeallocSignal];
-    }
-    @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
-    }
-    @finally {
-        [lock unlock];
+        if(info!=nil){
+            //如果添加过了直接return
+            LSKVOSafeLog(@"添加失败:%d %@:%p safe_addObserver %@:%p  keyPath:%@",(context!=NULL),[self class],self,[observer class],observer,keyPath);
+            return;
+        }
+        @try {
+            LSKVOSafeLog(@"添加成功:%d %@:%p safe_addObserver %@:%p  keyPath:%@",(context!=NULL),[self class],self,[observer class],observer,keyPath);
+            
+            NSString *targetAddress=[NSString stringWithFormat:@"%p",self];
+            NSString *observerAddress=[NSString stringWithFormat:@"%p",observer];
+            LSKVOObserverInfo *info=[LSKVOObserverInfo new];
+            info.target=self;
+            info.observer=observer;
+            info.keyPath=keyPath;
+            info.context=context;
+            info.targetAddress=targetAddress;
+            info.observerAddress=observerAddress;
+            info.targetClassName=NSStringFromClass([self class]);
+            info.observerClassName=NSStringFromClass([observer class]);
+            @synchronized(self.safe_downObservedKeyPathArray){
+                [self.safe_downObservedKeyPathArray addObject:info];
+            }
+            @synchronized(observer.safe_upObservedArray){
+                [observer.safe_upObservedArray addObject:info];
+            }
+            [self safe_addObserver:observer forKeyPath:keyPath options:options context:context];
+            
+            //交换dealloc方法
+            [observer safe_KVOChangeDidDeallocSignal];
+            [self safe_KVOChangeDidDeallocSignal];
+        }
+        @catch (NSException *exception) {
+            LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeKVO);
+        }
+        @finally {
+            LSKVOSafeLog(@"添加结束:%d %@:%p safe_addObserver %@:%p  keyPath:%@",(context!=NULL),[self class],self,[observer class],observer,keyPath);
+        }
     }
 }
 
@@ -237,13 +237,14 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     if(!observer||!keyPath||([keyPath isKindOfClass:[NSString class]]&&keyPath.length<=0)){
         return ;
     }
-    NSLock *lock=[[NSLock alloc]init];
-    [lock lock];
+//    NSLock *lock=[[NSLock alloc]init];
+//    [lock lock];
+    @synchronized(self){
     LSKVOObserverInfo *info=[self safe_canAddOrRemoveObserverWithKeypathWithObserver:observer keyPath:keyPath context:context haveContext:isContext isAdd:NO];
     if (info==nil) {
         // 重复删除观察者或不含有 或者keypath=nil  observer=nil
         LSKVOSafeLog(@"移除失败:%d %@:%p safe_removeObserver %@:%p  keyPath:%@",isContext,[self class],self,[observer class],observer,keyPath);
-        [lock unlock];
+//        [lock unlock];
         return;
     }
     
@@ -276,7 +277,8 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
             self.safe_willRemoveObserverInfo=nil;
         }
         [self safe_removeSuccessObserver:observer info:info];
-        [lock unlock];
+//        [lock unlock];
+    }
     }
 }
 
