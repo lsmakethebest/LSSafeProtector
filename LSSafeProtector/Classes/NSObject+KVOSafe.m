@@ -70,7 +70,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         [self safe_exchangeInstanceMethod:[self class] originalSel:@selector(removeObserver:forKeyPath:context:) newSel:@selector(safe_removeObserver:forKeyPath:context:)];
     });
 }
-//最后添替换的dealloc 会最先调用倒序
+//最后替换的dealloc 会最先调用倒序
 -(void)safe_KVOChangeDidDeallocSignal{
     //此处交换dealloc方法是借鉴RAC源码
     Class classToSwizzle=[self class];
