@@ -150,13 +150,13 @@
     //    self.testObject2=[[NSNotificationTestObject alloc]init];
     //     [self.testView1 addObserver:self.testObject2 forKeyPath:@"frame" options:(NSKeyValueObservingOptionNew) context:@"fsd"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        self.testObject=nil;
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            [self.testObject removeObserver:self.testObject forKeyPath:@"fractionCompleted1"];
-        });
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            [self.testObject removeObserver:self.testObject forKeyPath:@"fractionCompleted1"];
-        });
+        self.testObject=nil;
+//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//            [self.testObject removeObserver:self.testObject forKeyPath:@"fractionCompleted1"];
+//        });
+//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//            [self.testObject removeObserver:self.testObject forKeyPath:@"fractionCompleted1"];
+//        });
     });
     //        self.testObject2=nil;
     //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
