@@ -13,39 +13,49 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        Class dClass=NSClassFromString(@"__NSCFConstantString");
+       
         Class NSPlaceholderStringClass=NSClassFromString(@"NSPlaceholderString");
         
         //initWithString:
         [self safe_exchangeInstanceMethod:NSPlaceholderStringClass originalSel:@selector(initWithString:) newSel:@selector(safe_initWithString:)];
+         
+         Class dClass=NSClassFromString(@"__NSCFConstantString");
+         Class dClass2=NSClassFromString(@"NSTaggedPointerString");
+         [self safe_changeAllMethod:dClass];
+         [self safe_changeAllMethod:dClass2];
+         
         
-        //hasPrefix
-        [self safe_exchangeInstanceMethod:dClass originalSel:@selector(hasPrefix:) newSel:@selector(safe_hasPrefix:)];
-        
-       //hasSuffix
-        [self safe_exchangeInstanceMethod:dClass originalSel:@selector(hasSuffix:) newSel:@selector(safe_hasSuffix:)];
-        
-        
-        //substringFromIndex
-        [self safe_exchangeInstanceMethod:dClass originalSel:@selector(substringFromIndex:) newSel:@selector(safe_substringFromIndex:)];
-        
-        //substringToIndex
-        [self safe_exchangeInstanceMethod:dClass originalSel:@selector(substringToIndex:) newSel:@selector(safe_substringToIndex:)];
-        
-        //substringWithRange
-         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(substringWithRange:) newSel:@selector(safe_substringWithRange:)];
-        
-        //characterAtIndex
-         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(characterAtIndex:) newSel:@selector(safe_characterAtIndex:)];
-        
-        
-         //stringByReplacingOccurrencesOfString:withString:options:range:
-        [self safe_exchangeInstanceMethod:dClass originalSel:@selector(stringByReplacingOccurrencesOfString:withString:options:range:) newSel:@selector(safe_stringByReplacingOccurrencesOfString:withString:options:range:)];
-        
-        
-        //stringByReplacingCharactersInRange:withString:
-         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(stringByReplacingCharactersInRange:withString:) newSel:@selector(safe_stringByReplacingCharactersInRange:withString:)];
     });
+}
+
++(void)safe_changeAllMethod:(Class)dClass
+{
+    //hasPrefix
+    [self safe_exchangeInstanceMethod:dClass originalSel:@selector(hasPrefix:) newSel:@selector(safe_hasPrefix:)];
+    
+    //hasSuffix
+    [self safe_exchangeInstanceMethod:dClass originalSel:@selector(hasSuffix:) newSel:@selector(safe_hasSuffix:)];
+    
+    
+    //substringFromIndex
+    [self safe_exchangeInstanceMethod:dClass originalSel:@selector(substringFromIndex:) newSel:@selector(safe_substringFromIndex:)];
+    
+    //substringToIndex
+    [self safe_exchangeInstanceMethod:dClass originalSel:@selector(substringToIndex:) newSel:@selector(safe_substringToIndex:)];
+    
+    //substringWithRange
+    [self safe_exchangeInstanceMethod:dClass originalSel:@selector(substringWithRange:) newSel:@selector(safe_substringWithRange:)];
+    
+    //characterAtIndex
+    [self safe_exchangeInstanceMethod:dClass originalSel:@selector(characterAtIndex:) newSel:@selector(safe_characterAtIndex:)];
+    
+    
+    //stringByReplacingOccurrencesOfString:withString:options:range:
+    [self safe_exchangeInstanceMethod:dClass originalSel:@selector(stringByReplacingOccurrencesOfString:withString:options:range:) newSel:@selector(safe_stringByReplacingOccurrencesOfString:withString:options:range:)];
+    
+    
+    //stringByReplacingCharactersInRange:withString:
+    [self safe_exchangeInstanceMethod:dClass originalSel:@selector(stringByReplacingCharactersInRange:withString:) newSel:@selector(safe_stringByReplacingCharactersInRange:withString:)];
 }
 -(instancetype)safe_initWithString:(NSString *)aString
 {

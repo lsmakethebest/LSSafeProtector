@@ -10,6 +10,24 @@
 @interface NSString (Safe)
 @end
 
+/*
+initWithString导致的crash
+ 如果是[NSString alloc]initWithString 类为NSPlaceholderString
+ 如果是[NSMutableString alloc]initWithString 类为NSPlaceholderMutableString
+ 
+ __NSCFString
+ 非常量 或者 [NSMutableString stringWithFormat:@"fs"];
+ [[NSMutableString alloc]initWithString:@"fs"];
+ 
+ __NSCFConstantString  常量
+ @"fdsfsds"
+ [[NSString alloc]initWithString:@"fs"];
+ 
+ NSTaggedPointerString format形式创建
+ [NSString stringWithFormat:@"fs"];
+ 
+ */
+
 
 /*
    1. initWithString

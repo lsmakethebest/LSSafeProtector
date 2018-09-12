@@ -248,6 +248,9 @@
 -(IBAction)testString
 {
     NSString *s1=@"hello world";
+    NSString *s122=[NSString stringWithFormat:@"fs"];
+    NSString *s1222=[[NSString alloc]initWithString:@"fs"];
+    [s122 substringFromIndex:230];
     NSString *value=nil;
     NSString *ss=[[NSString alloc]initWithString:value];
     [s1 substringFromIndex:100];
