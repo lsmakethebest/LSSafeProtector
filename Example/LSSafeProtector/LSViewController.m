@@ -406,29 +406,35 @@
     [data1 subdataWithRange:NSMakeRange(0, 100)];
     [data1 rangeOfData:nil options:0 range:NSMakeRange(0, 100)];
     
-//    //_NSInlineData
+    //_NSInlineData
     char *s="fssfs";
     NSData *data2 = [NSData dataWithBytes:&s length:5];
     [data2 subdataWithRange:NSMakeRange(0, 100)];
     [data2 rangeOfData:nil options:0 range:NSMakeRange(0, 100)];
 
     
+    //NSConcreteData
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    [params setValue:@"fsdfsdfsd" forKey:@"1"];
+    [params setValue:@"fsdfsdfsd" forKey:@"2"];
+    [params setValue:@"fsdfsdfsd" forKey:@"3"];
+    [params setValue:@"fsdfsdfsd" forKey:@"4"];
+    NSData *date3 = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
+    
 }
 
 - (IBAction)testNSMutableData:(id)sender {
+    
+    //NSConcreteMutableData
     NSMutableData *data1 = [NSMutableData data];
-//    [data1 subdataWithRange:NSMakeRange(0, 100)];
-//    [data1 rangeOfData:nil options:0 range:NSMakeRange(0, 100)];
+    [data1 subdataWithRange:NSMakeRange(0, 100)];
+    [data1 rangeOfData:nil options:0 range:NSMakeRange(0, 100)];
     [data1 resetBytesInRange:NSMakeRange(0, 100)];
     
     NSMutableData *data2 = [NSMutableData data];
     [data1 replaceBytesInRange:NSMakeRange(0, 10) withBytes:data2.bytes length:10];
     [data1 replaceBytesInRange:NSMakeRange(0, 10) withBytes:"fsd"];
 }
-
-
-
-
 
 
 

@@ -17,7 +17,7 @@
    [NSMutableData data];
  
 3.NSConcreteData
-
+   [NSJSONSerialization dataWithJSONObject:[NSMutableDictionary dictionary] options:0 error:nil]
  
 4._NSInlineData
      [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:@"https://www.baidu.com/"]]
