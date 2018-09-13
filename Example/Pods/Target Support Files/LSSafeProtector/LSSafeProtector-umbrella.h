@@ -20,10 +20,12 @@
 #import "NSMutableAttributedString+Safe.h"
 #import "NSMutableData+Safe.h"
 #import "NSMutableDictionary+Safe.h"
+#import "NSMutableSet+Safe.h"
 #import "NSMutableString+Safe.h"
 #import "NSNotificationCenter+Safe.h"
 #import "NSObject+KVOSafe.h"
 #import "NSObject+Safe.h"
+#import "NSSet+Safe.h"
 #import "NSString+Safe.h"
 #import "NSUserDefaults+Safe.h"
 

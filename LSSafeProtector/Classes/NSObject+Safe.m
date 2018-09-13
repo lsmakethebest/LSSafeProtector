@@ -60,6 +60,8 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
             [NSObject openKVOSafeProtector];
             [NSUserDefaults openSafeProtector];
             [NSCache openSafeProtector];
+            [NSSet openSafeProtector];
+            [NSMutableSet openSafeProtector];
             if (isDebug) {
                  ls_safe_logType=LSSafeProtectorLogTypeAll;
             }else{

@@ -361,6 +361,25 @@
     [cache setObject:@"fsd" forKey:nil];
 }
 
+- (IBAction)testNSSet:(id)sender {
+    
+    [NSSet setWithObject:nil];
+    NSString *value=nil;
+    NSSet *set = [[NSSet alloc]initWithObjects:value,@"fsd", nil];
+    NSSet *set2 = [NSSet setWithObjects:@"fsd",value, nil];
+    
+}
+- (IBAction)testNSMutableSet:(id)sender {
+    
+    [NSMutableSet setWithObject:nil];
+    NSString *value=nil;
+    NSMutableSet *set = [[NSMutableSet alloc]initWithObjects:value,@"fsd", nil];
+    NSMutableSet *set2 = [NSMutableSet setWithObjects:@"fsd",value, nil];
+    NSMutableSet *set3=[NSMutableSet set];
+    [set3 removeObject:value];
+    [set3 addObject:value];
+ 
+}
 
 
 @end
