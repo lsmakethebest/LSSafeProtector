@@ -11,7 +11,7 @@
 @interface NSUserDefaults (Safe)
 
 /*
- 可避免以下方法  key=nil时的崩溃
+ 可避免以下方法  key=nil时的crash
     objectForKey:
     stringForKey:
     arrayForKey:
