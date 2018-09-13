@@ -7,169 +7,211 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		013C2759F65C019ED659CFB3B42F914A /* NSDictionary+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 823399DB89002013DC7860F7312D3D83 /* NSDictionary+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1AE1FEA2C8D96A6D47972DD70293ECF6 /* NSString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = A30276E47593DA693735AFFA7683EF86 /* NSString+Safe.m */; };
-		2F94C10B04F0447AA5061FE318A3C86F /* NSMutableString+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = D9D39B3947990BB611193D0958119D71 /* NSMutableString+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E845404B3C94F94613881A487C9AFA5 /* NSArray+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D66275E724556D18891E575DB127D7D /* NSArray+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		41611D6D9B7E193287F42ADB34847E3E /* LSSafeProtector-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3BAF98248F07EF112674FD1996A159 /* LSSafeProtector-dummy.m */; };
-		465F4BABED1B8E09FF3EB6462097E8F5 /* NSAttributedString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7273BD139B2C93435E459C232D0397 /* NSAttributedString+Safe.m */; };
-		4F43776B49F82F563AD0B04CE99CC783 /* Pods-LSSafeProtector_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B63D1C4B8137F994017E9087C1F92 /* Pods-LSSafeProtector_Tests-dummy.m */; };
-		5017D0FA286025A15200204875F8ECC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		605223D7265743B43AF07CA901B7AA95 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 360AC406EC5502E453EDBBB0EE5C053E /* NSMutableArray+Safe.m */; };
-		6B529B70F4CA402AD6EA175CC5D61218 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = D178716BE18D4C98406B58FEB8A4CBCC /* NSArray+Safe.m */; };
-		7003CAC75FA2575DB6727060B08F1CAA /* NSObject+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C545D9D7095ABFA69F550966A5DDFB /* NSObject+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74BE6B69AB64EFBA5F0A8B0B7B9656C6 /* NSObject+KVOSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE133330825076CC56EA1CEF36D65B3 /* NSObject+KVOSafe.m */; };
-		74DA7DC5058BFB93E863BDE049E3B5D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		761B2D5D019A1B0264C6C47F65822C87 /* NSString+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = E0B8CA68544146E5B25A632ED7ACB630 /* NSString+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		776987AC4F9DB43B83989A7AABC7451D /* Pods-LSSafeProtector_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 29F4445EAAE442B75BFA9E8B6E735E39 /* Pods-LSSafeProtector_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7D2FB28894DE69856038FE382AD6F25A /* NSNotificationCenter+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D99A28D7B920517DBDB539820BE9076 /* NSNotificationCenter+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8990D122CBD07580DBAABA5C2EFA2B95 /* NSMutableString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 596EA5426149255279978A23EB8B5F31 /* NSMutableString+Safe.m */; };
-		96A8B9669C862E65F79694C9AA3E028E /* NSMutableAttributedString+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 069DE25491D58B867BB2EBB03F80078E /* NSMutableAttributedString+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9B3641924A23B7CD5A4A35C0B520F4E1 /* NSMutableArray+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = A196A868E67F83CA78B4D7754C402A1C /* NSMutableArray+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9F7A9BF005BAED8F0E49DD2DC03C66DA /* LSSafeProtector.h in Headers */ = {isa = PBXBuildFile; fileRef = 3122302551E2BD504C64404D8033AEF5 /* LSSafeProtector.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A0556935EA67062DA2A93EB4D2A8BA2D /* Pods-LSSafeProtector_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EC633EBF37D47AA76CE2085E5C388130 /* Pods-LSSafeProtector_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B81093FABD1C5863BCB2A6D3BC93813A /* NSMutableAttributedString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = E555AC503072155AC2D085CC6201ED00 /* NSMutableAttributedString+Safe.m */; };
-		B8268F2E00B1D979B3851B5FCF4C07D1 /* NSObject+KVOSafe.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D46D499562D6F9A7633C3C85A763EC3 /* NSObject+KVOSafe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BF37A3276B784018E7B004D88D913C32 /* Pods-LSSafeProtector_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45420FC16F96B84ED38C90989FC124AA /* Pods-LSSafeProtector_Example-dummy.m */; };
-		C51BF86BA24C099069E06BDEBBD912BD /* LSSafeProtector.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E0819D1155C637946BBF6D225127CF /* LSSafeProtector.m */; };
-		C638468B7F9B58C2FE23D873868F34D0 /* NSObject+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 814F72FCAA9DE73083C39DB599212FDD /* NSObject+Safe.m */; };
-		D14FEFE245FC912F9C0794643865AEA8 /* LSSafeProtector-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 895CD47644C31C496A8325B40F23B973 /* LSSafeProtector-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D9A36A69AC37D15D59547720D4F52B45 /* NSDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BF2DEC63C2D5A94E52B0B81AFB4F85 /* NSDictionary+Safe.m */; };
-		DB7D2E4EFAE2B36E64E43A21B915401B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		EF6917B2BAB1D732892F4C80CB086876 /* NSNotificationCenter+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C39992A6E117ADB3B6DDA019A1EEA4C /* NSNotificationCenter+Safe.m */; };
-		F5BAB7B0C205F66AEB3A54E92AB6F517 /* NSMutableDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2D394E00A27896198B22D6BEF2A7B3 /* NSMutableDictionary+Safe.m */; };
-		FC2071A4CC16C214A01DD4C8CFC48FA9 /* NSMutableDictionary+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = C950E2BC70A89F0C8353B3B4E2DD41DE /* NSMutableDictionary+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FCD3ED320FA4B5EE71C77BA0C35AA319 /* NSAttributedString+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F91D08E8EDACC23F159DEF7F8D5E9CA /* NSAttributedString+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		009A38F95D27C3CF226D08C8211C1A4B /* NSAttributedString+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 39967E4C8A996378FE1ABA04C36D2D1E /* NSAttributedString+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02A4B07411D203DA214C94E458D29E5C /* LSSafeProtector.h in Headers */ = {isa = PBXBuildFile; fileRef = 0825B3940D6E00D1ED4AF5371DBC0977 /* LSSafeProtector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06E75CC2BE9AFCE1B3830C8ED53434A4 /* NSMutableArray+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 71EC9E53B68361EA6719FB62BD4044F3 /* NSMutableArray+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0AE7BE62E71182C7541D915DDDF2FAFE /* NSMutableAttributedString+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AE2C366FD22911BAB834A337322901 /* NSMutableAttributedString+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B88BA86637E44C2D3C042519B9158FB /* Pods-LSSafeProtector_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 29F4445EAAE442B75BFA9E8B6E735E39 /* Pods-LSSafeProtector_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D4B29066CDAE5227FC4A8231BD732DD /* NSObject+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 68E988D24F26E06F81179DBD15E87396 /* NSObject+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B2393353CDDC98C48C80D2EF25C9729 /* NSMutableDictionary+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DE28FB5C17D59325E5BAB8632C39361 /* NSMutableDictionary+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21DFBFF899EF54ACD5A36771AA500754 /* Pods-LSSafeProtector_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EC633EBF37D47AA76CE2085E5C388130 /* Pods-LSSafeProtector_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		238E94518B60C59209267783B9F3D4CA /* NSData+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = CFEBA5136238FDC5C82240BF77D2F53B /* NSData+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29736193A3CC40AA02904F5F670BC50C /* NSCache+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BB21ADFAF83741E2797A125E4566C1 /* NSCache+Safe.m */; };
+		29CD0B5010805F19DE5E8B68BE9DF373 /* LSSafeProtector.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BD007FE62A578A9003C5350AEF6357 /* LSSafeProtector.m */; };
+		2DEDAE1CB01C0BA9E198D7BB3F95427D /* NSMutableAttributedString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3608D9D7CF8F9F5F441008B83FF1EC /* NSMutableAttributedString+Safe.m */; };
+		34FD205B31EFEADBE631F0D8CAAA27D6 /* NSMutableString+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = AA633461F28F1C4B3990D43C0ADB52DC /* NSMutableString+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3CA0B864B76BB779C3DBDB052F40131E /* NSDictionary+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = B7CA422F59F05D591E6DF8017EFEAAC8 /* NSDictionary+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4DE725FA3FA4923043279F448DE9A8C9 /* NSString+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 557CB874519611041934A1CFDFAE927A /* NSString+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4FCEC6BACC642DA5524DB769076643B0 /* NSMutableString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = D16FBFD3F8123EACA4FC77B634ACF801 /* NSMutableString+Safe.m */; };
+		5EA1B6BA89D5B7A404E5608486BB763C /* LSSafeProtector-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 677B4D1201273538E81CCA67F009FB0F /* LSSafeProtector-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6272004201DFE170CA0B7D800935D82A /* NSDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 859413488B54120C2A92CE8EEB692937 /* NSDictionary+Safe.m */; };
+		63B2D34BEB03C5DFCBAEDF5EE1BFB9DC /* NSArray+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 85B5A794A2DC98CF0B521100CA79EDA6 /* NSArray+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		715F0053056950BCCCC34411D744B1AC /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D7FBDD0F3E754EE0962BA7A06D748A /* NSArray+Safe.m */; };
+		7FA31FFFE4B75635D6EFEF8ADCCF6BCC /* NSObject+KVOSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 34AAEFF72D7BEFE468C011B43B77C723 /* NSObject+KVOSafe.m */; };
+		815B52CBDBB27EE31FDDE9D079D0BE97 /* LSSafeProtector-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D47FBD6FABFCB9DB653D2E3D7FEAD3 /* LSSafeProtector-dummy.m */; };
+		853CC4D660D9E5268532FBD5140A77D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		87B28FAB47C164D08EFE0BF21065533F /* NSNotificationCenter+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C44A609231BFFC0EACDB177BF20172F /* NSNotificationCenter+Safe.m */; };
+		8A6150F95092EA50B2D1095173DB6234 /* NSMutableData+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 5692D28D6FB4F475F11F29AEE7D482C4 /* NSMutableData+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8E41D7B4F34263E180432ACCC4CFDE6C /* NSCache+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 070F3D92D8B8D3BDF9DFF36F1255A0AE /* NSCache+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8F62179E5BA8EAD565AA2545A482FFBC /* NSData+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = ED14FE2AB13A86DE666E95A4A3AD84BE /* NSData+Safe.m */; };
+		A297C33D0F773BDD536100864A8C4BDA /* Pods-LSSafeProtector_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B63D1C4B8137F994017E9087C1F92 /* Pods-LSSafeProtector_Tests-dummy.m */; };
+		ACBAB463137D4CFEEB63AC1F4BC148FB /* NSUserDefaults+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8552560205AF434E7DF350AD66B097 /* NSUserDefaults+Safe.m */; };
+		AD0B85C9E7C97AB964B90327AAC0F982 /* NSString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = FE3B67FC3E9F34F1E2769C190D9D99C3 /* NSString+Safe.m */; };
+		BF656ADCAFB2C412D69A6DB740B6E255 /* NSObject+KVOSafe.h in Headers */ = {isa = PBXBuildFile; fileRef = FD9F809D42FAB914DF914143B88E2A41 /* NSObject+KVOSafe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C5E779877DAE1390DC038941978588A2 /* NSUserDefaults+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = B6E0AD289184429249E1E543E2FE203A /* NSUserDefaults+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C6E500BFEE7FBDC6DAB322A50AFB6477 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		CB39C4C1824337731CB70B6F2B0ECE28 /* NSMutableData+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 6912D1E2DB1387288EF2B9892AD9B755 /* NSMutableData+Safe.m */; };
+		CCBC790405EF39C1E7FE03C4AC900F8D /* NSMutableDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 525C0649BDC0F8475148871CFB890968 /* NSMutableDictionary+Safe.m */; };
+		D798B3E14A65BA108C6A0CACC6E66636 /* NSNotificationCenter+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D391AB48D86B8A7B2846EC1AF2AB7C6 /* NSNotificationCenter+Safe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D90D4A05B380C17217200F5E45FF2D7F /* Pods-LSSafeProtector_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 45420FC16F96B84ED38C90989FC124AA /* Pods-LSSafeProtector_Example-dummy.m */; };
+		DE1F8C6150511653F6E6AC6BB234F7C7 /* NSObject+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 1714F12A9264D57A6759A2679D8BBC1C /* NSObject+Safe.m */; };
+		E6C3A15A0D6A792C4185BC5C2F4DA4A7 /* NSAttributedString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = A74457F8A510128868910F058D1DB9B5 /* NSAttributedString+Safe.m */; };
+		EC2F483F3713ECEFF9A2F334F623821C /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 25354235FB3BF5FDB54F17BC9CF2881D /* NSMutableArray+Safe.m */; };
+		F28107D67F9B0729E66414334E6A367D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7BD97DBDAA30EABF953F5F74B05652C0 /* PBXContainerItemProxy */ = {
+		234EB003B478BA5899B09AAFE3321723 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9CAC4B6903FF68E409FD4E73B8818463;
+			remoteGlobalIDString = 8A71EED797D458B866AC344AEF16E2AC;
 			remoteInfo = LSSafeProtector;
 		};
-		A5AD297532F1B27FD6EECA9D15C4705C /* PBXContainerItemProxy */ = {
+		8B7330C9289DFB65EDCB87DAC6F45581 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8C43A0A995C818B03CFF155995522AF3;
+			remoteGlobalIDString = 4CF74876120A10D5F38D8C15DD5315AD;
 			remoteInfo = "Pods-LSSafeProtector_Example";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		019B63D1C4B8137F994017E9087C1F92 /* Pods-LSSafeProtector_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LSSafeProtector_Tests-dummy.m"; sourceTree = "<group>"; };
-		069DE25491D58B867BB2EBB03F80078E /* NSMutableAttributedString+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+Safe.h"; path = "LSSafeProtector/Classes/NSMutableAttributedString+Safe.h"; sourceTree = "<group>"; };
-		0D99A28D7B920517DBDB539820BE9076 /* NSNotificationCenter+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+Safe.h"; path = "LSSafeProtector/Classes/NSNotificationCenter+Safe.h"; sourceTree = "<group>"; };
+		070F3D92D8B8D3BDF9DFF36F1255A0AE /* NSCache+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSCache+Safe.h"; path = "LSSafeProtector/Classes/NSCache+Safe.h"; sourceTree = "<group>"; };
+		0825B3940D6E00D1ED4AF5371DBC0977 /* LSSafeProtector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LSSafeProtector.h; path = LSSafeProtector/Classes/LSSafeProtector.h; sourceTree = "<group>"; };
 		0E1ED4B5C118FE4FB219D1DC1004157E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F52CF68210BC5C4FEF61C607CCD524B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1252041AB34E7B9F6DF52E6CAC01E657 /* LSSafeProtector.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LSSafeProtector.xcconfig; sourceTree = "<group>"; };
+		1714F12A9264D57A6759A2679D8BBC1C /* NSObject+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Safe.m"; path = "LSSafeProtector/Classes/NSObject+Safe.m"; sourceTree = "<group>"; };
 		1A839F86B42303421EA6272505521441 /* Pods-LSSafeProtector_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LSSafeProtector_Tests-resources.sh"; sourceTree = "<group>"; };
-		1E3BAF98248F07EF112674FD1996A159 /* LSSafeProtector-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LSSafeProtector-dummy.m"; sourceTree = "<group>"; };
+		1E3608D9D7CF8F9F5F441008B83FF1EC /* NSMutableAttributedString+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+Safe.m"; path = "LSSafeProtector/Classes/NSMutableAttributedString+Safe.m"; sourceTree = "<group>"; };
+		21AE2C366FD22911BAB834A337322901 /* NSMutableAttributedString+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableAttributedString+Safe.h"; path = "LSSafeProtector/Classes/NSMutableAttributedString+Safe.h"; sourceTree = "<group>"; };
+		23BB21ADFAF83741E2797A125E4566C1 /* NSCache+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSCache+Safe.m"; path = "LSSafeProtector/Classes/NSCache+Safe.m"; sourceTree = "<group>"; };
+		25354235FB3BF5FDB54F17BC9CF2881D /* NSMutableArray+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+Safe.m"; path = "LSSafeProtector/Classes/NSMutableArray+Safe.m"; sourceTree = "<group>"; };
+		25D7FBDD0F3E754EE0962BA7A06D748A /* NSArray+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Safe.m"; path = "LSSafeProtector/Classes/NSArray+Safe.m"; sourceTree = "<group>"; };
 		29F4445EAAE442B75BFA9E8B6E735E39 /* Pods-LSSafeProtector_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LSSafeProtector_Tests-umbrella.h"; sourceTree = "<group>"; };
 		2A16B36F30C921B040E4B61765FBB3AC /* Pods-LSSafeProtector_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LSSafeProtector_Example.modulemap"; sourceTree = "<group>"; };
-		2C39992A6E117ADB3B6DDA019A1EEA4C /* NSNotificationCenter+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+Safe.m"; path = "LSSafeProtector/Classes/NSNotificationCenter+Safe.m"; sourceTree = "<group>"; };
-		2E7273BD139B2C93435E459C232D0397 /* NSAttributedString+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+Safe.m"; path = "LSSafeProtector/Classes/NSAttributedString+Safe.m"; sourceTree = "<group>"; };
-		3122302551E2BD504C64404D8033AEF5 /* LSSafeProtector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LSSafeProtector.h; path = LSSafeProtector/Classes/LSSafeProtector.h; sourceTree = "<group>"; };
-		360AC406EC5502E453EDBBB0EE5C053E /* NSMutableArray+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+Safe.m"; path = "LSSafeProtector/Classes/NSMutableArray+Safe.m"; sourceTree = "<group>"; };
-		3BB4E67926FAACE55F674DA7640EF52D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		2C44A609231BFFC0EACDB177BF20172F /* NSNotificationCenter+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+Safe.m"; path = "LSSafeProtector/Classes/NSNotificationCenter+Safe.m"; sourceTree = "<group>"; };
+		34AAEFF72D7BEFE468C011B43B77C723 /* NSObject+KVOSafe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+KVOSafe.m"; path = "LSSafeProtector/Classes/NSObject+KVOSafe.m"; sourceTree = "<group>"; };
+		39967E4C8A996378FE1ABA04C36D2D1E /* NSAttributedString+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+Safe.h"; path = "LSSafeProtector/Classes/NSAttributedString+Safe.h"; sourceTree = "<group>"; };
 		45420FC16F96B84ED38C90989FC124AA /* Pods-LSSafeProtector_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LSSafeProtector_Example-dummy.m"; sourceTree = "<group>"; };
-		49BF2DEC63C2D5A94E52B0B81AFB4F85 /* NSDictionary+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Safe.m"; path = "LSSafeProtector/Classes/NSDictionary+Safe.m"; sourceTree = "<group>"; };
-		4A512E2BC3B511ACA028EA30B4FAAD13 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		4B2E4A6C5CF5220801370B2F8027E998 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		525C0649BDC0F8475148871CFB890968 /* NSMutableDictionary+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+Safe.m"; path = "LSSafeProtector/Classes/NSMutableDictionary+Safe.m"; sourceTree = "<group>"; };
+		52BD007FE62A578A9003C5350AEF6357 /* LSSafeProtector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LSSafeProtector.m; path = LSSafeProtector/Classes/LSSafeProtector.m; sourceTree = "<group>"; };
+		557CB874519611041934A1CFDFAE927A /* NSString+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+Safe.h"; path = "LSSafeProtector/Classes/NSString+Safe.h"; sourceTree = "<group>"; };
 		5678484DF955B72098AE9BC4C04D1B1F /* Pods-LSSafeProtector_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LSSafeProtector_Tests.modulemap"; sourceTree = "<group>"; };
-		596EA5426149255279978A23EB8B5F31 /* NSMutableString+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableString+Safe.m"; path = "LSSafeProtector/Classes/NSMutableString+Safe.m"; sourceTree = "<group>"; };
+		5692D28D6FB4F475F11F29AEE7D482C4 /* NSMutableData+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableData+Safe.h"; path = "LSSafeProtector/Classes/NSMutableData+Safe.h"; sourceTree = "<group>"; };
+		5996F70455763C262178AC3C72FEFB05 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6ADDE66C19B1DCF53B9314CD620E3A07 /* LSSafeProtector-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LSSafeProtector-prefix.pch"; sourceTree = "<group>"; };
-		6D66275E724556D18891E575DB127D7D /* NSArray+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+Safe.h"; path = "LSSafeProtector/Classes/NSArray+Safe.h"; sourceTree = "<group>"; };
-		814F72FCAA9DE73083C39DB599212FDD /* NSObject+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Safe.m"; path = "LSSafeProtector/Classes/NSObject+Safe.m"; sourceTree = "<group>"; };
-		823399DB89002013DC7860F7312D3D83 /* NSDictionary+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Safe.h"; path = "LSSafeProtector/Classes/NSDictionary+Safe.h"; sourceTree = "<group>"; };
-		895CD47644C31C496A8325B40F23B973 /* LSSafeProtector-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LSSafeProtector-umbrella.h"; sourceTree = "<group>"; };
-		8D46D499562D6F9A7633C3C85A763EC3 /* NSObject+KVOSafe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+KVOSafe.h"; path = "LSSafeProtector/Classes/NSObject+KVOSafe.h"; sourceTree = "<group>"; };
-		8F91D08E8EDACC23F159DEF7F8D5E9CA /* NSAttributedString+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSAttributedString+Safe.h"; path = "LSSafeProtector/Classes/NSAttributedString+Safe.h"; sourceTree = "<group>"; };
+		5D391AB48D86B8A7B2846EC1AF2AB7C6 /* NSNotificationCenter+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+Safe.h"; path = "LSSafeProtector/Classes/NSNotificationCenter+Safe.h"; sourceTree = "<group>"; };
+		677B4D1201273538E81CCA67F009FB0F /* LSSafeProtector-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LSSafeProtector-umbrella.h"; sourceTree = "<group>"; };
+		68E988D24F26E06F81179DBD15E87396 /* NSObject+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+Safe.h"; path = "LSSafeProtector/Classes/NSObject+Safe.h"; sourceTree = "<group>"; };
+		6912D1E2DB1387288EF2B9892AD9B755 /* NSMutableData+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableData+Safe.m"; path = "LSSafeProtector/Classes/NSMutableData+Safe.m"; sourceTree = "<group>"; };
+		6A8552560205AF434E7DF350AD66B097 /* NSUserDefaults+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+Safe.m"; path = "LSSafeProtector/Classes/NSUserDefaults+Safe.m"; sourceTree = "<group>"; };
+		6CEB28FBEA8F1172273C45FC3D40EB3C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		71EC9E53B68361EA6719FB62BD4044F3 /* NSMutableArray+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+Safe.h"; path = "LSSafeProtector/Classes/NSMutableArray+Safe.h"; sourceTree = "<group>"; };
+		7DE28FB5C17D59325E5BAB8632C39361 /* NSMutableDictionary+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+Safe.h"; path = "LSSafeProtector/Classes/NSMutableDictionary+Safe.h"; sourceTree = "<group>"; };
+		7E69792A4505C12F02C568F829BAA8EB /* LSSafeProtector.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LSSafeProtector.xcconfig; sourceTree = "<group>"; };
+		859413488B54120C2A92CE8EEB692937 /* NSDictionary+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Safe.m"; path = "LSSafeProtector/Classes/NSDictionary+Safe.m"; sourceTree = "<group>"; };
+		85B5A794A2DC98CF0B521100CA79EDA6 /* NSArray+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+Safe.h"; path = "LSSafeProtector/Classes/NSArray+Safe.h"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A196A868E67F83CA78B4D7754C402A1C /* NSMutableArray+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+Safe.h"; path = "LSSafeProtector/Classes/NSMutableArray+Safe.h"; sourceTree = "<group>"; };
-		A30276E47593DA693735AFFA7683EF86 /* NSString+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+Safe.m"; path = "LSSafeProtector/Classes/NSString+Safe.m"; sourceTree = "<group>"; };
-		A3206877E1D3F1141603E692BADA1EB5 /* LSSafeProtector.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LSSafeProtector.modulemap; sourceTree = "<group>"; };
+		A5A12850512D0CBF7F2D4011C2109B94 /* LSSafeProtector.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = LSSafeProtector.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A74457F8A510128868910F058D1DB9B5 /* NSAttributedString+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSAttributedString+Safe.m"; path = "LSSafeProtector/Classes/NSAttributedString+Safe.m"; sourceTree = "<group>"; };
 		A7DD8A01DEB4263B74729F8214F0F050 /* Pods-LSSafeProtector_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LSSafeProtector_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		AABD47DFDAE9A57EE3D0E40D6E3EF44C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA633461F28F1C4B3990D43C0ADB52DC /* NSMutableString+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableString+Safe.h"; path = "LSSafeProtector/Classes/NSMutableString+Safe.h"; sourceTree = "<group>"; };
 		AB89C09031EF3E16C9ABD7D9B6644984 /* Pods-LSSafeProtector_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LSSafeProtector_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		AFAA5D5F24E11A3E0876A3D7DC3EE95D /* Pods-LSSafeProtector_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LSSafeProtector_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		B418D1640AC38686FCA100B6163C9E34 /* Pods-LSSafeProtector_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LSSafeProtector_Example-resources.sh"; sourceTree = "<group>"; };
 		B52538B3E10BFA8F3D11B487C3671A5A /* Pods_LSSafeProtector_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LSSafeProtector_Tests.framework; path = "Pods-LSSafeProtector_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6E0AD289184429249E1E543E2FE203A /* NSUserDefaults+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+Safe.h"; path = "LSSafeProtector/Classes/NSUserDefaults+Safe.h"; sourceTree = "<group>"; };
+		B7CA422F59F05D591E6DF8017EFEAAC8 /* NSDictionary+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Safe.h"; path = "LSSafeProtector/Classes/NSDictionary+Safe.h"; sourceTree = "<group>"; };
 		BB1C9E4A1CED8679094F58D6D45CD54C /* LSSafeProtector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LSSafeProtector.framework; path = LSSafeProtector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8DBDB0A8E8D2874757628C0EBA14436 /* Pods_LSSafeProtector_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LSSafeProtector_Example.framework; path = "Pods-LSSafeProtector_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C950E2BC70A89F0C8353B3B4E2DD41DE /* NSMutableDictionary+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+Safe.h"; path = "LSSafeProtector/Classes/NSMutableDictionary+Safe.h"; sourceTree = "<group>"; };
-		D0C545D9D7095ABFA69F550966A5DDFB /* NSObject+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+Safe.h"; path = "LSSafeProtector/Classes/NSObject+Safe.h"; sourceTree = "<group>"; };
-		D178716BE18D4C98406B58FEB8A4CBCC /* NSArray+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Safe.m"; path = "LSSafeProtector/Classes/NSArray+Safe.m"; sourceTree = "<group>"; };
+		CFEBA5136238FDC5C82240BF77D2F53B /* NSData+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+Safe.h"; path = "LSSafeProtector/Classes/NSData+Safe.h"; sourceTree = "<group>"; };
+		D16FBFD3F8123EACA4FC77B634ACF801 /* NSMutableString+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableString+Safe.m"; path = "LSSafeProtector/Classes/NSMutableString+Safe.m"; sourceTree = "<group>"; };
 		D79E693825CB4FF4B036794CF92AC930 /* Pods-LSSafeProtector_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LSSafeProtector_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		D9D39B3947990BB611193D0958119D71 /* NSMutableString+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableString+Safe.h"; path = "LSSafeProtector/Classes/NSMutableString+Safe.h"; sourceTree = "<group>"; };
+		D8D47FBD6FABFCB9DB653D2E3D7FEAD3 /* LSSafeProtector-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LSSafeProtector-dummy.m"; sourceTree = "<group>"; };
 		D9E3BB9E94C0CE64056151308CC0EE6D /* Pods-LSSafeProtector_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LSSafeProtector_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		DBE133330825076CC56EA1CEF36D65B3 /* NSObject+KVOSafe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+KVOSafe.m"; path = "LSSafeProtector/Classes/NSObject+KVOSafe.m"; sourceTree = "<group>"; };
-		E0B8CA68544146E5B25A632ED7ACB630 /* NSString+Safe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+Safe.h"; path = "LSSafeProtector/Classes/NSString+Safe.h"; sourceTree = "<group>"; };
 		E1460FB42D80F9F915F717DA0115DBF7 /* Pods-LSSafeProtector_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LSSafeProtector_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E555AC503072155AC2D085CC6201ED00 /* NSMutableAttributedString+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableAttributedString+Safe.m"; path = "LSSafeProtector/Classes/NSMutableAttributedString+Safe.m"; sourceTree = "<group>"; };
-		E7E0819D1155C637946BBF6D225127CF /* LSSafeProtector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LSSafeProtector.m; path = LSSafeProtector/Classes/LSSafeProtector.m; sourceTree = "<group>"; };
 		EC31833EE784934D9C715379641D2701 /* Pods-LSSafeProtector_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LSSafeProtector_Example-frameworks.sh"; sourceTree = "<group>"; };
 		EC633EBF37D47AA76CE2085E5C388130 /* Pods-LSSafeProtector_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LSSafeProtector_Example-umbrella.h"; sourceTree = "<group>"; };
+		ED14FE2AB13A86DE666E95A4A3AD84BE /* NSData+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+Safe.m"; path = "LSSafeProtector/Classes/NSData+Safe.m"; sourceTree = "<group>"; };
 		F810BDD454A596F4206C63EBE203883F /* Pods-LSSafeProtector_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LSSafeProtector_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		F81E93B29E16CF2CA4D955246AF5F365 /* LSSafeProtector.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LSSafeProtector.modulemap; sourceTree = "<group>"; };
 		FA37B0A7A737DCABA74908481138A752 /* Pods-LSSafeProtector_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LSSafeProtector_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		FA9A93BA55DF9AC03F1B1C00277871C1 /* LSSafeProtector.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = LSSafeProtector.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FB02C9FA4C45930E6A426C1CE5849442 /* LSSafeProtector-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LSSafeProtector-prefix.pch"; sourceTree = "<group>"; };
 		FB6DD9540F481D1DB12EA03626A6912B /* Pods-LSSafeProtector_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LSSafeProtector_Example.release.xcconfig"; sourceTree = "<group>"; };
-		FF2D394E00A27896198B22D6BEF2A7B3 /* NSMutableDictionary+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+Safe.m"; path = "LSSafeProtector/Classes/NSMutableDictionary+Safe.m"; sourceTree = "<group>"; };
+		FD9F809D42FAB914DF914143B88E2A41 /* NSObject+KVOSafe.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+KVOSafe.h"; path = "LSSafeProtector/Classes/NSObject+KVOSafe.h"; sourceTree = "<group>"; };
+		FE3B67FC3E9F34F1E2769C190D9D99C3 /* NSString+Safe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+Safe.m"; path = "LSSafeProtector/Classes/NSString+Safe.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		08432199F0EB5E294D89F3880BE9789D /* Frameworks */ = {
+		0737ED7DC4F5A61CA614BB1B6586D402 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74DA7DC5058BFB93E863BDE049E3B5D4 /* Foundation.framework in Frameworks */,
+				853CC4D660D9E5268532FBD5140A77D4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CE1F7832409E53F4B5321D719ED0607A /* Frameworks */ = {
+		224BE66418396BC5A494151971A40BFC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB7D2E4EFAE2B36E64E43A21B915401B /* Foundation.framework in Frameworks */,
+				C6E500BFEE7FBDC6DAB322A50AFB6477 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FECA046B14F4E6FA1CD10BDC0850B97C /* Frameworks */ = {
+		7729B3CD5C9D6337EDAF37E6B68C1CF6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5017D0FA286025A15200204875F8ECC5 /* Foundation.framework in Frameworks */,
+				F28107D67F9B0729E66414334E6A367D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		40664C33B80450B84ACAD1E11BE1F9FF /* Support Files */ = {
+		01E15E384F895E5DCB7C41C0050E802D /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AABD47DFDAE9A57EE3D0E40D6E3EF44C /* Info.plist */,
-				A3206877E1D3F1141603E692BADA1EB5 /* LSSafeProtector.modulemap */,
-				1252041AB34E7B9F6DF52E6CAC01E657 /* LSSafeProtector.xcconfig */,
-				1E3BAF98248F07EF112674FD1996A159 /* LSSafeProtector-dummy.m */,
-				6ADDE66C19B1DCF53B9314CD620E3A07 /* LSSafeProtector-prefix.pch */,
-				895CD47644C31C496A8325B40F23B973 /* LSSafeProtector-umbrella.h */,
+				42F9CA514FECEA57118F9BC3D72D9894 /* LSSafeProtector */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/LSSafeProtector";
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		46A0ECA497AB1BB8DA0E1F2BDAEEB20B /* Pod */ = {
+		42F9CA514FECEA57118F9BC3D72D9894 /* LSSafeProtector */ = {
 			isa = PBXGroup;
 			children = (
-				4A512E2BC3B511ACA028EA30B4FAAD13 /* LICENSE */,
-				FA9A93BA55DF9AC03F1B1C00277871C1 /* LSSafeProtector.podspec */,
-				3BB4E67926FAACE55F674DA7640EF52D /* README.md */,
+				0825B3940D6E00D1ED4AF5371DBC0977 /* LSSafeProtector.h */,
+				52BD007FE62A578A9003C5350AEF6357 /* LSSafeProtector.m */,
+				85B5A794A2DC98CF0B521100CA79EDA6 /* NSArray+Safe.h */,
+				25D7FBDD0F3E754EE0962BA7A06D748A /* NSArray+Safe.m */,
+				39967E4C8A996378FE1ABA04C36D2D1E /* NSAttributedString+Safe.h */,
+				A74457F8A510128868910F058D1DB9B5 /* NSAttributedString+Safe.m */,
+				070F3D92D8B8D3BDF9DFF36F1255A0AE /* NSCache+Safe.h */,
+				23BB21ADFAF83741E2797A125E4566C1 /* NSCache+Safe.m */,
+				CFEBA5136238FDC5C82240BF77D2F53B /* NSData+Safe.h */,
+				ED14FE2AB13A86DE666E95A4A3AD84BE /* NSData+Safe.m */,
+				B7CA422F59F05D591E6DF8017EFEAAC8 /* NSDictionary+Safe.h */,
+				859413488B54120C2A92CE8EEB692937 /* NSDictionary+Safe.m */,
+				71EC9E53B68361EA6719FB62BD4044F3 /* NSMutableArray+Safe.h */,
+				25354235FB3BF5FDB54F17BC9CF2881D /* NSMutableArray+Safe.m */,
+				21AE2C366FD22911BAB834A337322901 /* NSMutableAttributedString+Safe.h */,
+				1E3608D9D7CF8F9F5F441008B83FF1EC /* NSMutableAttributedString+Safe.m */,
+				5692D28D6FB4F475F11F29AEE7D482C4 /* NSMutableData+Safe.h */,
+				6912D1E2DB1387288EF2B9892AD9B755 /* NSMutableData+Safe.m */,
+				7DE28FB5C17D59325E5BAB8632C39361 /* NSMutableDictionary+Safe.h */,
+				525C0649BDC0F8475148871CFB890968 /* NSMutableDictionary+Safe.m */,
+				AA633461F28F1C4B3990D43C0ADB52DC /* NSMutableString+Safe.h */,
+				D16FBFD3F8123EACA4FC77B634ACF801 /* NSMutableString+Safe.m */,
+				5D391AB48D86B8A7B2846EC1AF2AB7C6 /* NSNotificationCenter+Safe.h */,
+				2C44A609231BFFC0EACDB177BF20172F /* NSNotificationCenter+Safe.m */,
+				FD9F809D42FAB914DF914143B88E2A41 /* NSObject+KVOSafe.h */,
+				34AAEFF72D7BEFE468C011B43B77C723 /* NSObject+KVOSafe.m */,
+				68E988D24F26E06F81179DBD15E87396 /* NSObject+Safe.h */,
+				1714F12A9264D57A6759A2679D8BBC1C /* NSObject+Safe.m */,
+				557CB874519611041934A1CFDFAE927A /* NSString+Safe.h */,
+				FE3B67FC3E9F34F1E2769C190D9D99C3 /* NSString+Safe.m */,
+				B6E0AD289184429249E1E543E2FE203A /* NSUserDefaults+Safe.h */,
+				6A8552560205AF434E7DF350AD66B097 /* NSUserDefaults+Safe.m */,
+				FAAA43AA5B16D21D4A9BF45948179440 /* Pod */,
+				65D39A5BF998395077733E955699C35C /* Support Files */,
 			);
-			name = Pod;
+			name = LSSafeProtector;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		5E0D919E635D23B70123790B8308F8EF /* iOS */ = {
@@ -180,23 +222,29 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		65D39A5BF998395077733E955699C35C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5996F70455763C262178AC3C72FEFB05 /* Info.plist */,
+				F81E93B29E16CF2CA4D955246AF5F365 /* LSSafeProtector.modulemap */,
+				7E69792A4505C12F02C568F829BAA8EB /* LSSafeProtector.xcconfig */,
+				D8D47FBD6FABFCB9DB653D2E3D7FEAD3 /* LSSafeProtector-dummy.m */,
+				FB02C9FA4C45930E6A426C1CE5849442 /* LSSafeProtector-prefix.pch */,
+				677B4D1201273538E81CCA67F009FB0F /* LSSafeProtector-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/LSSafeProtector";
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				BA6725EC5AC25E3E37D4E28D647F3898 /* Development Pods */,
+				01E15E384F895E5DCB7C41C0050E802D /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				C5EA4019458816AEB7B47BDABAD953BD /* Products */,
 				F8A7263A4BDF38EAB76E65519D418926 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		BA6725EC5AC25E3E37D4E28D647F3898 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E5B7A205484778E6BE066048E482631D /* LSSafeProtector */,
-			);
-			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -235,40 +283,6 @@
 			path = "Target Support Files/Pods-LSSafeProtector_Tests";
 			sourceTree = "<group>";
 		};
-		E5B7A205484778E6BE066048E482631D /* LSSafeProtector */ = {
-			isa = PBXGroup;
-			children = (
-				3122302551E2BD504C64404D8033AEF5 /* LSSafeProtector.h */,
-				E7E0819D1155C637946BBF6D225127CF /* LSSafeProtector.m */,
-				6D66275E724556D18891E575DB127D7D /* NSArray+Safe.h */,
-				D178716BE18D4C98406B58FEB8A4CBCC /* NSArray+Safe.m */,
-				8F91D08E8EDACC23F159DEF7F8D5E9CA /* NSAttributedString+Safe.h */,
-				2E7273BD139B2C93435E459C232D0397 /* NSAttributedString+Safe.m */,
-				823399DB89002013DC7860F7312D3D83 /* NSDictionary+Safe.h */,
-				49BF2DEC63C2D5A94E52B0B81AFB4F85 /* NSDictionary+Safe.m */,
-				A196A868E67F83CA78B4D7754C402A1C /* NSMutableArray+Safe.h */,
-				360AC406EC5502E453EDBBB0EE5C053E /* NSMutableArray+Safe.m */,
-				069DE25491D58B867BB2EBB03F80078E /* NSMutableAttributedString+Safe.h */,
-				E555AC503072155AC2D085CC6201ED00 /* NSMutableAttributedString+Safe.m */,
-				C950E2BC70A89F0C8353B3B4E2DD41DE /* NSMutableDictionary+Safe.h */,
-				FF2D394E00A27896198B22D6BEF2A7B3 /* NSMutableDictionary+Safe.m */,
-				D9D39B3947990BB611193D0958119D71 /* NSMutableString+Safe.h */,
-				596EA5426149255279978A23EB8B5F31 /* NSMutableString+Safe.m */,
-				0D99A28D7B920517DBDB539820BE9076 /* NSNotificationCenter+Safe.h */,
-				2C39992A6E117ADB3B6DDA019A1EEA4C /* NSNotificationCenter+Safe.m */,
-				8D46D499562D6F9A7633C3C85A763EC3 /* NSObject+KVOSafe.h */,
-				DBE133330825076CC56EA1CEF36D65B3 /* NSObject+KVOSafe.m */,
-				D0C545D9D7095ABFA69F550966A5DDFB /* NSObject+Safe.h */,
-				814F72FCAA9DE73083C39DB599212FDD /* NSObject+Safe.m */,
-				E0B8CA68544146E5B25A632ED7ACB630 /* NSString+Safe.h */,
-				A30276E47593DA693735AFFA7683EF86 /* NSString+Safe.m */,
-				46A0ECA497AB1BB8DA0E1F2BDAEEB20B /* Pod */,
-				40664C33B80450B84ACAD1E11BE1F9FF /* Support Files */,
-			);
-			name = LSSafeProtector;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		E733F8377C50D28A36C91C0424A5C3D2 /* Pods-LSSafeProtector_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,73 +310,108 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		FAAA43AA5B16D21D4A9BF45948179440 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				6CEB28FBEA8F1172273C45FC3D40EB3C /* LICENSE */,
+				A5A12850512D0CBF7F2D4011C2109B94 /* LSSafeProtector.podspec */,
+				4B2E4A6C5CF5220801370B2F8027E998 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		7492DE695D3D1EB876A71900E5E5F19F /* Headers */ = {
+		2C8D7D3F8ACF8D8D0302A5D7EF15C51F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0556935EA67062DA2A93EB4D2A8BA2D /* Pods-LSSafeProtector_Example-umbrella.h in Headers */,
+				21DFBFF899EF54ACD5A36771AA500754 /* Pods-LSSafeProtector_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CF1E40206D32D1DDA0B2067D0534E1D2 /* Headers */ = {
+		4BE27662E8997353C8EB7FD62BFD78CC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D14FEFE245FC912F9C0794643865AEA8 /* LSSafeProtector-umbrella.h in Headers */,
-				9F7A9BF005BAED8F0E49DD2DC03C66DA /* LSSafeProtector.h in Headers */,
-				3E845404B3C94F94613881A487C9AFA5 /* NSArray+Safe.h in Headers */,
-				FCD3ED320FA4B5EE71C77BA0C35AA319 /* NSAttributedString+Safe.h in Headers */,
-				013C2759F65C019ED659CFB3B42F914A /* NSDictionary+Safe.h in Headers */,
-				9B3641924A23B7CD5A4A35C0B520F4E1 /* NSMutableArray+Safe.h in Headers */,
-				96A8B9669C862E65F79694C9AA3E028E /* NSMutableAttributedString+Safe.h in Headers */,
-				FC2071A4CC16C214A01DD4C8CFC48FA9 /* NSMutableDictionary+Safe.h in Headers */,
-				2F94C10B04F0447AA5061FE318A3C86F /* NSMutableString+Safe.h in Headers */,
-				7D2FB28894DE69856038FE382AD6F25A /* NSNotificationCenter+Safe.h in Headers */,
-				B8268F2E00B1D979B3851B5FCF4C07D1 /* NSObject+KVOSafe.h in Headers */,
-				7003CAC75FA2575DB6727060B08F1CAA /* NSObject+Safe.h in Headers */,
-				761B2D5D019A1B0264C6C47F65822C87 /* NSString+Safe.h in Headers */,
+				0B88BA86637E44C2D3C042519B9158FB /* Pods-LSSafeProtector_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ED11199DD0E502CEF31B379941F62FAE /* Headers */ = {
+		F74413E5330E1006EEA829C89623B21A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				776987AC4F9DB43B83989A7AABC7451D /* Pods-LSSafeProtector_Tests-umbrella.h in Headers */,
+				5EA1B6BA89D5B7A404E5608486BB763C /* LSSafeProtector-umbrella.h in Headers */,
+				02A4B07411D203DA214C94E458D29E5C /* LSSafeProtector.h in Headers */,
+				63B2D34BEB03C5DFCBAEDF5EE1BFB9DC /* NSArray+Safe.h in Headers */,
+				009A38F95D27C3CF226D08C8211C1A4B /* NSAttributedString+Safe.h in Headers */,
+				8E41D7B4F34263E180432ACCC4CFDE6C /* NSCache+Safe.h in Headers */,
+				238E94518B60C59209267783B9F3D4CA /* NSData+Safe.h in Headers */,
+				3CA0B864B76BB779C3DBDB052F40131E /* NSDictionary+Safe.h in Headers */,
+				06E75CC2BE9AFCE1B3830C8ED53434A4 /* NSMutableArray+Safe.h in Headers */,
+				0AE7BE62E71182C7541D915DDDF2FAFE /* NSMutableAttributedString+Safe.h in Headers */,
+				8A6150F95092EA50B2D1095173DB6234 /* NSMutableData+Safe.h in Headers */,
+				1B2393353CDDC98C48C80D2EF25C9729 /* NSMutableDictionary+Safe.h in Headers */,
+				34FD205B31EFEADBE631F0D8CAAA27D6 /* NSMutableString+Safe.h in Headers */,
+				D798B3E14A65BA108C6A0CACC6E66636 /* NSNotificationCenter+Safe.h in Headers */,
+				BF656ADCAFB2C412D69A6DB740B6E255 /* NSObject+KVOSafe.h in Headers */,
+				0D4B29066CDAE5227FC4A8231BD732DD /* NSObject+Safe.h in Headers */,
+				4DE725FA3FA4923043279F448DE9A8C9 /* NSString+Safe.h in Headers */,
+				C5E779877DAE1390DC038941978588A2 /* NSUserDefaults+Safe.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8C43A0A995C818B03CFF155995522AF3 /* Pods-LSSafeProtector_Example */ = {
+		41E78EDB0786803CC4ED4CEAC8DC559D /* Pods-LSSafeProtector_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB260513E3DD02FC3189549004E11CFB /* Build configuration list for PBXNativeTarget "Pods-LSSafeProtector_Example" */;
+			buildConfigurationList = 3CFF887869996E4178BF35CBCE29BFEA /* Build configuration list for PBXNativeTarget "Pods-LSSafeProtector_Tests" */;
 			buildPhases = (
-				68377E620ADCB05B6BA3B9654848A380 /* Sources */,
-				FECA046B14F4E6FA1CD10BDC0850B97C /* Frameworks */,
-				7492DE695D3D1EB876A71900E5E5F19F /* Headers */,
+				4BE27662E8997353C8EB7FD62BFD78CC /* Headers */,
+				CEB4734A33C37BFF47AFDEA5519D84D6 /* Sources */,
+				0737ED7DC4F5A61CA614BB1B6586D402 /* Frameworks */,
+				E96D581262E554723645F56AF063B6B4 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				45AE821D7FF3A2EB23F4CA9E04E554DD /* PBXTargetDependency */,
+				575488CB17C54B014EE25D03ADC2FE11 /* PBXTargetDependency */,
+			);
+			name = "Pods-LSSafeProtector_Tests";
+			productName = "Pods-LSSafeProtector_Tests";
+			productReference = B52538B3E10BFA8F3D11B487C3671A5A /* Pods_LSSafeProtector_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4CF74876120A10D5F38D8C15DD5315AD /* Pods-LSSafeProtector_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB9B25F15A859C6B468F6269FE2D35D0 /* Build configuration list for PBXNativeTarget "Pods-LSSafeProtector_Example" */;
+			buildPhases = (
+				2C8D7D3F8ACF8D8D0302A5D7EF15C51F /* Headers */,
+				B15910FA1D8B8D7AA5331E8D3DAF5ED0 /* Sources */,
+				224BE66418396BC5A494151971A40BFC /* Frameworks */,
+				DBC14B7F1B53E5A2F3721A8B774281A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				511D1E6A376FD5C8DA639BEA7A3D76E1 /* PBXTargetDependency */,
 			);
 			name = "Pods-LSSafeProtector_Example";
 			productName = "Pods-LSSafeProtector_Example";
 			productReference = C8DBDB0A8E8D2874757628C0EBA14436 /* Pods_LSSafeProtector_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		9CAC4B6903FF68E409FD4E73B8818463 /* LSSafeProtector */ = {
+		8A71EED797D458B866AC344AEF16E2AC /* LSSafeProtector */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 31E4F20062657A7AC4AB01F5C79B5FE2 /* Build configuration list for PBXNativeTarget "LSSafeProtector" */;
+			buildConfigurationList = EEC3C1016BA71E58C6A3EA01481049EB /* Build configuration list for PBXNativeTarget "LSSafeProtector" */;
 			buildPhases = (
-				9FD4E0FE80876AC141B7D303D3026B28 /* Sources */,
-				08432199F0EB5E294D89F3880BE9789D /* Frameworks */,
-				CF1E40206D32D1DDA0B2067D0534E1D2 /* Headers */,
+				F74413E5330E1006EEA829C89623B21A /* Headers */,
+				5E15D66662006FB7CAB93EE0C5C70DCE /* Sources */,
+				7729B3CD5C9D6337EDAF37E6B68C1CF6 /* Frameworks */,
+				E7F2E47D997F2D569A71F458E33BDEF9 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -371,24 +420,6 @@
 			name = LSSafeProtector;
 			productName = LSSafeProtector;
 			productReference = BB1C9E4A1CED8679094F58D6D45CD54C /* LSSafeProtector.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		C0DE19FA05B92C3CC02134FF2222C2B3 /* Pods-LSSafeProtector_Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 441DF92CDD072C98EC992948105AEA83 /* Build configuration list for PBXNativeTarget "Pods-LSSafeProtector_Tests" */;
-			buildPhases = (
-				8A5EBE3F15E9FC0FA67750672F1841E4 /* Sources */,
-				CE1F7832409E53F4B5321D719ED0607A /* Frameworks */,
-				ED11199DD0E502CEF31B379941F62FAE /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C88C74A04D0530E5FA59B141BC5C56B3 /* PBXTargetDependency */,
-			);
-			name = "Pods-LSSafeProtector_Tests";
-			productName = "Pods-LSSafeProtector_Tests";
-			productReference = B52538B3E10BFA8F3D11B487C3671A5A /* Pods_LSSafeProtector_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -412,69 +443,351 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9CAC4B6903FF68E409FD4E73B8818463 /* LSSafeProtector */,
-				8C43A0A995C818B03CFF155995522AF3 /* Pods-LSSafeProtector_Example */,
-				C0DE19FA05B92C3CC02134FF2222C2B3 /* Pods-LSSafeProtector_Tests */,
+				8A71EED797D458B866AC344AEF16E2AC /* LSSafeProtector */,
+				4CF74876120A10D5F38D8C15DD5315AD /* Pods-LSSafeProtector_Example */,
+				41E78EDB0786803CC4ED4CEAC8DC559D /* Pods-LSSafeProtector_Tests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		DBC14B7F1B53E5A2F3721A8B774281A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7F2E47D997F2D569A71F458E33BDEF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E96D581262E554723645F56AF063B6B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		68377E620ADCB05B6BA3B9654848A380 /* Sources */ = {
+		5E15D66662006FB7CAB93EE0C5C70DCE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF37A3276B784018E7B004D88D913C32 /* Pods-LSSafeProtector_Example-dummy.m in Sources */,
+				815B52CBDBB27EE31FDDE9D079D0BE97 /* LSSafeProtector-dummy.m in Sources */,
+				29CD0B5010805F19DE5E8B68BE9DF373 /* LSSafeProtector.m in Sources */,
+				715F0053056950BCCCC34411D744B1AC /* NSArray+Safe.m in Sources */,
+				E6C3A15A0D6A792C4185BC5C2F4DA4A7 /* NSAttributedString+Safe.m in Sources */,
+				29736193A3CC40AA02904F5F670BC50C /* NSCache+Safe.m in Sources */,
+				8F62179E5BA8EAD565AA2545A482FFBC /* NSData+Safe.m in Sources */,
+				6272004201DFE170CA0B7D800935D82A /* NSDictionary+Safe.m in Sources */,
+				EC2F483F3713ECEFF9A2F334F623821C /* NSMutableArray+Safe.m in Sources */,
+				2DEDAE1CB01C0BA9E198D7BB3F95427D /* NSMutableAttributedString+Safe.m in Sources */,
+				CB39C4C1824337731CB70B6F2B0ECE28 /* NSMutableData+Safe.m in Sources */,
+				CCBC790405EF39C1E7FE03C4AC900F8D /* NSMutableDictionary+Safe.m in Sources */,
+				4FCEC6BACC642DA5524DB769076643B0 /* NSMutableString+Safe.m in Sources */,
+				87B28FAB47C164D08EFE0BF21065533F /* NSNotificationCenter+Safe.m in Sources */,
+				7FA31FFFE4B75635D6EFEF8ADCCF6BCC /* NSObject+KVOSafe.m in Sources */,
+				DE1F8C6150511653F6E6AC6BB234F7C7 /* NSObject+Safe.m in Sources */,
+				AD0B85C9E7C97AB964B90327AAC0F982 /* NSString+Safe.m in Sources */,
+				ACBAB463137D4CFEEB63AC1F4BC148FB /* NSUserDefaults+Safe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8A5EBE3F15E9FC0FA67750672F1841E4 /* Sources */ = {
+		B15910FA1D8B8D7AA5331E8D3DAF5ED0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F43776B49F82F563AD0B04CE99CC783 /* Pods-LSSafeProtector_Tests-dummy.m in Sources */,
+				D90D4A05B380C17217200F5E45FF2D7F /* Pods-LSSafeProtector_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FD4E0FE80876AC141B7D303D3026B28 /* Sources */ = {
+		CEB4734A33C37BFF47AFDEA5519D84D6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41611D6D9B7E193287F42ADB34847E3E /* LSSafeProtector-dummy.m in Sources */,
-				C51BF86BA24C099069E06BDEBBD912BD /* LSSafeProtector.m in Sources */,
-				6B529B70F4CA402AD6EA175CC5D61218 /* NSArray+Safe.m in Sources */,
-				465F4BABED1B8E09FF3EB6462097E8F5 /* NSAttributedString+Safe.m in Sources */,
-				D9A36A69AC37D15D59547720D4F52B45 /* NSDictionary+Safe.m in Sources */,
-				605223D7265743B43AF07CA901B7AA95 /* NSMutableArray+Safe.m in Sources */,
-				B81093FABD1C5863BCB2A6D3BC93813A /* NSMutableAttributedString+Safe.m in Sources */,
-				F5BAB7B0C205F66AEB3A54E92AB6F517 /* NSMutableDictionary+Safe.m in Sources */,
-				8990D122CBD07580DBAABA5C2EFA2B95 /* NSMutableString+Safe.m in Sources */,
-				EF6917B2BAB1D732892F4C80CB086876 /* NSNotificationCenter+Safe.m in Sources */,
-				74BE6B69AB64EFBA5F0A8B0B7B9656C6 /* NSObject+KVOSafe.m in Sources */,
-				C638468B7F9B58C2FE23D873868F34D0 /* NSObject+Safe.m in Sources */,
-				1AE1FEA2C8D96A6D47972DD70293ECF6 /* NSString+Safe.m in Sources */,
+				A297C33D0F773BDD536100864A8C4BDA /* Pods-LSSafeProtector_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		45AE821D7FF3A2EB23F4CA9E04E554DD /* PBXTargetDependency */ = {
+		511D1E6A376FD5C8DA639BEA7A3D76E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = LSSafeProtector;
-			target = 9CAC4B6903FF68E409FD4E73B8818463 /* LSSafeProtector */;
-			targetProxy = 7BD97DBDAA30EABF953F5F74B05652C0 /* PBXContainerItemProxy */;
+			target = 8A71EED797D458B866AC344AEF16E2AC /* LSSafeProtector */;
+			targetProxy = 234EB003B478BA5899B09AAFE3321723 /* PBXContainerItemProxy */;
 		};
-		C88C74A04D0530E5FA59B141BC5C56B3 /* PBXTargetDependency */ = {
+		575488CB17C54B014EE25D03ADC2FE11 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-LSSafeProtector_Example";
-			target = 8C43A0A995C818B03CFF155995522AF3 /* Pods-LSSafeProtector_Example */;
-			targetProxy = A5AD297532F1B27FD6EECA9D15C4705C /* PBXContainerItemProxy */;
+			target = 4CF74876120A10D5F38D8C15DD5315AD /* Pods-LSSafeProtector_Example */;
+			targetProxy = 8B7330C9289DFB65EDCB87DAC6F45581 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1EE19F5DD95931924296F637BF18BD8F /* Debug */ = {
+		0CD6C0EE420BD8BD9FB655F40508B338 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA37B0A7A737DCABA74908481138A752 /* Pods-LSSafeProtector_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LSSafeProtector_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LSSafeProtector_Tests/Pods-LSSafeProtector_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5168850CD969185F927F88767C3D38EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E69792A4505C12F02C568F829BAA8EB /* LSSafeProtector.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LSSafeProtector/LSSafeProtector-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LSSafeProtector/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LSSafeProtector/LSSafeProtector.modulemap";
+				PRODUCT_MODULE_NAME = LSSafeProtector;
+				PRODUCT_NAME = LSSafeProtector;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		67C75564E4D3F0D5C75DC53335B249E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7DD8A01DEB4263B74729F8214F0F050 /* Pods-LSSafeProtector_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LSSafeProtector_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LSSafeProtector_Example/Pods-LSSafeProtector_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		96434B6C8FF320C976A10DAD7174A4BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		B48853A569B6C3F1BE41E5CD3FA108BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E69792A4505C12F02C568F829BAA8EB /* LSSafeProtector.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LSSafeProtector/LSSafeProtector-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LSSafeProtector/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LSSafeProtector/LSSafeProtector.modulemap";
+				PRODUCT_MODULE_NAME = LSSafeProtector;
+				PRODUCT_NAME = LSSafeProtector;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C16CED3ACC3373616382128A106CBD66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D79E693825CB4FF4B036794CF92AC930 /* Pods-LSSafeProtector_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LSSafeProtector_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LSSafeProtector_Tests/Pods-LSSafeProtector_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C62850FE876D7365CB0A1BA58EDBCE8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB6DD9540F481D1DB12EA03626A6912B /* Pods-LSSafeProtector_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LSSafeProtector_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LSSafeProtector_Example/Pods-LSSafeProtector_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D11C82AF2204B41B80412B8DC9C1D652 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -528,7 +841,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -537,294 +851,41 @@
 			};
 			name = Debug;
 		};
-		2D0BC586EE4F17F87F596323CF954246 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D79E693825CB4FF4B036794CF92AC930 /* Pods-LSSafeProtector_Tests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-LSSafeProtector_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LSSafeProtector_Tests/Pods-LSSafeProtector_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		62A8E2BF606C1B2A5622E678540C882B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB6DD9540F481D1DB12EA03626A6912B /* Pods-LSSafeProtector_Example.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-LSSafeProtector_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LSSafeProtector_Example/Pods-LSSafeProtector_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		748610EB973BCED68FA30EEC0BDC925F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA37B0A7A737DCABA74908481138A752 /* Pods-LSSafeProtector_Tests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-LSSafeProtector_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LSSafeProtector_Tests/Pods-LSSafeProtector_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		92727698D7B055F10A9D663D060149BD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1252041AB34E7B9F6DF52E6CAC01E657 /* LSSafeProtector.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LSSafeProtector/LSSafeProtector-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LSSafeProtector/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LSSafeProtector/LSSafeProtector.modulemap";
-				PRODUCT_MODULE_NAME = LSSafeProtector;
-				PRODUCT_NAME = LSSafeProtector;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		EED1DEDBE8DD212A4058211721F19E16 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7DD8A01DEB4263B74729F8214F0F050 /* Pods-LSSafeProtector_Example.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-LSSafeProtector_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LSSafeProtector_Example/Pods-LSSafeProtector_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		F4568DEE257655D290C2B9CEAB37C934 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Release;
-		};
-		F5850B79EC99B5B3A5D8306F95920F66 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1252041AB34E7B9F6DF52E6CAC01E657 /* LSSafeProtector.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LSSafeProtector/LSSafeProtector-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LSSafeProtector/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LSSafeProtector/LSSafeProtector.modulemap";
-				PRODUCT_MODULE_NAME = LSSafeProtector;
-				PRODUCT_NAME = LSSafeProtector;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1EE19F5DD95931924296F637BF18BD8F /* Debug */,
-				F4568DEE257655D290C2B9CEAB37C934 /* Release */,
+				D11C82AF2204B41B80412B8DC9C1D652 /* Debug */,
+				96434B6C8FF320C976A10DAD7174A4BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		31E4F20062657A7AC4AB01F5C79B5FE2 /* Build configuration list for PBXNativeTarget "LSSafeProtector" */ = {
+		3CFF887869996E4178BF35CBCE29BFEA /* Build configuration list for PBXNativeTarget "Pods-LSSafeProtector_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				92727698D7B055F10A9D663D060149BD /* Debug */,
-				F5850B79EC99B5B3A5D8306F95920F66 /* Release */,
+				C16CED3ACC3373616382128A106CBD66 /* Debug */,
+				0CD6C0EE420BD8BD9FB655F40508B338 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		441DF92CDD072C98EC992948105AEA83 /* Build configuration list for PBXNativeTarget "Pods-LSSafeProtector_Tests" */ = {
+		AB9B25F15A859C6B468F6269FE2D35D0 /* Build configuration list for PBXNativeTarget "Pods-LSSafeProtector_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2D0BC586EE4F17F87F596323CF954246 /* Debug */,
-				748610EB973BCED68FA30EEC0BDC925F /* Release */,
+				67C75564E4D3F0D5C75DC53335B249E3 /* Debug */,
+				C62850FE876D7365CB0A1BA58EDBCE8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB260513E3DD02FC3189549004E11CFB /* Build configuration list for PBXNativeTarget "Pods-LSSafeProtector_Example" */ = {
+		EEC3C1016BA71E58C6A3EA01481049EB /* Build configuration list for PBXNativeTarget "LSSafeProtector" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EED1DEDBE8DD212A4058211721F19E16 /* Debug */,
-				62A8E2BF606C1B2A5622E678540C882B /* Release */,
+				B48853A569B6C3F1BE41E5CD3FA108BD /* Debug */,
+				5168850CD969185F927F88767C3D38EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

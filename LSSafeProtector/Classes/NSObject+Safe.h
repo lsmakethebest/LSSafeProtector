@@ -32,6 +32,10 @@ typedef enum : NSUInteger {
     LSSafeProtectorCrashTypeNSAttributedString,
     LSSafeProtectorCrashTypeNSMutableAttributedString,
     LSSafeProtectorCrashTypeNSNotificationCenter,
+    LSSafeProtectorCrashTypeNSUserDefaults,
+    LSSafeProtectorCrashTypeNSCache,
+    LSSafeProtectorCrashTypeNSData,
+    LSSafeProtectorCrashTypeNSMutableData,
     
 } LSSafeProtectorCrashType;
 

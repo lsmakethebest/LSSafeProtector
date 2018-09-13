@@ -10,7 +10,7 @@
 @interface NSArray (Safe)
 @end
 
-// < = iOS 8:下都是__NSArrayI
+// < = iOS 8:下都是__NSArrayI 如果是通过json转成的id 为__NSCFArray
 //iOS9 @[] 是__NSArray0  @[@"fd"]是__NSArrayI
 //iOS10以后(含10): 分 __NSArrayI、  __NSArray0、__NSSingleObjectArrayI
 
@@ -20,6 +20,8 @@
 // __NSSingleObjectArrayI @[@"fds"]只有此形式创建而且仅一个元素为__NSSingleObjectArrayI
 //__NSArrayI   @[@"fds",@"fsd"]方式创建多于1个元素 或者 arrayWith创建都是__NSArrayI
 
+//__NSCFArray
+//arr@[11] 调用的是  [__NSCFArray objectAtIndex:]
 
 
 //__NSArray0

@@ -22,8 +22,7 @@
          Class dClass=NSClassFromString(@"__NSCFConstantString");
          Class dClass2=NSClassFromString(@"NSTaggedPointerString");
          [self safe_changeAllMethod:dClass];
-         [self safe_changeAllMethod:dClass2];
-         
+         [self safe_changeAllMethod:dClass2];     
         
     });
 }

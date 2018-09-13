@@ -18,6 +18,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
+        //NSMutableDictionary和NSDictionary调用下面方法崩溃时的类型都为__NSPlaceholderDictionary
         [self safe_exchangeInstanceMethod:NSClassFromString(@"__NSPlaceholderDictionary") originalSel:@selector(initWithObjects:forKeys:count:) newSel:@selector(safe_initWithObjects:forKeys:count:)];
         [self safe_exchangeInstanceMethod:NSClassFromString(@"__NSPlaceholderDictionary") originalSel:@selector(initWithObjects:forKeys:) newSel:@selector(safe_initWithObjects:forKeys:)];        
     });

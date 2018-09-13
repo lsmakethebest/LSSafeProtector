@@ -11,7 +11,7 @@
 @end
 
 /*
- 大概和NSArray类似  也是iOS8之前都是__NSDictionaryI，其他的参考NSArray
+ 大概和NSArray类似  也是iOS8之前都是__NSDictionaryI，如果是json转过来的对象为__NSCFDictionary，其他的参考NSArray
  
  __NSSingleEntryDictionaryI
  @{@"key":@"value"} 此种形式创建而且仅一个可以为__NSSingleEntryDictionaryI

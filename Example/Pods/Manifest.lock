@@ -1,5 +1,5 @@
 PODS:
-  - LSSafeProtector (1.0.0)
+  - LSSafeProtector (1.0.3)
 
 DEPENDENCIES:
   - LSSafeProtector (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LSSafeProtector: 550a0efdceafe45df77ff5e4d3448b29543b9fdb
+  LSSafeProtector: b0af239ff716344b7bf378cbf45d8a2d4278c690
 
-PODFILE CHECKSUM: 5fba498d4842eb8f5da9754d85e0d3654e44888b
+PODFILE CHECKSUM: 2a806222057633453c51305bb413d938fa954f24
 
 COCOAPODS: 1.5.3

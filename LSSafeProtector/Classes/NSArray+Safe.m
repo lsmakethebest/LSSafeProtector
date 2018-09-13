@@ -23,7 +23,13 @@
         [self safe_exchangeInstanceMethod:objc_getClass("__NSArrayI") originalSel:@selector(objectAtIndexedSubscript:) newSel:@selector(safe_objectAtIndexedSubscriptI:)];
 
         [self safe_exchangeInstanceMethod:objc_getClass("__NSArray0") originalSel:@selector(objectAtIndex:) newSel:@selector(safe_objectAtIndex0:)];
+        
         [self safe_exchangeInstanceMethod:objc_getClass("__NSSingleObjectArrayI") originalSel:@selector(objectAtIndex:) newSel:@selector(safe_objectAtIndexSI:)];
+        
+        // <=10系统为 __NSArrayI 或 __NSArray0 或 __NSSingleObjectArrayI
+        [self safe_exchangeInstanceMethod:objc_getClass("__NSCFArray") originalSel:@selector(objectAtIndex:) newSel:@selector(safe_objectAtIndexCFArray:)];
+        
+        
     });
 }
 
@@ -108,6 +114,19 @@
     }
 }
 
+-(id)safe_objectAtIndexCFArray:(NSUInteger)index
+{
+    id object=nil;
+    @try {
+        object = [self safe_objectAtIndexCFArray:index];
+    }
+    @catch (NSException *exception) {
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSArray);
+    }
+    @finally {
+        return object;
+    }
+}
 
 @end
 

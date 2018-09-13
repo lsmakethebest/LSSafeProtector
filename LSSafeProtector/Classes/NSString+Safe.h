@@ -18,13 +18,18 @@ initWithString导致的crash
  __NSCFString
  非常量 或者 [NSMutableString stringWithFormat:@"fs"];
  [[NSMutableString alloc]initWithString:@"fs"];
+ [NSString stringWithFormat:]大于8字节
  
- __NSCFConstantString  常量
+ __NSCFConstantString  
  @"fdsfsds"
  [[NSString alloc]initWithString:@"fs"];
  
- NSTaggedPointerString format形式创建
- [NSString stringWithFormat:@"fs"];
+ NSTaggedPointerString [NSString stringWithFormat:@"fs"]形式创建 当字节小于8时是NSTaggedPointerString 大于8时是__NSCFString
+ @"123456"0xa003635343332316  当字节填满时并不会立即变成__NSCFString，而是采用一种压缩算法，当压缩之后大于8字节时才会变成__NSCFString
+ 
+ 想更多了解可以参考以下链接
+ https://www.jianshu.com/p/e354f9137ba8
+ http://www.cocoachina.com/ios/20150918/13449.html
  
  */
 

@@ -176,6 +176,14 @@
 -(IBAction)testArray
 {
     NSString *value=nil;
+//    NSString *s=@"{\"name\":\"fsd\",\"array\":[\"fds\",\"fsd\"]}";
+    NSString *s=@"{\"name\":\"fsd\",\"array\":[\"fsd\"]}";
+   NSDictionary *v = [NSJSONSerialization JSONObjectWithData:[s dataUsingEncoding:0] options:0 error:NULL] ;
+//    低系统为__NSCFArray 高系统为 __NSArrayI
+    NSMutableArray *array1 = v[@"array"];
+    array1[100];
+//    [array1 objectAtIndex:1000];
+    
     NSString *strings[3];
     strings[0]=@"000";
     strings[1]=value;
@@ -247,10 +255,14 @@
 
 -(IBAction)testString
 {
-    NSString *s1=@"hello world";
+    
+    NSArray *a=@[@"fs",@"s"];
+    NSString *s1=@"128943rfsdsfssds";
     NSString *s122=[NSString stringWithFormat:@"fs"];
+//    403938373635343332319
+    NSString *s123=[NSString stringWithFormat:@"fedcba"];
     NSString *s1222=[[NSString alloc]initWithString:@"fs"];
-    [s122 substringFromIndex:230];
+    [s123 substringFromIndex:230];
     NSString *value=nil;
     NSString *ss=[[NSString alloc]initWithString:value];
     [s1 substringFromIndex:100];
@@ -325,6 +337,30 @@
     //    self.testObject=nil;
     [[NSNotificationCenter defaultCenter]postNotificationName:@"name" object:nil];
 }
+- (IBAction)testNSUserDefaults:(id)sender {
+   NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *key=nil;
+    [userDefault setObject:key forKey:@"fds"];
+    [userDefault setObject:@"fsd" forKey:nil];
+    [userDefault setObject:nil forKey:nil];
+    [userDefault objectForKey:key];
+    [userDefault stringForKey:key];
+    [userDefault arrayForKey:key];
+    [userDefault stringArrayForKey:key];
+    [userDefault dataForKey:key];
+    [userDefault URLForKey:key];
+    [userDefault floatForKey:key];
+    [userDefault doubleForKey:key];
+    [userDefault integerForKey:key];
+    [userDefault boolForKey:key];
+}
+- (IBAction)testNSCache:(id)sender {
+   NSCache *cache = [[NSCache alloc]init];
+    [cache setObject:nil forKey:nil ];
+    [cache setObject:nil forKey:@"fds" ];
+    [cache setObject:@"fsd" forKey:nil];
+}
+
 
 
 @end
