@@ -20,6 +20,7 @@
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(setObject:forKey:cost:) newSel:@selector(safe_setObject:forKey:cost:)];
     });
 }
+
 -(void)safe_setObject:(id)obj forKey:(id)key
 {
     if(key&&obj){

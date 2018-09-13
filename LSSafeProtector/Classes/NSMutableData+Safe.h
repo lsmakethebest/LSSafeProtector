@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+
+/*
+可防止以下crash
+ 1.resetBytesInRange:
+ 2.replaceBytesInRange:withBytes:
+ 3.replaceBytesInRange:withBytes:length:
+ 
+ */
+
 @interface NSMutableData (Safe)
 
 @end

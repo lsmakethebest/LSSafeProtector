@@ -381,5 +381,55 @@
  
 }
 
+- (IBAction)testNSOrderSet:(id)sender {
+   NSOrderedSet *set = [NSOrderedSet orderedSet];
+    set[100];
+    [[NSOrderedSet alloc]initWithObject:nil];
+    [NSOrderedSet orderedSetWithSet:nil];
+}
+
+- (IBAction)testNSMutableOrderSet:(id)sender {
+    NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSet];
+    set[100];
+    [set addObject:nil];
+    [set insertObject:[NSObject new] atIndex:100];
+    [set removeObjectAtIndex:10];
+    [set replaceObjectAtIndex:100 withObject:[NSObject new]];
+    [[NSMutableOrderedSet alloc]initWithObject:nil];
+    [NSMutableOrderedSet orderedSetWithSet:nil];
+
+}
+- (IBAction)testNSData:(id)sender {
+    
+    //_NSZeroData
+   NSData *data1 = [NSData data];
+    [data1 subdataWithRange:NSMakeRange(0, 100)];
+    [data1 rangeOfData:nil options:0 range:NSMakeRange(0, 100)];
+    
+//    //_NSInlineData
+    char *s="fssfs";
+    NSData *data2 = [NSData dataWithBytes:&s length:5];
+    [data2 subdataWithRange:NSMakeRange(0, 100)];
+    [data2 rangeOfData:nil options:0 range:NSMakeRange(0, 100)];
+
+    
+}
+
+- (IBAction)testNSMutableData:(id)sender {
+    NSMutableData *data1 = [NSMutableData data];
+//    [data1 subdataWithRange:NSMakeRange(0, 100)];
+//    [data1 rangeOfData:nil options:0 range:NSMakeRange(0, 100)];
+    [data1 resetBytesInRange:NSMakeRange(0, 100)];
+    
+    NSMutableData *data2 = [NSMutableData data];
+    [data1 replaceBytesInRange:NSMakeRange(0, 10) withBytes:data2.bytes length:10];
+    [data1 replaceBytesInRange:NSMakeRange(0, 10) withBytes:"fsd"];
+}
+
+
+
+
+
+
 
 @end

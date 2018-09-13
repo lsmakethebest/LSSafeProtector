@@ -1,5 +1,5 @@
 ## 中文说明
-#### `LSSafeProtector` 是一个可快速集成但功能强大的防止crash库,不改变原代码支持KVO自释放，可以检测到dealloc时未释放的kvo，等11种crash,使用Objective-C编写.
+#### `LSSafeProtector` 是一个可快速集成但功能强大的防止crash库,不改变原代码支持KVO自释放，可以检测到dealloc时未释放的kvo，等19种crash,使用Objective-C编写.
 
 
 ## 须知
@@ -151,6 +151,95 @@ iOS11之后（含11)  setObject:forKeyedSubscript:
 1. dealloc时自动将self从通知中心移除
 
 ```
+
+
+- 12、LSSafeProtectorCrashTypeNSUserDefaults
+```
+可避免以下方法  key=nil时的crash
+1.objectForKey:
+2.stringForKey:
+3.arrayForKey:
+4.dataForKey:
+5.URLForKey:
+6.stringArrayForKey:
+7.floatForKey:
+8.doubleForKey:
+9.integerForKey:
+10.boolForKey:
+
+```
+
+- 13、LSSafeProtectorCrashTypeNSCache
+```
+1.setObject:forKey:
+2.setObject:forKey:cost:
+
+```
+- 14、LSSafeProtectorCrashTypeNSSet
+```
+1.setWithObject:
+2.(instancetype)initWithObjects:(ObjectType)firstObj
+3.setWithObjects:(ObjectType)firstObj
+
+```
+- 15、LSSafeProtectorCrashTypeNSMutableSet
+```
+1.setWithObject:
+2.(instancetype)initWithObjects:(ObjectType)firstObj
+3.setWithObjects:(ObjectType)firstObj
+4.addObject:
+5.removeObject:
+
+```
+
+- 16、LSSafeProtectorCrashTypeNSData
+```
+1.subdataWithRange:
+2.rangeOfData:options:range:
+
+```
+
+- 17、LSSafeProtectorCrashTypeNSMutableData
+```
+1.resetBytesInRange:
+2.replaceBytesInRange:withBytes:
+3.replaceBytesInRange:withBytes:length:
+
+```
+
+
+- 18、LSSafeProtectorCrashTypeNSOrderedSet
+```
+1.orderedSetWithSet
+2.initWithObjects:count:
+3.objectAtIndex:
+
+```
+
+- 19、LSSafeProtectorCrashTypeNSMutableOrderedSet
+```
+1. - (void)addObject:(ObjectType)anObject
+2. - (void)insertObject:(ObjectType)anObject atIndex:(NSUInteger)index;
+3. - (id)objectAtIndex:(NSUInteger)index( 包含  set[index]  形式  )
+4. - (void)removeObjectAtIndex:(NSUInteger)index
+5. - (void)replaceObjectAtIndex:(NSUInteger)index
+
+```
+# 更新记录
+- 2018.9.13 更新日志
+```
+添加对以下类的支持
+NSUserDefaults 
+NSCache
+NSSet 
+NSMutableSet
+NSOrderedSet
+NSMutableOrderedSet
+NSData
+NSMutableData
+
+```
+
 # 联系    
 - 如果使用过程中遇到什么问题或有什么建议可以联系我，我会在收到后尽快回复您
 - email at: song@ysui.cn

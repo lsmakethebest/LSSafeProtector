@@ -8,6 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
+
+/*
+1. _NSZeroData
+   [NSData data]空data
+ 
+2.NSConcreteMutableData
+   [NSMutableData data];
+ 
+3.NSConcreteData
+
+ 
+4._NSInlineData
+     [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:@"https://www.baidu.com/"]]
+ 
+5.__NSCFData 
+*/
+
+/*
+ 可防止以下crash
+ 1.subdataWithRange
+ 2.rangeOfData:options:range:
+ 
+ */
+
+
+
 @interface NSData (Safe)
 
 @end

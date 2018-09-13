@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oHg-yQ-nJe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oHg-yQ-nJe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,77 +22,77 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gr7-Nu-j47">
-                                <rect key="frame" x="55" y="209" width="84" height="30"/>
+                                <rect key="frame" x="55" y="200" width="84" height="30"/>
                                 <state key="normal" title="testSelector"/>
                                 <connections>
                                     <action selector="testUnrecognizedSelector" destination="whP-gf-Uak" eventType="touchUpInside" id="ema-zL-oiI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQw-bv-Pwt">
-                                <rect key="frame" x="202" y="241" width="139" height="30"/>
+                                <rect key="frame" x="202" y="232" width="139" height="30"/>
                                 <state key="normal" title="testNSMutableArray"/>
                                 <connections>
                                     <action selector="testMutableArray" destination="whP-gf-Uak" eventType="touchUpInside" id="XCd-bc-PHv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0y3-FZ-Bcj">
-                                <rect key="frame" x="38.5" y="273" width="117" height="30"/>
+                                <rect key="frame" x="38.5" y="264" width="117" height="30"/>
                                 <state key="normal" title="testNSDictionary"/>
                                 <connections>
                                     <action selector="testDictionary" destination="whP-gf-Uak" eventType="touchUpInside" id="c3C-T5-gB7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hF7-Cr-AQh">
-                                <rect key="frame" x="55" y="241" width="84" height="30"/>
+                                <rect key="frame" x="55" y="232" width="84" height="30"/>
                                 <state key="normal" title="testNSArray"/>
                                 <connections>
                                     <action selector="testArray" destination="whP-gf-Uak" eventType="touchUpInside" id="TEG-XT-wij"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIL-G2-56c">
-                                <rect key="frame" x="53" y="305" width="88" height="30"/>
+                                <rect key="frame" x="53" y="296" width="88" height="30"/>
                                 <state key="normal" title="testNSStirng"/>
                                 <connections>
                                     <action selector="testString" destination="whP-gf-Uak" eventType="touchUpInside" id="4PB-1r-jmb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9q-6Z-cEj">
-                                <rect key="frame" x="185.5" y="273" width="172" height="30"/>
+                                <rect key="frame" x="185.5" y="264" width="172" height="30"/>
                                 <state key="normal" title="testNSMutableDictionary"/>
                                 <connections>
                                     <action selector="testMutableDictionary" destination="whP-gf-Uak" eventType="touchUpInside" id="eoM-5Q-coX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4C-nI-5G0">
-                                <rect key="frame" x="19" y="337" width="157" height="30"/>
+                                <rect key="frame" x="19" y="328" width="157" height="30"/>
                                 <state key="normal" title="testNSAttributedString"/>
                                 <connections>
                                     <action selector="testAttributedString" destination="whP-gf-Uak" eventType="touchUpInside" id="svC-P0-mot"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTU-av-WQ7">
-                                <rect key="frame" x="81.5" y="369" width="212" height="30"/>
+                                <rect key="frame" x="81.5" y="360" width="212" height="30"/>
                                 <state key="normal" title="testNSMutableAttributedString"/>
                                 <connections>
                                     <action selector="testMutableAttributedString" destination="whP-gf-Uak" eventType="touchUpInside" id="ihE-KQ-vHM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAr-27-Rtb">
-                                <rect key="frame" x="200" y="305" width="143" height="30"/>
+                                <rect key="frame" x="200" y="296" width="143" height="30"/>
                                 <state key="normal" title="testNSMutableString"/>
                                 <connections>
                                     <action selector="testMutableString" destination="whP-gf-Uak" eventType="touchUpInside" id="IXi-Fb-qUL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLj-2s-Afc">
-                                <rect key="frame" x="243" y="209" width="57" height="30"/>
+                                <rect key="frame" x="243" y="200" width="57" height="30"/>
                                 <state key="normal" title="testKVO"/>
                                 <connections>
                                     <action selector="testKVO" destination="whP-gf-Uak" eventType="touchUpInside" id="CYi-Lg-g1F"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frd-WD-gH8">
-                                <rect key="frame" x="85" y="468" width="205" height="34"/>
+                                <rect key="frame" x="85" y="529" width="205" height="34"/>
                                 <state key="normal" title="开启防止crash(测试环境)">
                                     <color key="titleColor" red="0.15571934809617405" green="0.084203148198143341" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -104,7 +104,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uuw-rN-fg6">
-                                <rect key="frame" x="85" y="512" width="205" height="34"/>
+                                <rect key="frame" x="85" y="573" width="205" height="34"/>
                                 <state key="normal" title="开启防止crash(正式环境)">
                                     <color key="titleColor" red="0.45134719189512307" green="0.14057643350699667" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -116,7 +116,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G02-0p-vfX">
-                                <rect key="frame" x="20" y="84" width="335" height="122"/>
+                                <rect key="frame" x="20" y="74" width="335" height="122"/>
                                 <attributedString key="attributedText">
                                     <fragment content="默认没有开启防止">
                                         <attributes>
@@ -219,63 +219,96 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NY8-r6-TNX">
-                                <rect key="frame" x="185.5" y="337" width="172" height="30"/>
+                                <rect key="frame" x="185.5" y="328" width="172" height="30"/>
                                 <state key="normal" title="testNSNotificationCenter"/>
                                 <connections>
                                     <action selector="testNotification" destination="whP-gf-Uak" eventType="touchUpInside" id="Txq-1h-dB0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EkM-NV-2je">
-                                <rect key="frame" x="29" y="401" width="136" height="30"/>
+                                <rect key="frame" x="29" y="392" width="136" height="30"/>
                                 <state key="normal" title="testNSUserDefaults"/>
                                 <connections>
                                     <action selector="testNSUserDefaults:" destination="whP-gf-Uak" eventType="touchUpInside" id="YDs-7n-ag6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGX-mO-uwk">
-                                <rect key="frame" x="226.5" y="401" width="91" height="30"/>
+                                <rect key="frame" x="226.5" y="392" width="91" height="30"/>
                                 <state key="normal" title="testNSCache"/>
                                 <connections>
                                     <action selector="testNSCache:" destination="whP-gf-Uak" eventType="touchUpInside" id="OrB-1K-00n"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUQ-K9-RAG">
-                                <rect key="frame" x="209" y="433" width="125" height="30"/>
+                                <rect key="frame" x="209" y="424" width="125" height="30"/>
                                 <state key="normal" title="testNSMutableSet"/>
                                 <connections>
                                     <action selector="testNSMutableSet:" destination="whP-gf-Uak" eventType="touchUpInside" id="UXE-PV-MsW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olh-wJ-yZR">
-                                <rect key="frame" x="62" y="433" width="70" height="30"/>
+                                <rect key="frame" x="62" y="424" width="70" height="30"/>
                                 <state key="normal" title="testNSSet"/>
                                 <connections>
                                     <action selector="testNSSet:" destination="whP-gf-Uak" eventType="touchUpInside" id="QeF-BR-8Vy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0h0-kP-thU">
+                                <rect key="frame" x="43" y="458" width="109" height="30"/>
+                                <state key="normal" title="testNSOrderSet"/>
+                                <connections>
+                                    <action selector="testNSOrderSet:" destination="whP-gf-Uak" eventType="touchUpInside" id="gp4-CE-cOM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGM-Vk-klN">
+                                <rect key="frame" x="189" y="458" width="165" height="30"/>
+                                <state key="normal" title="testNSMutableOrderSet"/>
+                                <connections>
+                                    <action selector="testNSMutableOrderSet:" destination="whP-gf-Uak" eventType="touchUpInside" id="n4a-r6-j8D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWH-N1-TFn">
+                                <rect key="frame" x="58" y="492" width="79" height="30"/>
+                                <state key="normal" title="testNSData"/>
+                                <connections>
+                                    <action selector="testNSData:" destination="whP-gf-Uak" eventType="touchUpInside" id="jVT-mU-Saw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auN-rP-bQa">
+                                <rect key="frame" x="204.5" y="492" width="134" height="30"/>
+                                <state key="normal" title="testNSMutableData"/>
+                                <connections>
+                                    <action selector="testNSMutableData:" destination="whP-gf-Uak" eventType="touchUpInside" id="k3k-bc-qhZ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="I9q-6Z-cEj" firstAttribute="centerY" secondItem="0y3-FZ-Bcj" secondAttribute="centerY" id="43T-NH-hMe"/>
-                            <constraint firstItem="frd-WD-gH8" firstAttribute="top" secondItem="eUQ-K9-RAG" secondAttribute="bottom" constant="5" id="5c1-s6-kkz"/>
+                            <constraint firstItem="frd-WD-gH8" firstAttribute="top" secondItem="eUQ-K9-RAG" secondAttribute="bottom" constant="75" id="5c1-s6-kkz"/>
+                            <constraint firstItem="Gr7-Nu-j47" firstAttribute="top" secondItem="G02-0p-vfX" secondAttribute="bottom" constant="4" id="8bH-Ih-yvM"/>
                             <constraint firstItem="hF7-Cr-AQh" firstAttribute="top" secondItem="Gr7-Nu-j47" secondAttribute="bottom" constant="2" id="AJu-UJ-RLP"/>
                             <constraint firstItem="eUQ-K9-RAG" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="AS2-ZS-pLl"/>
                             <constraint firstItem="BTU-av-WQ7" firstAttribute="top" secondItem="u4C-nI-5G0" secondAttribute="bottom" constant="2" id="Abm-qX-feR"/>
                             <constraint firstItem="frd-WD-gH8" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="BGb-hx-gOS"/>
-                            <constraint firstItem="Gr7-Nu-j47" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="145" id="BHo-xZ-NFB"/>
+                            <constraint firstItem="vWH-N1-TFn" firstAttribute="top" secondItem="0h0-kP-thU" secondAttribute="bottom" constant="4" id="BPy-ef-exe"/>
                             <constraint firstAttribute="trailing" secondItem="G02-0p-vfX" secondAttribute="trailing" constant="20" id="BjW-93-XtG"/>
+                            <constraint firstItem="BGM-Vk-klN" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="Bt0-99-hzt"/>
                             <constraint firstItem="BTU-av-WQ7" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="Cpl-2a-kUm"/>
                             <constraint firstItem="cGX-mO-uwk" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="DwW-6a-rLf"/>
+                            <constraint firstItem="vWH-N1-TFn" firstAttribute="centerX" secondItem="Gr7-Nu-j47" secondAttribute="centerX" id="Gdx-Yg-AXp"/>
                             <constraint firstItem="hF7-Cr-AQh" firstAttribute="centerX" secondItem="Gr7-Nu-j47" secondAttribute="centerX" id="GjO-lI-4Va"/>
                             <constraint firstItem="eAr-27-Rtb" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="HHI-Dz-KYw"/>
                             <constraint firstItem="u4C-nI-5G0" firstAttribute="top" secondItem="aIL-G2-56c" secondAttribute="bottom" constant="2" id="HgY-fk-uRd"/>
                             <constraint firstItem="Uuw-rN-fg6" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="IDZ-ho-b8v"/>
                             <constraint firstItem="EkM-NV-2je" firstAttribute="centerX" secondItem="Gr7-Nu-j47" secondAttribute="centerX" id="JHX-2Z-pKh"/>
                             <constraint firstItem="CQw-bv-Pwt" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="Q5V-yk-g7X"/>
+                            <constraint firstItem="BGM-Vk-klN" firstAttribute="centerY" secondItem="0h0-kP-thU" secondAttribute="centerY" id="S3g-sD-cGL"/>
                             <constraint firstItem="0y3-FZ-Bcj" firstAttribute="centerX" secondItem="Gr7-Nu-j47" secondAttribute="centerX" id="SER-9x-9Lb"/>
                             <constraint firstItem="I9q-6Z-cEj" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="SZB-4S-A0d"/>
                             <constraint firstItem="aIL-G2-56c" firstAttribute="centerX" secondItem="Gr7-Nu-j47" secondAttribute="centerX" id="U3B-CZ-mbH"/>
                             <constraint firstItem="cGX-mO-uwk" firstAttribute="centerY" secondItem="EkM-NV-2je" secondAttribute="centerY" id="UcH-Q6-hdM"/>
+                            <constraint firstItem="auN-rP-bQa" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="V6Y-dw-dmM"/>
                             <constraint firstItem="NY8-r6-TNX" firstAttribute="centerX" secondItem="vLj-2s-Afc" secondAttribute="centerX" id="YKh-7f-Kpf"/>
                             <constraint firstItem="olh-wJ-yZR" firstAttribute="centerX" secondItem="Gr7-Nu-j47" secondAttribute="centerX" id="Z5g-SZ-XMr"/>
                             <constraint firstItem="Uuw-rN-fg6" firstAttribute="top" secondItem="frd-WD-gH8" secondAttribute="bottom" constant="10" id="Z7s-07-mKI"/>
@@ -284,12 +317,15 @@
                             <constraint firstItem="olh-wJ-yZR" firstAttribute="top" secondItem="EkM-NV-2je" secondAttribute="bottom" constant="2" id="eMe-9a-CO4"/>
                             <constraint firstItem="Gr7-Nu-j47" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="55" id="f83-EU-rGJ"/>
                             <constraint firstItem="NY8-r6-TNX" firstAttribute="centerY" secondItem="u4C-nI-5G0" secondAttribute="centerY" id="fPq-B9-f25"/>
-                            <constraint firstItem="G02-0p-vfX" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="20" id="kab-mz-Sdr"/>
+                            <constraint firstItem="0h0-kP-thU" firstAttribute="centerX" secondItem="Gr7-Nu-j47" secondAttribute="centerX" id="iYu-qv-0eM"/>
+                            <constraint firstItem="G02-0p-vfX" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="10" id="kab-mz-Sdr"/>
                             <constraint firstItem="CQw-bv-Pwt" firstAttribute="centerY" secondItem="hF7-Cr-AQh" secondAttribute="centerY" id="mdk-TM-UjL"/>
+                            <constraint firstItem="0h0-kP-thU" firstAttribute="top" secondItem="olh-wJ-yZR" secondAttribute="bottom" constant="4" id="n3g-FJ-xjw"/>
                             <constraint firstAttribute="trailing" secondItem="vLj-2s-Afc" secondAttribute="trailing" constant="75" id="q3v-W8-psG"/>
                             <constraint firstItem="u4C-nI-5G0" firstAttribute="centerX" secondItem="Gr7-Nu-j47" secondAttribute="centerX" id="rLG-7t-av0"/>
                             <constraint firstItem="EkM-NV-2je" firstAttribute="top" secondItem="BTU-av-WQ7" secondAttribute="bottom" constant="2" id="rh4-pA-Q3L"/>
                             <constraint firstItem="0y3-FZ-Bcj" firstAttribute="top" secondItem="hF7-Cr-AQh" secondAttribute="bottom" constant="2" id="uq7-mR-kTv"/>
+                            <constraint firstItem="auN-rP-bQa" firstAttribute="centerY" secondItem="vWH-N1-TFn" secondAttribute="centerY" id="wS7-mj-0Ta"/>
                             <constraint firstItem="aIL-G2-56c" firstAttribute="top" secondItem="0y3-FZ-Bcj" secondAttribute="bottom" constant="2" id="xKu-i4-iQs"/>
                             <constraint firstItem="G02-0p-vfX" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="20" id="ySA-0F-LPe"/>
                             <constraint firstItem="eUQ-K9-RAG" firstAttribute="centerY" secondItem="olh-wJ-yZR" secondAttribute="centerY" id="zSL-ZY-rLS"/>
