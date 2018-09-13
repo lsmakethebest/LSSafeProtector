@@ -19,7 +19,6 @@
 }
 -(instancetype)safe_initWithObjects:(id  _Nonnull const [])objects count:(NSUInteger)cnt
 {
-    
     id instance = nil;
     @try {
         instance = [self safe_initWithObjects:objects count:cnt];
