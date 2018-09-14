@@ -16,12 +16,43 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        
         Class dClass=NSClassFromString(@"NSConcreteMutableData");
+        [self safe_exchangeInstanceMethod:dClass originalSel:@selector(subdataWithRange:) newSel:@selector(safe_subdataWithRangeMutableConcreteData:)];
+        [self safe_exchangeInstanceMethod:dClass originalSel:@selector(rangeOfData:options:range:) newSel:@selector(safe_rangeOfDataMutableConcreteData:options:range:)];
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(resetBytesInRange:) newSel:@selector(safe_resetBytesInRange:)];
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(replaceBytesInRange:withBytes:) newSel:@selector(safe_replaceBytesInRange:withBytes:)];
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(replaceBytesInRange:withBytes:length:) newSel:@selector(safe_replaceBytesInRange:withBytes:length:)];
     });
 }
+-(NSData *)safe_subdataWithRangeMutableConcreteData:(NSRange)range
+{
+    id object=nil;
+    @try {
+        object =  [self safe_subdataWithRangeMutableConcreteData:range];
+    }
+    @catch (NSException *exception) {
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableData);
+    }
+    @finally {
+        return object;
+    }
+}
+
+-(NSRange)safe_rangeOfDataMutableConcreteData:(NSData *)dataToFind options:(NSDataSearchOptions)mask range:(NSRange)searchRange
+{
+    NSRange object;
+    @try {
+        object =  [self safe_rangeOfDataMutableConcreteData:dataToFind options:mask range:searchRange];
+    }
+    @catch (NSException *exception) {
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableData);
+    }
+    @finally {
+        return object;
+    }
+}
+
 - (void)safe_resetBytesInRange:(NSRange)range
 {
     @try {

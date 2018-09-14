@@ -20,10 +20,6 @@
         [self safe_exchangeInstanceMethod:NSClassFromString(@"NSConcreteData") originalSel:@selector(rangeOfData:options:range:) newSel:@selector(safe_rangeOfDataConcreteData:options:range:)];
         
         
-        [self safe_exchangeInstanceMethod:NSClassFromString(@"NSConcreteMutableData") originalSel:@selector(subdataWithRange:) newSel:@selector(safe_subdataWithRangeMutableConcreteData:)];
-        [self safe_exchangeInstanceMethod:NSClassFromString(@"NSConcreteMutableData") originalSel:@selector(rangeOfData:options:range:) newSel:@selector(safe_rangeOfDataMutableConcreteData:options:range:)];
-        
-        
         [self safe_exchangeInstanceMethod:NSClassFromString(@"_NSZeroData") originalSel:@selector(subdataWithRange:) newSel:@selector(safe_subdataWithRangeZeroData:)];
         [self safe_exchangeInstanceMethod:NSClassFromString(@"_NSZeroData") originalSel:@selector(rangeOfData:options:range:) newSel:@selector(safe_rangeOfDataZeroData:options:range:)];
         
@@ -51,19 +47,6 @@
     }
 }
 
--(NSData *)safe_subdataWithRangeMutableConcreteData:(NSRange)range
-{
-    id object=nil;
-    @try {
-        object =  [self safe_subdataWithRangeMutableConcreteData:range];
-    }
-    @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableData);
-    }
-    @finally {
-        return object;
-    }
-}
 
 -(NSData *)safe_subdataWithRangeZeroData:(NSRange)range
 {
@@ -116,20 +99,6 @@
     }
     @catch (NSException *exception) {
         LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSData);
-    }
-    @finally {
-        return object;
-    }
-}
-
--(NSRange)safe_rangeOfDataMutableConcreteData:(NSData *)dataToFind options:(NSDataSearchOptions)mask range:(NSRange)searchRange
-{
-    NSRange object;
-    @try {
-        object =  [self safe_rangeOfDataMutableConcreteData:dataToFind options:mask range:searchRange];
-    }
-    @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableData);
     }
     @finally {
         return object;

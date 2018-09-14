@@ -201,9 +201,11 @@ iOS11之后（含11)  setObject:forKeyedSubscript:
 
 - 17、LSSafeProtectorCrashTypeNSMutableData
 ```
-1.resetBytesInRange:
-2.replaceBytesInRange:withBytes:
-3.replaceBytesInRange:withBytes:length:
+1.subdataWithRange:
+2.rangeOfData:options:range:
+3.resetBytesInRange:
+4.replaceBytesInRange:withBytes:
+5.replaceBytesInRange:withBytes:length:
 
 ```
 
