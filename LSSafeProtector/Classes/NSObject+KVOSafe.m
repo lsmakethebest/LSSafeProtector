@@ -9,8 +9,8 @@
 #import "NSObject+Safe.h"
 #import <objc/message.h>
 
-//#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
-#define LSKVOSafeLog(fmt, ...)
+#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
+//#define LSKVOSafeLog(fmt, ...)
 
 
 @interface LSKVOObserverInfo()
@@ -30,6 +30,17 @@
 @end
 @implementation LSKVOObserverInfo
 @end
+
+@interface LSRecursiveLock : NSRecursiveLock
+@end
+@implementation LSRecursiveLock
+-(void)dealloc
+{
+    LSKVOSafeLog(@"LSRecursiveLock  ---- dealloc -------  %@",self);
+}
+
+@end
+
 @interface NSObject()
 @property (nonatomic,weak) LSKVOObserverInfo *safe_willRemoveObserverInfo;
 //dealloc时标记有多少没移除，然后手动替他移除，比如有7个 我都替他移除掉，数量还是7，然后用户手动移除时，数量会减少，然后计算最终剩多少就是用户没有移除的，提示用户有没移除的KVO  默认为YES dealloc时改为NO
@@ -163,12 +174,14 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 }
 -(NSRecursiveLock *)safe_lock
 {
-    NSRecursiveLock *myLock=objc_getAssociatedObject(self, _cmd);
-    if (myLock==nil) {
-        myLock=[[NSRecursiveLock alloc]init];
-        self.safe_lock=myLock;
+    @synchronized(self){
+        LSRecursiveLock *myLock=objc_getAssociatedObject(self, _cmd);
+        if (myLock==nil) {
+            myLock=[[LSRecursiveLock alloc]init];
+            self.safe_lock=myLock;
+        }
+        return myLock;
     }
-    return myLock;
 }
 
 -(void)safe_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -190,6 +203,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     }
     observer.safe_notNeedRemoveKeypathFromCrashArray=YES;
     [self.safe_lock lock];
+    
     LSKVOObserverInfo *info=[self safe_canAddOrRemoveObserverWithKeypathWithObserver:observer keyPath:keyPath context:context haveContext:YES isAdd:YES];
     
     if(info!=nil){
