@@ -9,8 +9,8 @@
 #import "NSObject+Safe.h"
 #import <objc/message.h>
 
-#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
-//#define LSKVOSafeLog(fmt, ...)
+//#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
+#define LSKVOSafeLog(fmt, ...)
 
 
 @interface LSKVOObserverInfo()
