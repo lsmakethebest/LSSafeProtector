@@ -11,18 +11,13 @@ Pod::Spec.new do |s|
 
 s.frameworks   = 'Foundation'
 s.platform     = :ios
-#s.source_files = 'LSSafeProtector/Classes/*'
-#s.public_header_files = 'LSSafeProtector/Classes/LSSafeProtector.h'
+s.source_files = 'LSSafeProtector/Classes/*'
+s.public_header_files = 'LSSafeProtector/Classes/LSSafeProtector.h'
 s.requires_arc = true
 
 
-s.subspec 'Core' do |ss|
-    ss.source_files = 'LSSafeProtector/Classes/Core/*'
-end
-
 s.subspec 'Foundation' do |ss|
       ss.source_files = 'LSSafeProtector/Classes/Foundation/*'
-      ss.dependency 'LSSafeProtector/Core'
   end
 
 s.subspec 'MRC' do |ss|

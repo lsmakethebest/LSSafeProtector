@@ -16,12 +16,21 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
 @interface NSObject (LSSafeProtector)
 //打开当前类安全保护
 + (void)openSafeProtector;
++ (void)openKVOSafeProtector;
++(void)openMRCSafeProtector;
 @end
 
 @implementation NSObject (LSSafeProtector)
 +(void)openSafeProtector{
+
+}
++(void)openMRCSafeProtector{
+    
 }
 
++ (void)openKVOSafeProtector{
+    
+}
 @end
 
 
