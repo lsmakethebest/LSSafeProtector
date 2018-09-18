@@ -1,6 +1,6 @@
 {
   "name": "LSSafeProtector",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "summary": "强大的防止crash框架，支持自释放KVO等11种crash",
   "homepage": "https://github.com/lsmakethebest/LSSafeProtector",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/lsmakethebest/LSSafeProtector.git",
-    "tag": "1.0.4"
+    "tag": "1.0.5"
   },
   "frameworks": "Foundation",
   "platforms": {
@@ -22,17 +22,8 @@
   "requires_arc": true,
   "subspecs": [
     {
-      "name": "Core",
-      "source_files": "LSSafeProtector/Classes/Core/*"
-    },
-    {
       "name": "Foundation",
-      "source_files": "LSSafeProtector/Classes/Foundation/*",
-      "dependencies": {
-        "LSSafeProtector/Core": [
-
-        ]
-      }
+      "source_files": "LSSafeProtector/Classes/Foundation/*"
     },
     {
       "name": "MRC",
@@ -40,7 +31,7 @@
       "compiler_flags": "-ObjC",
       "source_files": "LSSafeProtector/Classes/MRC/*",
       "dependencies": {
-        "LSSafeProtector/Core": [
+        "LSSafeProtector/Foundation": [
 
         ]
       }

@@ -11,7 +11,7 @@
 #endif
 
 #import "LSSafeProtector.h"
-#import "NSObject+SafeCore.h"
+#import "LSSafeProtectorDefine.h"
 #import "NSArray+Safe.h"
 #import "NSAttributedString+Safe.h"
 #import "NSCache+Safe.h"
@@ -27,6 +27,7 @@
 #import "NSNotificationCenter+Safe.h"
 #import "NSObject+KVOSafe.h"
 #import "NSObject+Safe.h"
+#import "NSObject+SafeSwizzle.h"
 #import "NSOrderedSet+Safe.h"
 #import "NSSet+Safe.h"
 #import "NSString+Safe.h"

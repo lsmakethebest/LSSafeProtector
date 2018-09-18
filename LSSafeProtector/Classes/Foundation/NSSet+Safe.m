@@ -7,7 +7,9 @@
 //
 
 #import "NSSet+Safe.h"
-#import "NSObject+SafeCore.h"
+#import "NSObject+SafeSwizzle.h"
+#import "LSSafeProtector.h"
+
 @implementation NSSet (Safe)
 +(void)openSafeProtector
 {

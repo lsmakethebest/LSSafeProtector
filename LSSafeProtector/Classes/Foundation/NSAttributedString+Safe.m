@@ -6,8 +6,8 @@
 //  Copyright © 2018年 liusong. All rights reserved.
 
 #import <UIKit/UIKit.h>
-#import "NSObject+SafeCore.h"
-
+#import "NSObject+SafeSwizzle.h"
+#import "LSSafeProtector.h"
 
 @implementation NSAttributedString (Safe)
 

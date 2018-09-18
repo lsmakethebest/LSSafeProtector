@@ -7,7 +7,7 @@
 
 #import "NSNotificationCenter+Safe.h"
 #import <objc/message.h>
-#import "NSObject+SafeCore.h"
+#import "NSObject+SafeSwizzle.h"
 
 
 @interface NSObject (NSNotificationCenterSafe)

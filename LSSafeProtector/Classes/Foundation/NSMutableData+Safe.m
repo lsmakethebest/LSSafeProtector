@@ -8,7 +8,9 @@
 //
 
 #import "NSMutableData+Safe.h"
-#import "NSObject+SafeCore.h"
+#import "NSObject+SafeSwizzle.h"
+#import "LSSafeProtector.h"
+
 
 @implementation NSMutableData (Safe)
 

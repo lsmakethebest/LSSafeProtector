@@ -7,8 +7,8 @@
 //
 
 #import "NSArray+Safe.h"
-#import "NSObject+SafeCore.h"
-
+#import "NSObject+SafeSwizzle.h"
+#import "LSSafeProtector.h"
 
 @implementation NSArray (Safe)
 

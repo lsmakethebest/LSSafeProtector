@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'LSSafeProtector'
-  s.version          = '1.0.4'
+  s.version          = '1.0.5'
   s.summary          = '强大的防止crash框架，支持自释放KVO等11种crash'
 
 #s.description      = '更新了地址被释放又被重新使用导致的误报crash问题，以及野指针问题'
@@ -15,20 +15,16 @@ s.source_files = 'LSSafeProtector/Classes/*'
 s.requires_arc = true
 
 
-s.subspec 'Core' do |ss|
-    ss.source_files = 'LSSafeProtector/Classes/Core/*'
-end
 
 s.subspec 'Foundation' do |ss|
       ss.source_files = 'LSSafeProtector/Classes/Foundation/*'
-      ss.dependency 'LSSafeProtector/Core'
   end
 
 s.subspec 'MRC' do |ss|
       ss.requires_arc = false
       ss.compiler_flags = '-ObjC'
       ss.source_files = 'LSSafeProtector/Classes/MRC/*'
-      ss.dependency 'LSSafeProtector/Core'
+      ss.dependency 'LSSafeProtector/Foundation'
  end
   
 

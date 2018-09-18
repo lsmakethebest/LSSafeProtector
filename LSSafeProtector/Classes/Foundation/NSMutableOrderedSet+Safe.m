@@ -8,7 +8,9 @@
 //
 
 #import "NSMutableOrderedSet+Safe.h"
-#import "NSObject+SafeCore.h"
+#import "NSObject+SafeSwizzle.h"
+#import "LSSafeProtector.h"
+
 @implementation NSMutableOrderedSet (Safe)
 
 +(void)openSafeProtector
