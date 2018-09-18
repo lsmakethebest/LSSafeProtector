@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NSObject+Safe.h"
+#import "NSObject+SafeCore.h"
 @interface LSSafeProtector : NSObject
     
 //打开目前所支持的所有安全保护 回调block

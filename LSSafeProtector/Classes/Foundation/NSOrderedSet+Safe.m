@@ -1,20 +1,24 @@
+
 //
-//  NSSet+Safe.m
+//  NSOrderedSet+Safe.m
 //  LSSafeProtector
 // https://github.com/lsmakethebest/LSSafeProtector
 //
 //  Created by liusong on 2018/9/13.
 //
 
-#import "NSSet+Safe.h"
-#import "NSObject+Safe.h"
-@implementation NSSet (Safe)
+#import "NSOrderedSet+Safe.h"
+#import "NSObject+SafeCore.h"
+@implementation NSOrderedSet (Safe)
+
+
 +(void)openSafeProtector
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        Class dClass=NSClassFromString(@"__NSPlaceholderSet");
+        Class dClass=NSClassFromString(@"__NSPlaceholderOrderedSet");
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(initWithObjects:count:) newSel:@selector(safe_initWithObjects:count:)];
+        [self safe_exchangeInstanceMethod:NSClassFromString(@"__NSOrderedSetI") originalSel:@selector(objectAtIndex:) newSel:@selector(safe_objectAtIndex:)];
     });
 }
 -(instancetype)safe_initWithObjects:(id  _Nonnull const [])objects count:(NSUInteger)cnt
@@ -24,7 +28,7 @@
         instance = [self safe_initWithObjects:objects count:cnt];
     }
     @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSSet);
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSOrderedSet);
         
         //以下是对错误数据的处理，把为nil的数据去掉,然后初始化数组
         NSInteger newObjsIndex = 0;
@@ -40,6 +44,20 @@
     }
     @finally {
         return instance;
+    }
+}
+
+-(id)safe_objectAtIndex:(NSUInteger)idx
+{
+    id object=nil;
+    @try {
+        object = [self safe_objectAtIndex:idx];
+    }
+    @catch (NSException *exception) {
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSOrderedSet);
+    }
+    @finally {
+        return object;
     }
 }
 

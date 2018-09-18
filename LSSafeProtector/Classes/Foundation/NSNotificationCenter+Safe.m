@@ -6,9 +6,8 @@
 //  Copyright © 2018年 liusong. All rights reserved.
 
 #import "NSNotificationCenter+Safe.h"
-#import "NSObject+Safe.h"
 #import <objc/message.h>
-
+#import "NSObject+SafeCore.h"
 
 
 @interface NSObject (NSNotificationCenterSafe)

@@ -6,7 +6,7 @@
 //  Copyright © 2018年 liusong. All rights reserved.
 
 #import "NSMutableArray+Safe.h"
-#import "NSObject+Safe.h"
+#import "NSObject+SafeCore.h"
 @implementation NSMutableArray (Safe)
 
 +(void)openSafeProtector
@@ -15,10 +15,7 @@
     dispatch_once(&onceToken, ^{
         //方法交换只要一次就好
         Class dClass=NSClassFromString(@"__NSArrayM");
-        //由于低于11.0交换此方法会导致有键盘显示的地方，此时退到后台会crash [UIKeyboardLayoutStar release]: message sent to deallocated instance 0x7fd762cc11f0
-        if ([UIDevice currentDevice].systemVersion.doubleValue>=11.0) {
-            [self safe_exchangeInstanceMethod:dClass originalSel:@selector(objectAtIndex:) newSel:@selector(safe_objectAtIndexM:)];
-        }
+
         //因为11.0以上系统才会调用此方法，所以大于11.0才交换此方法
         if([UIDevice currentDevice].systemVersion.doubleValue>=11.0){
             [self safe_exchangeInstanceMethod:dClass originalSel:@selector(objectAtIndexedSubscript:) newSel:@selector(safe_objectAtIndexedSubscriptM:)];
@@ -37,20 +34,6 @@
     id object=nil;
     @try {
         object =  [self safe_objectAtIndexedSubscriptM:index];
-    }
-    @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableArray);
-    }
-    @finally {
-        return object;
-    }
-}
-
--(id)safe_objectAtIndexM:(NSUInteger)index
-{
-    id object=nil;
-    @try {
-        object= [self safe_objectAtIndexM:index];
     }
     @catch (NSException *exception) {
         LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableArray);

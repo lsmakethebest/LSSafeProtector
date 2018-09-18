@@ -1,47 +1,20 @@
 //
-//  NSObject+Safe.m
+//  NSObject+SafeCore.m
+//  LSSafeProtector
 // https://github.com/lsmakethebest/LSSafeProtector
 //
-//  Created by liusong on 2018/4/20.
-//  Copyright © 2018年 liusong. All rights reserved.
+//  Created by liusong on 2018/9/18.
+//
 
-#import "NSObject+Safe.h"
-#import <UIKit/UIKit.h>
-#import <objc/runtime.h>
+#import "NSObject+SafeCore.h"
 #import "NSObject+KVOSafe.h"
-
-
+#import "NSMutableArray+MRCSafe.h"
 static  LSSafeProtectorLogType ls_safe_logType=LSSafeProtectorLogTypeAll;
 static  LSSafeProtectorBlock lsSafeProtectorBlock;
 
-
-@interface LSSafeProxy:NSObject
-@property (nonatomic,strong) NSException *exception;
-@property (nonatomic,weak) id safe_object;
-@end
-@implementation LSSafeProxy
--(void)safe_crashLog{
-}
-@end
+@implementation NSObject (SafeCore)
 
 
-@implementation NSObject (Safe)
-
-+(void)openSafeProtector
-{
-     if ([NSStringFromClass([NSObject class]) isEqualToString:@"NSObject"]) {
-         static dispatch_once_t onceToken;
-         dispatch_once(&onceToken, ^{
-             
-             [self safe_exchangeInstanceMethod:[self class] originalSel:@selector(methodSignatureForSelector:) newSel:@selector(safe_methodSignatureForSelector:)];
-             
-               [self safe_exchangeInstanceMethod:[self class] originalSel:@selector(forwardInvocation:) newSel:@selector(safe_forwardInvocation:)];
-         });
-     }else{
-         //只有NSObject 能调用openSafeProtector其他类调用没效果
-     }
-}
-//打开目前所支持的所有安全保护
 +(void)openAllSafeProtectorWithIsDebug:(BOOL)isDebug block:(LSSafeProtectorBlock)block
 {
     if ([NSStringFromClass([self class]) isEqualToString:@"NSObject"]) {
@@ -52,6 +25,7 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
             [NSMutableArray openSafeProtector];
             [NSDictionary openSafeProtector];
             [NSMutableDictionary openSafeProtector];
+            [NSMutableArray openMRCSafeProtector];
             [NSString openSafeProtector];
             [NSMutableString openSafeProtector];
             [NSAttributedString openSafeProtector];
@@ -67,7 +41,7 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
             [NSData openSafeProtector];
             [NSMutableData openSafeProtector];
             if (isDebug) {
-                 ls_safe_logType=LSSafeProtectorLogTypeAll;
+                ls_safe_logType=LSSafeProtectorLogTypeAll;
             }else{
                 ls_safe_logType=LSSafeProtectorLogTypeNone;
             }
@@ -77,28 +51,10 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
         //只有NSObject 能调用openAllSafeProtector其他类调用没效果
         LSSafeLog(@"------- 请用  [NSObject openAllSafeProtectorWithBlock:] 调用此方法");
     }
-
-}
-- (NSMethodSignature *)safe_methodSignatureForSelector:(SEL)aSelector
-{
-    NSMethodSignature *ms = [self safe_methodSignatureForSelector:aSelector];
-    if ([self respondsToSelector:aSelector] || ms){
-        return ms;
-    }
-    else{
-        return [LSSafeProxy instanceMethodSignatureForSelector:@selector(safe_crashLog)];
-    }
 }
 
-- (void)safe_forwardInvocation:(NSInvocation *)anInvocation{
-    @try {
-        [self safe_forwardInvocation:anInvocation];
-        
-    } @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeSelector);
-    } @finally {
-    }
-}
+
+
 #pragma mark - 交换类方法
 + (void)safe_exchangeClassMethod:(Class) dClass
                      originalSel:(SEL)originalSelector
@@ -106,7 +62,7 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
     
     Method originalMethod = class_getClassMethod(dClass, originalSelector);
     Method newMethod = class_getClassMethod(dClass, newSelector);
-  // Method中包含IMP函数指针，通过替换IMP，使SEL调用不同函数实现
+    // Method中包含IMP函数指针，通过替换IMP，使SEL调用不同函数实现
     //方法newMethod的  返回值表示是否添加成功
     BOOL isAdd = class_addMethod(self, originalSelector,
                                  method_getImplementation(newMethod),
@@ -146,7 +102,7 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
 {
     // 堆栈数据
     NSArray *callStackSymbolsArr = [NSThread callStackSymbols];
-
+    
     //获取在哪个类的哪个方法中实例化的数组
     NSString *mainMessage = [self safe_getMainCallStackSymbolMessageWithCallStackSymbolArray: callStackSymbolsArr index:2 first:YES];
     
@@ -158,7 +114,7 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
     
     NSString *crashReason = [NSString stringWithFormat:@"\t\t[Crash Reason]: %@",exception.reason];;
     NSString *crashLocation = [NSString stringWithFormat:@"\t\t[Crash Location]: %@",mainMessage];
-
+    
     NSString *fullMessage = [NSString stringWithFormat:@"\n------------------------------------  Crash START -------------------------------------\n%@\n%@\n%@\n函数堆栈:\n%@\n------------------------------------   Crash END  -----------------------------------------", crashName, crashReason, crashLocation, exception.callStackSymbols];
     
     NSMutableDictionary *userInfo=[NSMutableDictionary dictionary];
@@ -219,6 +175,5 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
     }
     return mainCallStackSymbolMsg;
 }
-
 
 @end

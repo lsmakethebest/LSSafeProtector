@@ -8,7 +8,7 @@
 //
 
 #import "NSData+Safe.h"
-#import "NSObject+Safe.h"
+#import "NSObject+SafeCore.h"
 @implementation NSData (Safe)
 
 +(void)openSafeProtector

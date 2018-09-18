@@ -6,7 +6,7 @@
 //  Copyright © 2018年 liusong. All rights reserved.
 
 #import "NSObject+KVOSafe.h"
-#import "NSObject+Safe.h"
+#import "NSObject+SafeCore.h"
 #import <objc/message.h>
 
 //#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)

@@ -7,7 +7,7 @@
 //
 
 #import "NSCache+Safe.h"
-#import "NSObject+Safe.h"
+#import "NSObject+SafeCore.h"
 @implementation NSCache (Safe)
 
 +(void)openSafeProtector

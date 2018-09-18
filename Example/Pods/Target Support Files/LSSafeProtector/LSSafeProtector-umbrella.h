@@ -11,6 +11,7 @@
 #endif
 
 #import "LSSafeProtector.h"
+#import "NSObject+SafeCore.h"
 #import "NSArray+Safe.h"
 #import "NSAttributedString+Safe.h"
 #import "NSCache+Safe.h"
@@ -30,6 +31,7 @@
 #import "NSSet+Safe.h"
 #import "NSString+Safe.h"
 #import "NSUserDefaults+Safe.h"
+#import "NSMutableArray+MRCSafe.h"
 
 FOUNDATION_EXPORT double LSSafeProtectorVersionNumber;
 FOUNDATION_EXPORT const unsigned char LSSafeProtectorVersionString[];

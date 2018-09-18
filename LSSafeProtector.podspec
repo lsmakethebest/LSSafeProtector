@@ -9,7 +9,27 @@ Pod::Spec.new do |s|
   s.author           = { 'liusong' => 'job@ysui.cn' }
   s.source           = { :git => 'https://github.com/lsmakethebest/LSSafeProtector.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
-  s.source_files = 'LSSafeProtector/Classes/**/*'
+s.frameworks   = 'Foundation'
+s.platform     = :ios
+s.source_files = 'LSSafeProtector/Classes/*'
+s.requires_arc = true
+
+
+s.subspec 'Core' do |ss|
+    ss.source_files = 'LSSafeProtector/Classes/Core/*'
+end
+
+s.subspec 'Foundation' do |ss|
+      ss.source_files = 'LSSafeProtector/Classes/Foundation/*'
+      ss.dependency 'LSSafeProtector/Core'
+  end
+
+s.subspec 'MRC' do |ss|
+      ss.requires_arc = false
+      ss.compiler_flags = '-ObjC'
+      ss.source_files = 'LSSafeProtector/Classes/MRC/*'
+      ss.dependency 'LSSafeProtector/Core'
+ end
+  
 
 end

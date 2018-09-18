@@ -6,9 +6,7 @@
 //  Copyright © 2018年 liusong. All rights reserved.
 
 #import "NSDictionary+Safe.h"
-#import "NSObject+Safe.h"
-
-
+#import "NSObject+SafeCore.h"
 
 
 @implementation NSDictionary (Safe)

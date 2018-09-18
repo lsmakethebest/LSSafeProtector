@@ -209,8 +209,8 @@
     strings[0]=@"000";
     strings[1]=value;
     strings[2]=@"222";
-    //        [NSMutableArray arrayWithObjects:strings count:3];
-    //        [[NSMutableArray alloc]initWithObjects:strings count:3];
+            [NSMutableArray arrayWithObjects:strings count:3];
+            [[NSMutableArray alloc]initWithObjects:strings count:3];
     
     NSMutableArray *a1=[NSMutableArray array];
     //    dispatch_async(dispatch_get_global_queue(0, 0), ^{

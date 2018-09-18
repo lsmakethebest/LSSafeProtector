@@ -7,7 +7,7 @@
 //
 
 #import "LSSafeProtector.h"
-
+#import "NSObject+SafeCore.h"
 @implementation LSSafeProtector
 
 +(void)openSafeProtectorWithIsDebug:(BOOL)isDebug block:(LSSafeProtectorBlock)block

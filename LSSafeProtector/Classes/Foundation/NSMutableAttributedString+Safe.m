@@ -6,7 +6,7 @@
 //  Copyright © 2018年 liusong. All rights reserved.
 
 #import "NSMutableAttributedString+Safe.h"
-#import "NSObject+Safe.h"
+#import "NSObject+SafeCore.h"
 
 @implementation NSMutableAttributedString (Safe)
 

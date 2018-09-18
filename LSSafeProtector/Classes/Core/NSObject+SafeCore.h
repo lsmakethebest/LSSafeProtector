@@ -1,12 +1,13 @@
 //
-//  NSObject+Safe.h
+//  NSObject+SafeCore.h
+//  LSSafeProtector
 // https://github.com/lsmakethebest/LSSafeProtector
 //
-//  Created by liusong on 2018/4/20.
-//  Copyright © 2018年 liusong. All rights reserved.
-#import <UIKit/UIKit.h>
-#import <objc/runtime.h>
+//  Created by liusong on 2018/9/18.
+//
 
+#import <Foundation/Foundation.h>
+#import <objc/runtime.h>
 
 #define  LSSafeLog(fmt, ...)  NSLog(fmt, ##__VA_ARGS__)
 #define  LSSafeProtectionCrashLog(exception,crash)   [NSObject safe_logCrashWithException:exception crashType:crash]
@@ -47,13 +48,10 @@ typedef enum : NSUInteger {
 
 typedef void(^LSSafeProtectorBlock)(NSException *exception,LSSafeProtectorCrashType crashType);
 
-
-@interface  NSObject (Safe)
-
+@interface NSObject (SafeCore)
 
 //打开目前所支持的所有安全保护 回调block
 + (void)openAllSafeProtectorWithIsDebug:(BOOL)isDebug block:(LSSafeProtectorBlock)block;
-
 
 //打开当前类安全保护
 + (void)openSafeProtector;
@@ -67,8 +65,4 @@ typedef void(^LSSafeProtectorBlock)(NSException *exception,LSSafeProtectorCrashT
 //打印crash信息
 + (void)safe_logCrashWithException:(NSException *)exception crashType:(LSSafeProtectorCrashType)crashType;
 
-
 @end
-
-
-

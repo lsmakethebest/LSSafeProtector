@@ -8,7 +8,7 @@
 //
 
 #import "NSMutableData+Safe.h"
-#import "NSObject+Safe.h"
+#import "NSObject+SafeCore.h"
 
 @implementation NSMutableData (Safe)
 

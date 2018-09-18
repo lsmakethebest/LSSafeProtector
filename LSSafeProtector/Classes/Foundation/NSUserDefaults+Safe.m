@@ -7,7 +7,7 @@
 //
 
 #import "NSUserDefaults+Safe.h"
-#import "NSObject+Safe.h"
+#import "NSObject+SafeCore.h"
 @implementation NSUserDefaults (Safe)
 
 +(void)openSafeProtector

@@ -8,7 +8,7 @@
 //
 
 #import "NSMutableSet+Safe.h"
-#import "NSObject+Safe.h"
+#import "NSObject+SafeCore.h"
 @implementation NSMutableSet (Safe)
 +(void)openSafeProtector
 {
