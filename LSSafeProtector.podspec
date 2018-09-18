@@ -16,20 +16,21 @@ s.platform     = :ios
 s.requires_arc = true
 
 s.subspec 'Core' do |ss|
+    ss.requires_arc = true
     ss.source_files = 'LSSafeProtector/Classes/Core/*'
 end
 
 s.subspec 'Foundation' do |ss|
-        ss.requires_arc = true
-      ss.source_files = 'LSSafeProtector/Classes/Foundation/*'
-      ss.dependency 'LSSafeProtector/Core'
+    ss.requires_arc = true
+    ss.source_files = 'LSSafeProtector/Classes/Foundation/*'
+    ss.dependency 'LSSafeProtector/Core'
   end
 
 s.subspec 'MRC' do |ss|
-      ss.requires_arc = false
-      ss.source_files = 'LSSafeProtector/Classes/MRC/*'
-      ss.dependency 'LSSafeProtector/Foundation'
-      ss.dependency 'LSSafeProtector/Core'
+    ss.requires_arc = false
+    ss.source_files = 'LSSafeProtector/Classes/MRC/*'
+    ss.dependency 'LSSafeProtector/Foundation'
+    ss.dependency 'LSSafeProtector/Core'
  end
   
 
