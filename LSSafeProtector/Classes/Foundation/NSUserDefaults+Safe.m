@@ -19,6 +19,8 @@
         
         Class dClass=NSClassFromString(@"NSUserDefaults");
         
+        [self safe_exchangeInstanceMethod:dClass originalSel:@selector(setObject:forKey:) newSel:@selector(safe_setObject:forKey:)];
+        
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(objectForKey:) newSel:@selector(safe_objectForKey:)];
         
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(stringForKey:) newSel:@selector(safe_stringForKey:)];
@@ -41,6 +43,17 @@
        
     });
 }
+-(void)safe_setObject:(id)value forKey:(NSString *)defaultName
+{
+    if(defaultName&&value){
+        [self safe_setObject:value forKey:defaultName];
+    }else{
+        NSString *reason=[NSString stringWithFormat:@"NSUserDefaults %@ key and value can`t meantime be nil",NSStringFromSelector(_cmd)];
+        NSException *exception=[NSException exceptionWithName:reason reason:reason userInfo:nil];
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSUserDefaults);
+    }
+}
+
 -(id)safe_objectForKey:(NSString *)defaultName
 {
     id obj=nil;

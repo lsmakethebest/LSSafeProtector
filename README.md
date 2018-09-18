@@ -167,6 +167,7 @@ iOS11之后（含11)  setObject:forKeyedSubscript:
 8.doubleForKey:
 9.integerForKey:
 10.boolForKey:
+11.setObject:forKey:
 
 ```
 
