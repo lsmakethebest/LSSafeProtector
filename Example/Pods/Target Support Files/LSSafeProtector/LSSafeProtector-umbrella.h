@@ -10,6 +10,8 @@
 #endif
 #endif
 
+#import "LSSafeProtector.h"
+#import "LSSafeProtectorDefine.h"
 #import "NSArray+Safe.h"
 #import "NSAttributedString+Safe.h"
 #import "NSCache+Safe.h"

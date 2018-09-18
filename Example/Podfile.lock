@@ -1,9 +1,13 @@
 PODS:
   - LSSafeProtector (1.0.5):
+    - LSSafeProtector/Core (= 1.0.5)
     - LSSafeProtector/Foundation (= 1.0.5)
     - LSSafeProtector/MRC (= 1.0.5)
-  - LSSafeProtector/Foundation (1.0.5)
+  - LSSafeProtector/Core (1.0.5)
+  - LSSafeProtector/Foundation (1.0.5):
+    - LSSafeProtector/Core
   - LSSafeProtector/MRC (1.0.5):
+    - LSSafeProtector/Core
     - LSSafeProtector/Foundation
 
 DEPENDENCIES:
@@ -14,7 +18,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LSSafeProtector: f40231c97a3325d01d0d14bb456de3b591a29866
+  LSSafeProtector: 504e5d1093a8e30bad5ac495dc373225fd1d9bcc
 
 PODFILE CHECKSUM: 2a806222057633453c51305bb413d938fa954f24
 
