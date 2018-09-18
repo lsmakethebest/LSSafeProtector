@@ -7,8 +7,6 @@
 //
 
 #import "LSSafeProtector.h"
-#import "NSMutableArray+MRCSafe.h"
-#import "NSObject+KVOSafe.h"
 
 static  LSSafeProtectorLogType ls_safe_logType=LSSafeProtectorLogTypeAll;
 static  LSSafeProtectorBlock lsSafeProtectorBlock;
