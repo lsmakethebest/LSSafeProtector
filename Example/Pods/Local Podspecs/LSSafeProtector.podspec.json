@@ -18,12 +18,20 @@
   "platforms": {
     "ios": null
   },
-  "source_files": "LSSafeProtector/Classes/*",
   "requires_arc": true,
   "subspecs": [
     {
+      "name": "Core",
+      "source_files": "LSSafeProtector/Classes/Core/*"
+    },
+    {
       "name": "Foundation",
-      "source_files": "LSSafeProtector/Classes/Foundation/*"
+      "source_files": "LSSafeProtector/Classes/Foundation/*",
+      "dependencies": {
+        "LSSafeProtector/Core": [
+
+        ]
+      }
     },
     {
       "name": "MRC",
