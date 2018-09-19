@@ -3,7 +3,7 @@
 
 
 ## 须知
-LSSafeProtector 基于 "Xcode 7.3 , iOS 6+ 和ARC ，请使用最新正式版来编译LSSafeProtector,旧版本的Xcode可能有效，但不保证会出现一些兼容性问题。
+LSSafeProtector 基于 "Xcode 7.3 , iOS 7+ 和ARC ，请使用最新正式版来编译LSSafeProtector,旧版本的Xcode可能有效，但不保证会出现一些兼容性问题。
 
 
 ## CocoaPods
