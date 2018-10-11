@@ -98,7 +98,7 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
     }
     else if (logType==LSSafeProtectorLogTypeAll) {
         LSSafeLog(@"%@", fullMessage);
-        NSAssert(NO, @"检测到崩溃，详情请查看上面信息");
+        assert(NO&&"检测到崩溃，详情请查看上面信息");
     }
 }
 
