@@ -23,7 +23,14 @@
  @{@"key":@"value",@"key2",@"value2"}此种方式创建多于1个key，或者initWith创建都是__NSDictionaryI
  */
 
-
+/*
+__NSFrozenDictionaryM  以下情况生成
+    @property  (nonatomic, copy) NSMutableDictionary *mutableDictionary;
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]init];
+    [dictionary setObject:@"liusong" forKey:@"name"];
+    self.mutableDictionary = dictionary;
+*/
+ 
 /*
     目前可避免以下crash  NSDictionary和NSMutableDictionary 调用 objectForKey： key为nil不会崩溃
  

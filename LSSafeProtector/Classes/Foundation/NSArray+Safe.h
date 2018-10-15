@@ -40,7 +40,7 @@
 // >= iOS11： arr@[11]  调用的是[__NSArrayM objectAtIndexedSubscript]
 //  任意系统   [arr objectAtIndex:111]  调用的都是[__NSArrayI objectAtIndex:]
 
-
+// __NSFrozenArrayM  应该和__NSFrozenDictionaryM类似，但是没有找到触发条件
 
 /*
    目前能避免以下crash
