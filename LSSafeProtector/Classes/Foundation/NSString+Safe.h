@@ -24,7 +24,7 @@ initWithString导致的crash
  @"fdsfsds"
  [[NSString alloc]initWithString:@"fs"];
  
- NSTaggedPointerString [NSString stringWithFormat:@"fs"]形式创建 当字节小于8时是NSTaggedPointerString 大于7字节时是__NSCFString
+ NSTaggedPointerString [NSString stringWithFormat:@"fs"]形式创建 当字节小于7时是NSTaggedPointerString 大于7字节时是__NSCFString
  @"123456"0xa003635343332316  当字节大于7填满时并不会立即变成__NSCFString，而是采用一种压缩算法，当压缩之后大于7字节时才会变成__NSCFString ( @"1234567"为 0xa373635343332317 没有压缩， @"12345678"为 0xa007a87dcaecc2a8 开始压缩了）//第一位为a代表是字符串  b为NSNumber,当为NSNumber时最后一位表示(long 3 float为4，Int为2，double为5）
  
  想更多了解可以参考以下链接
