@@ -18,14 +18,14 @@ initWithString导致的crash
  __NSCFString
  非常量 或者 [NSMutableString stringWithFormat:@"fs"];
  [[NSMutableString alloc]initWithString:@"fs"];
- [NSString stringWithFormat:]大于8字节
+ [NSString stringWithFormat:]大于7字节
  
  __NSCFConstantString  
  @"fdsfsds"
  [[NSString alloc]initWithString:@"fs"];
  
- NSTaggedPointerString [NSString stringWithFormat:@"fs"]形式创建 当字节小于8时是NSTaggedPointerString 大于8时是__NSCFString
- @"123456"0xa003635343332316  当字节填满时并不会立即变成__NSCFString，而是采用一种压缩算法，当压缩之后大于8字节时才会变成__NSCFString
+ NSTaggedPointerString [NSString stringWithFormat:@"fs"]形式创建 当字节小于8时是NSTaggedPointerString 大于7字节时是__NSCFString
+ @"123456"0xa003635343332316  当字节大于7填满时并不会立即变成__NSCFString，而是采用一种压缩算法，当压缩之后大于7字节时才会变成__NSCFString ( @"1234567"为 0xa373635343332317 没有压缩， @"12345678"为 0xa007a87dcaecc2a8 开始压缩了）
  
  想更多了解可以参考以下链接
  https://www.jianshu.com/p/e354f9137ba8
