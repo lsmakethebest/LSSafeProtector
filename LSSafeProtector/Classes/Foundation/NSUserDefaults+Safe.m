@@ -45,9 +45,9 @@
 }
 -(void)safe_setObject:(id)value forKey:(NSString *)defaultName
 {
-    if(!defaultName&&!value){
-        //同时为空才会崩溃
-        NSString *reason=[NSString stringWithFormat:@"NSUserDefaults %@ key and value can`t meantime be nil",NSStringFromSelector(_cmd)];
+    if(!defaultName){
+        //defaultName空才会崩溃
+        NSString *reason=[NSString stringWithFormat:@"NSUserDefaults %@ key  can`t be nil",NSStringFromSelector(_cmd)];
         NSException *exception=[NSException exceptionWithName:reason reason:reason userInfo:nil];
         LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSUserDefaults);
     }else{
