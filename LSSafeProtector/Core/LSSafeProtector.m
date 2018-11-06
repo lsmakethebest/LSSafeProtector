@@ -18,18 +18,14 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
 +(void)openMRCSafeProtector;
 @end
 
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincomplete-implementation"
+
 @implementation NSObject (LSSafeProtector)
-+(void)openSafeProtector{
-
-}
-+(void)openMRCSafeProtector{
-    
-}
-
-+ (void)openKVOSafeProtector{
-    
-}
 @end
+
+#pragma clang diagnostic pop
 
 
 @implementation LSSafeProtector

@@ -20,7 +20,7 @@
         Class dClass=NSClassFromString(@"__NSArrayM");
 
         //因为11.0以上系统才会调用此方法，所以大于11.0才交换此方法
-        if([UIDevice currentDevice].systemVersion.doubleValue>=11.0){
+        if (@available(iOS 11.0, *)) {
             [self safe_exchangeInstanceMethod:dClass originalSel:@selector(objectAtIndexedSubscript:) newSel:@selector(safe_objectAtIndexedSubscriptM:)];
         }
         
