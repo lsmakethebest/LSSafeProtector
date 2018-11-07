@@ -18,8 +18,23 @@
         
         //NSMutableDictionary和NSDictionary调用下面方法崩溃时的类型都为__NSPlaceholderDictionary
         [self safe_exchangeInstanceMethod:NSClassFromString(@"__NSPlaceholderDictionary") originalSel:@selector(initWithObjects:forKeys:count:) newSel:@selector(safe_initWithObjects:forKeys:count:)];
-        [self safe_exchangeInstanceMethod:NSClassFromString(@"__NSPlaceholderDictionary") originalSel:@selector(initWithObjects:forKeys:) newSel:@selector(safe_initWithObjects:forKeys:)];        
+        [self safe_exchangeInstanceMethod:NSClassFromString(@"__NSPlaceholderDictionary") originalSel:@selector(initWithObjects:forKeys:) newSel:@selector(safe_initWithObjects:forKeys:)];
+        
+        [self safe_exchangeInstanceMethod:NSClassFromString(@"__NSCFDictionary") originalSel:@selector(setObject:forKey:) newSel:@selector(safe_setObjectNSCFDictionary:forKey:)];
+        
     });
+}
+
+- (void)safe_setObjectNSCFDictionary:(id)anObject forKey:(id<NSCopying>)aKey {
+    
+    @try {
+        [self safe_setObjectNSCFDictionary:anObject forKey:aKey];
+    }
+    @catch (NSException *exception) {
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSDictionary);
+    }
+    @finally {
+    }
 }
 
 -(instancetype)safe_initWithObjects:(NSArray *)objects forKeys:(NSArray<id<NSCopying>> *)keys

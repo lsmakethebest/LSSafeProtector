@@ -180,8 +180,9 @@
     NSString *s=@"{\"name\":\"fsd\",\"array\":[\"fsd\"]}";
    NSDictionary *v = [NSJSONSerialization JSONObjectWithData:[s dataUsingEncoding:0] options:0 error:NULL] ;
 //    低系统为__NSCFArray 高系统为 __NSArrayI
+    //这种情况不能防止crash 因为交换了__NSCFArray的objectAtIndex会导致其他崩溃，所以没有进行防护
     NSMutableArray *array1 = v[@"array"];
-    array1[100];
+//    array1[100];
 //    [array1 objectAtIndex:1000];
     
     NSString *strings[3];
@@ -204,13 +205,22 @@
 
 -(IBAction)testMutableArray
 {
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSMutableArray arrayWithObject:@"fsd"] forKey:@"name"];
+    //__NSCFArray
+    NSMutableArray *array=[[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+    //这种情况不能防止crash 因为交换了__NSCFArray的objectAtIndex会导致其他崩溃，所以没有进行防护
+//    array[10];
+    [array removeObjectAtIndex:10];
+    [array addObject:@"fs"];
+    [array replaceObjectAtIndex:10 withObject:@"fs"];
     NSString *value=nil;
     NSString *strings[3];
     strings[0]=@"000";
     strings[1]=value;
     strings[2]=@"222";
-            [NSMutableArray arrayWithObjects:strings count:3];
-            [[NSMutableArray alloc]initWithObjects:strings count:3];
+    [NSMutableArray arrayWithObjects:strings count:3];
+    [[NSMutableArray alloc]initWithObjects:strings count:3];
     
     NSMutableArray *a1=[NSMutableArray array];
     //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -240,7 +250,24 @@
 
 -(IBAction)testMutableDictionary
 {
+
     NSString *value=nil;
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    [params setObject:@"fse" forKey:value];
+    
+    //  dict是  __NSFrozenDictionaryM
+    NSMutableDictionary *dict=[[NSMutableDictionary dictionary] copy];
+    [dict setObject:@"fsd" forKey:@"FSD"];
+    [dict setObject:@"fsd" forKey:value];
+    dict[value]=@"fs";
+
+    
+    //dict2是  dict2    __NSCFDictionary
+    [[NSUserDefaults standardUserDefaults] setObject:[NSMutableDictionary dictionary] forKey:@"name"];
+    NSMutableDictionary *dict2=[[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+    dict2[@"FSD"]=@"FSD";
+    [dict2 setObject:@"fsd" forKey:value];
+
     NSString *strings[3];
     strings[0]=@"000";
     strings[1]=value;

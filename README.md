@@ -72,6 +72,9 @@ a1[10];
 2. + (instancetype)arrayWithObjects:(const ObjectType _Nonnull [_Nonnull])objects count:(NSUInteger)cnt;调用的也是3的方法
 3. - (instancetype)initWithObjects:(const ObjectType _Nonnull [_Nullable])objects count
 4. - (id)objectAtIndex:(NSUInteger)index
+******  注意 *****
+[__NSCFArray objectAtIndex]不能防止crash，如果交换了会导致其他crash，所以这里不做交换
+
 ```
 
 - 4、LSSafeProtectorCrashTypeNSMutableArray

@@ -40,7 +40,16 @@
 // >= iOS11： arr@[11]  调用的是[__NSArrayM objectAtIndexedSubscript]
 //  任意系统   [arr objectAtIndex:111]  调用的都是[__NSArrayI objectAtIndex:]
 
-// __NSFrozenArrayM  应该和__NSFrozenDictionaryM类似，但是没有找到触发条件
+/* 特殊类型
+1.__NSFrozenArrayM  应该和__NSFrozenDictionaryM类似，但是没有找到触发条件
+
+2.__NSCFArray 以下情况获得
+ 
+[[NSUserDefaults standardUserDefaults] setObject:[NSMutableArray array] forKey:@"name"];
+NSMutableArray *array=[[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+
+*/
+
 
 /*
    目前能避免以下crash
@@ -49,6 +58,8 @@
    2. + (instancetype)arrayWithObjects:(const ObjectType _Nonnull [_Nonnull])objects count:(NSUInteger)cnt;调用的也是3中的方法
    3. - (instancetype)initWithObjects:(const ObjectType _Nonnull [_Nullable])objects count
    4. - (id)objectAtIndex:(NSUInteger)index
+ ******  注意 *****
+    [__NSCFArray objectAtIndex]不能防止crash，如果交换了会导致其他crash，所以这里不做交换
  
  */
 

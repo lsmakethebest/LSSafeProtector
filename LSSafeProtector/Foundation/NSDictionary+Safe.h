@@ -24,11 +24,17 @@
  */
 
 /*
-__NSFrozenDictionaryM  以下情况生成
-    @property  (nonatomic, copy) NSMutableDictionary *mutableDictionary;
-    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]init];
-    [dictionary setObject:@"liusong" forKey:@"name"];
-    self.mutableDictionary = dictionary;
+ 特殊类型
+1. __NSCFDictionary 以下情况生成
+ 沙盒即使存储的是可变的得到的也是不可变的，当然还有其他情况得到这种类型的字典
+ [[NSUserDefaults standardUserDefaults] setObject:[NSMutableDictionary dictionary] forKey:@"name"];
+ NSMutableDictionary *dict=[[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+ 
+2.__NSFrozenDictionaryM  以下情况生成
+ 
+ NSMutableDictionary *dict=[[NSMutableDictionary dictionary] copy];
+ [dict setObject:@"fsd" forKey:value];
+ 
 */
  
 /*
