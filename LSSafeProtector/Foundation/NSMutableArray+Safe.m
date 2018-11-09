@@ -26,10 +26,22 @@
         
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(insertObject:atIndex:) newSel:@selector(safe_insertObject:atIndex:)];
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(removeObjectAtIndex:) newSel:@selector(safe_removeObjectAtIndex:)];
+        [self safe_exchangeInstanceMethod:dClass originalSel:@selector(removeObjectsInRange:) newSel:@selector(safe_removeObjectsInRange:)];
         [self safe_exchangeInstanceMethod:dClass originalSel:@selector(replaceObjectAtIndex:withObject:) newSel:@selector(safe_replaceObjectAtIndex:withObject:)];
+        
     });
 }
-
+-(void)safe_removeObjectsInRange:(NSRange)range
+{
+    @try {
+         [self safe_removeObjectsInRange:range];
+    }
+    @catch (NSException *exception) {
+        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSMutableArray);
+    }
+    @finally {
+    }
+}
 
 
 -(id)safe_objectAtIndexedSubscriptM:(NSUInteger)index

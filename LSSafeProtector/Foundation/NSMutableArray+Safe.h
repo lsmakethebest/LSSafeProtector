@@ -16,6 +16,7 @@
    3. - (id)objectAtIndex:(NSUInteger)index( 包含   array[index]  形式  )
    4. - (void)removeObjectAtIndex:(NSUInteger)index
    5. - (void)replaceObjectAtIndex:(NSUInteger)index
+   6. - (void)removeObjectsInRange:(NSRange)range
  
 */
  

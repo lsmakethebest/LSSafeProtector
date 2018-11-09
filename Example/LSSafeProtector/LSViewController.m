@@ -206,6 +206,10 @@
 -(IBAction)testMutableArray
 {
     
+    NSMutableArray *arr=[NSMutableArray array];
+    [arr removeObjectAtIndex:1];
+    [arr removeObjectsInRange:NSMakeRange(0, 1)];
+
     [[NSUserDefaults standardUserDefaults] setObject:[NSMutableArray arrayWithObject:@"fsd"] forKey:@"name"];
     //__NSCFArray
     NSMutableArray *array=[[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
