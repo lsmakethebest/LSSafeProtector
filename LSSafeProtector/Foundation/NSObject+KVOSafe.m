@@ -316,8 +316,16 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     NSMutableArray *upArray = observer.safe_upObservedArray;
     
     if(info){
-        [downArray removeObject:info];
-        [upArray removeObject:info];
+        @synchronized(downArray){
+            if ([downArray containsObject:info]) {
+                [downArray removeObject:info];
+            }
+        }
+        @synchronized(upArray){
+            if ([upArray containsObject:info]) {
+                [upArray removeObject:info];
+            }
+        }
     }
 }
 
