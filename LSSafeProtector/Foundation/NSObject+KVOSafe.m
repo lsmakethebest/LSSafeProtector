@@ -145,12 +145,14 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
 
 #pragma mark - 监听了哪些对象数组
 - (NSMutableArray *)safe_upObservedArray{
-    NSMutableArray *array = objc_getAssociatedObject(self, _cmd);
-    if (!array) {
-        array = [NSMutableArray array];
-        [self setSafe_upObservedArray:array];
+    @synchronized(self){
+        NSMutableArray *array = objc_getAssociatedObject(self, _cmd);
+        if (!array) {
+            array = [NSMutableArray array];
+            [self setSafe_upObservedArray:array];
+        }
+        return array;
     }
-    return array;
 }
 
 - (void)setSafe_upObservedArray:(NSMutableArray *)safe_upObservedArray{
@@ -227,8 +229,12 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         info.observerAddress=observerAddress;
         info.targetClassName=NSStringFromClass([self class]);
         info.observerClassName=NSStringFromClass([observer class]);
-        [self.safe_downObservedKeyPathArray addObject:info];
-        [observer.safe_upObservedArray addObject:info];
+        @synchronized(self.safe_downObservedKeyPathArray){
+            [self.safe_downObservedKeyPathArray addObject:info];
+        }
+        @synchronized(observer.safe_upObservedArray){
+            [observer.safe_upObservedArray addObject:info];
+        }
         [self safe_addObserver:observer forKeyPath:keyPath options:options context:context];
         
         //交换dealloc方法
