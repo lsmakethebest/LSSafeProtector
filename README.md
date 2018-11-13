@@ -17,8 +17,8 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 7+ 和ARC ，请使用最新正式版来
 ## 手动安装
 通过 Clone or download 下载 LSSafeProtector 文件夹内的所有内容。
 将 LSSafeProtector 内的源文件添加(拖放)到你的工程。
-将 NSMutableArray+MRCSafe.m文件 设置为 -fno-objc-arc
-导入 LSSafeProtector.h 。
+将 `NSMutableArray+MRCSafe.m`文件 设置为 `-fno-objc-arc`
+导入 `LSSafeProtector.h` 。
 ## 使用
 
 - 通过如下方式开启防止闪退功能,debug模式会打印crash日志，同时会利用断言来让程序闪退，也会回调block,达到测试环境及时发现及时修改，Release模式既不打印也不会断言闪退，会回调block，自己可以上传exception到bugly(注意线上环境isDebug一定要设置为NO)
