@@ -10,6 +10,17 @@
 @interface NSDictionary (Safe)
 @end
 
+// 类继承关系
+// __NSDictionaryI              继承于 NSDictionary
+// __NSSingleEntryDictionaryI   继承于 NSDictionary
+// __NSDictionary0              继承于 NSDictionary
+// __NSFrozenDictionaryM        继承于 NSDictionary
+// __NSDictionaryM              继承于 NSMutableDictionary
+// __NSCFDictionary             继承于 NSMutableDictionary
+// NSMutableDictionary          继承于 NSDictionary
+// NSDictionary                 继承于 NSObject
+
+
 /*
  大概和NSArray类似  也是iOS8之前都是__NSDictionaryI，如果是json转过来的对象为__NSCFDictionary，其他的参考NSArray
  

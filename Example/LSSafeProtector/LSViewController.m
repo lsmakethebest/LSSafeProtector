@@ -12,7 +12,7 @@
 #import "LSViewTestKVOSuper.h"
 #import <LSSafeProtector/LSSafeProtector.h>
 #import <Bugly/Bugly.h>
-
+#import <objc/runtime.h>
 @interface LSViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *testButton;
 @property (weak, nonatomic) IBOutlet UIButton *productionButton;
@@ -119,12 +119,13 @@
     //       self.testObject.kvo=self;
     //       [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted1" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
+        [self.testObject addObserver:self forKeyPath:@"fractionCompleted1" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
         //        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted1" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
         //        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted3" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
     });
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted1" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
+        [self.testObject removeObserver:self forKeyPath:@"fractionCompleted1"];
+//        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted1" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
     });
     //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
     //        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted3" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
@@ -179,12 +180,30 @@
 //    NSString *s=@"{\"name\":\"fsd\",\"array\":[\"fds\",\"fsd\"]}";
     NSString *s=@"{\"name\":\"fsd\",\"array\":[\"fsd\"]}";
    NSDictionary *v = [NSJSONSerialization JSONObjectWithData:[s dataUsingEncoding:0] options:0 error:NULL] ;
-//    低系统为__NSCFArray 高系统为 __NSArrayI
-    //这种情况不能防止crash 因为交换了__NSCFArray的objectAtIndex会导致其他崩溃，所以没有进行防护
-    NSMutableArray *array1 = v[@"array"];
-//    array1[100];
-//    [array1 objectAtIndex:1000];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSMutableArray arrayWithObject:@"fsd"] forKey:@"name"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    //__NSCFArray
+    NSMutableArray *array1=[[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
+    NSArray *a=[NSArray arrayWithObjects:@"",@"s", nil];
+    NSLog(@"%@",[[objc_getClass("__NSArrayI") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSSingleObjectArrayI") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSArray0") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSFrozenArrayM") class] superclass]);
     
+    NSLog(@"%@",[[objc_getClass("__NSArrayM") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSCFArray") class] superclass]);
+    
+    [array1 addObject:nil];
+    [array1 insertObject:@"" atIndex:10];
+    [array1 objectAtIndex:10];
+    [array1 removeObjectAtIndex:10];
+    [array1 replaceObjectAtIndex:10 withObject:@""];
+    [array1 removeObjectsInRange:NSMakeRange(0, 10)];
+    [array1 replaceObjectsInRange:NSMakeRange(0, 10) withObjectsFromArray:[NSArray array]];
+    NSArray *a1=[NSArray array];
+    a[10];
+    array1[100];
+    [array1 objectAtIndex:1000];
     NSString *strings[3];
     strings[0]=@"000";
     strings[1]=value;
@@ -211,9 +230,9 @@
     [arr removeObjectsInRange:NSMakeRange(0, 1)];
 
     [[NSUserDefaults standardUserDefaults] setObject:[NSMutableArray arrayWithObject:@"fsd"] forKey:@"name"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     //__NSCFArray
     NSMutableArray *array=[[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
-    //这种情况不能防止crash 因为交换了__NSCFArray的objectAtIndex会导致其他崩溃，所以没有进行防护
 //    array[10];
     [array removeObjectAtIndex:10];
     [array addObject:@"fs"];
@@ -235,6 +254,14 @@
 
 -(IBAction)testDictionary
 {
+    
+    NSArray *a=[NSArray arrayWithObjects:@"",@"s", nil];
+    NSLog(@"%@",[[objc_getClass("__NSDictionaryI") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSSingleEntryDictionaryI") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSDictionary0") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSDictionaryM") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSCFDictionary") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSFrozenDictionaryM") class] superclass]);
     NSString *value=nil;
     NSString *strings[3];
     strings[0]=@"000";
@@ -271,6 +298,7 @@
     NSMutableDictionary *dict2=[[NSUserDefaults standardUserDefaults] objectForKey:@"name"];
     dict2[@"FSD"]=@"FSD";
     [dict2 setObject:@"fsd" forKey:value];
+    [dict2 removeObjectForKey:value];
 
     NSString *strings[3];
     strings[0]=@"000";

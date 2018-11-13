@@ -25,56 +25,9 @@
         [self safe_exchangeInstanceMethod:objc_getClass("__NSArray0") originalSel:@selector(objectAtIndex:) newSel:@selector(safe_objectAtIndex0:)];
         
         [self safe_exchangeInstanceMethod:objc_getClass("__NSSingleObjectArrayI") originalSel:@selector(objectAtIndex:) newSel:@selector(safe_objectAtIndexSI:)];
-        
-        
-        //这个方法不交换 会导致启动时crash，原因未知 NSKeyValuePopPendingNotificationPerThread() EXC_BAD_ACCESS
-        //        [self safe_exchangeInstanceMethod:objc_getClass("__NSCFArray") originalSel:@selector(objectAtIndex:) newSel:@selector(safe_objectAtIndexCFArray:)];
-        
-        [self safe_exchangeInstanceMethod:objc_getClass("__NSCFArray") originalSel:@selector(insertObject:atIndex:) newSel:@selector(safe_insertObjectCFArray:atIndex:)];
-        
-        [self safe_exchangeInstanceMethod:objc_getClass("__NSCFArray") originalSel:@selector(removeObjectAtIndex:) newSel:@selector(safe_removeObjectAtIndexCFArray:)];
-        
-        [self safe_exchangeInstanceMethod:objc_getClass("__NSCFArray") originalSel:@selector(replaceObjectAtIndex:withObject:) newSel:@selector(safe_replaceObjectAtIndexCFArray:withObject:)];
-        
     });
 }
-- (void)safe_insertObjectCFArray:(id)anObject atIndex:(NSUInteger)index
-{
-    @try {
-        [self safe_insertObjectCFArray:anObject atIndex:index];
-    }
-    @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSArray);
-    }
-    @finally {
-        
-    }
-}
-- (void)safe_removeObjectAtIndexCFArray:(NSUInteger)index
-{
-    @try {
-        [self safe_removeObjectAtIndexCFArray:index];
-    }
-    @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSArray);
-    }
-    @finally {
-        
-    }
-}
 
-- (void)safe_replaceObjectAtIndexCFArray:(NSUInteger)index withObject:(id)anObject {
-    
-    @try {
-        [self safe_replaceObjectAtIndexCFArray:index withObject:anObject];
-    }
-    @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSArray);
-    }
-    @finally {
-        
-    }
-}
 
 -(instancetype)safe_initWithObjects:(id  _Nonnull const [])objects count:(NSUInteger)cnt
 {
@@ -157,19 +110,7 @@
     }
 }
 
--(id)safe_objectAtIndexCFArray:(NSUInteger)index
-{
-    id object=nil;
-    @try {
-        return  object = [self safe_objectAtIndexCFArray:index];
-    }
-    @catch (NSException *exception) {
-        LSSafeProtectionCrashLog(exception,LSSafeProtectorCrashTypeNSArray);
-    }
-    @finally {
-        return object;
-    }
-}
+
 
 @end
 

@@ -17,6 +17,7 @@
    4. - (void)removeObjectAtIndex:(NSUInteger)index
    5. - (void)replaceObjectAtIndex:(NSUInteger)index
    6. - (void)removeObjectsInRange:(NSRange)range
+   7. - (void)replaceObjectsInRange:(NSRange)range withObjectsFromArray:(NSArray*)otherArray;
  
 */
  

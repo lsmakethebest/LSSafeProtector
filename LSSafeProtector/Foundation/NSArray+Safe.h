@@ -10,6 +10,16 @@
 @interface NSArray (Safe)
 @end
 
+// 类继承关系
+// __NSArrayI                 继承于 NSArray
+// __NSSingleObjectArrayI     继承于 NSArray
+// __NSArray0                 继承于 NSArray
+// __NSFrozenArrayM           继承于 NSArray
+// __NSArrayM                 继承于 NSMutableArray
+// __NSCFArray                继承于 NSMutableArray
+// NSMutableArray             继承于 NSArray
+// NSArray                    继承于 NSObject
+
 // < = iOS 8:下都是__NSArrayI 如果是通过json转成的id 为__NSCFArray
 //iOS9 @[] 是__NSArray0  @[@"fd"]是__NSArrayI
 //iOS10以后(含10): 分 __NSArrayI、  __NSArray0、__NSSingleObjectArrayI
@@ -20,15 +30,22 @@
 // __NSSingleObjectArrayI @[@"fds"]只有此形式创建而且仅一个元素为__NSSingleObjectArrayI
 //__NSArrayI   @[@"fds",@"fsd"]方式创建多于1个元素 或者 arrayWith创建都是__NSArrayI
 
-//__NSCFArray
-//arr@[11] 调用的是  [__NSCFArray objectAtIndex:]
 
+//__NSCFArray
+//arr@[11]
+// >=11 调用 [__NSCFArray objectAtIndexedSubscript:]
+// < 11  调用 [__NSCFArray objectAtIndex:]
+
+//__NSArrayI
+//arr@[11]
+// >=11  调用 [__NSArrayI objectAtIndexedSubscript:]
+// < 11  调用 [__NSArrayI objectAtIndex:]
 
 //__NSArray0
-//arr@[11]   调用的是  [__NSArray0 objectAtIndex:]
+//arr@[11]   不区分系统调用的是  [__NSArray0 objectAtIndex:]
 
 //__NSSingleObjectArrayI
-//arr@[11] 调用的是  [__NSSingleObjectArrayI objectAtIndex:]
+//arr@[11] 不区分系统 调用的是  [__NSSingleObjectArrayI objectAtIndex:]
 
 //不可变数组
 // <  iOS11： arr@[11]  调用的是[__NSArrayI objectAtIndex:]
@@ -58,8 +75,6 @@ NSMutableArray *array=[[NSUserDefaults standardUserDefaults] objectForKey:@"name
    2. + (instancetype)arrayWithObjects:(const ObjectType _Nonnull [_Nonnull])objects count:(NSUInteger)cnt;调用的也是3中的方法
    3. - (instancetype)initWithObjects:(const ObjectType _Nonnull [_Nullable])objects count
    4. - (id)objectAtIndex:(NSUInteger)index
- ******  注意 *****
-    [__NSCFArray objectAtIndex]不能防止crash，如果交换了会导致其他crash，所以这里不做交换
  
  */
 
