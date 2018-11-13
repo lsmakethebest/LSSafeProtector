@@ -85,6 +85,7 @@ a1[10];
 4. - (void)removeObjectAtIndex:(NSUInteger)index
 5. - (void)replaceObjectAtIndex:(NSUInteger)index
 6. - (void)removeObjectsInRange:(NSRange)range
+7. - (void)replaceObjectsInRange:(NSRange)range withObjectsFromArray:(NSArray*)otherArray;
 ```
 - 5、LSSafeProtectorCrashTypeNSDictionary
 ```
@@ -248,6 +249,13 @@ NSMutableData
 
 ```
 
+- 2018.11.13 更新
+```
+将__NSCFArray的hook使用MRC编写
+NSMutableArray增加以下方法的hook
+ - (void)replaceObjectsInRange:(NSRange)range withObjectsFromArray:(NSArray*)otherArray;
+
+```
 # 联系    
 - 如果使用过程中遇到什么问题或有什么建议可以联系我，我会在收到后尽快回复您
 - email at: song@ysui.cn

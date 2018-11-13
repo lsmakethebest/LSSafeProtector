@@ -189,9 +189,9 @@
     NSLog(@"%@",[[objc_getClass("__NSSingleObjectArrayI") class] superclass]);
     NSLog(@"%@",[[objc_getClass("__NSArray0") class] superclass]);
     NSLog(@"%@",[[objc_getClass("__NSFrozenArrayM") class] superclass]);
-    
     NSLog(@"%@",[[objc_getClass("__NSArrayM") class] superclass]);
     NSLog(@"%@",[[objc_getClass("__NSCFArray") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSPlaceholderArray") class] superclass]);
     
     [array1 addObject:nil];
     [array1 insertObject:@"" atIndex:10];
@@ -259,9 +259,11 @@
     NSLog(@"%@",[[objc_getClass("__NSDictionaryI") class] superclass]);
     NSLog(@"%@",[[objc_getClass("__NSSingleEntryDictionaryI") class] superclass]);
     NSLog(@"%@",[[objc_getClass("__NSDictionary0") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSFrozenDictionaryM") class] superclass]);
     NSLog(@"%@",[[objc_getClass("__NSDictionaryM") class] superclass]);
     NSLog(@"%@",[[objc_getClass("__NSCFDictionary") class] superclass]);
-    NSLog(@"%@",[[objc_getClass("__NSFrozenDictionaryM") class] superclass]);
+    NSLog(@"%@",[[objc_getClass("__NSPlaceholderDictionary") class] superclass]);
+    
     NSString *value=nil;
     NSString *strings[3];
     strings[0]=@"000";
