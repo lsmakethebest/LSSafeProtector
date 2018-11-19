@@ -119,13 +119,13 @@
     //       self.testObject.kvo=self;
     //       [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [self.testObject addObserver:self forKeyPath:@"fractionCompleted1" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
+        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted1" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
         //        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted1" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
         //        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted3" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
     });
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [self.testObject removeObserver:self forKeyPath:@"fractionCompleted1"];
-//        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted1" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
+//        [self.testObject removeObserver:self.testObject forKeyPath:@"fractionCompleted1"];
+        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted1" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
     });
     //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
     //        [self.testObject addObserver:self.testObject forKeyPath:@"fractionCompleted3" options:(NSKeyValueObservingOptionNew) context:@"fsd22"];
