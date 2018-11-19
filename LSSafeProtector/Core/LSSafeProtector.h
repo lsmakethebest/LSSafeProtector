@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "LSSafeProtectorDefine.h"
 
+#define LSKVOSafeLog(fmt, ...) safe_KVOCustomLog(fmt,##__VA_ARGS__)
+
 @interface LSSafeProtector : NSObject
     
 //打开目前所支持的所有安全保护
@@ -17,5 +19,10 @@
 + (void)openSafeProtectorWithIsDebug:(BOOL)isDebug block:(LSSafeProtectorBlock)block;
 
 + (void)safe_logCrashWithException:(NSException *)exception crashType:(LSSafeProtectorCrashType)crashType;
+
+//是否开启KVO添加移除日志信息，默认为NO
++ (void)setLogEnable:(BOOL)enable;
+//自定义log函数
+void safe_KVOCustomLog(NSString *format,...);
 
 @end

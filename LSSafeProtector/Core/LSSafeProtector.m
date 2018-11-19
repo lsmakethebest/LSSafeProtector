@@ -10,7 +10,7 @@
 
 static  LSSafeProtectorLogType ls_safe_logType=LSSafeProtectorLogTypeAll;
 static  LSSafeProtectorBlock lsSafeProtectorBlock;
-
+static  BOOL LSSafeProtectorKVODebugInfoEnable=NO;
 @interface NSObject (LSSafeProtector)
 //打开当前类安全保护
 + (void)openSafeProtector;
@@ -139,6 +139,22 @@ static  LSSafeProtectorBlock lsSafeProtectorBlock;
         mainCallStackSymbolMsg = [self safe_getMainCallStackSymbolMessageWithCallStackSymbolArray:callStackSymbolArray index:newIndex first:NO];
     }
     return mainCallStackSymbolMsg;
+}
+void safe_KVOCustomLog(NSString *format,...)
+{
+    if (LSSafeProtectorKVODebugInfoEnable) {
+        va_list args;
+        va_start(args, format);
+        NSString *string = [[NSString alloc] initWithFormat:format arguments:args];
+        NSString *strFormat = [NSString stringWithFormat:@"%@",string];
+        NSLogv(strFormat, args);
+        va_end(args);
+    }
+}
+
++(void)setLogEnable:(BOOL)enable
+{
+    LSSafeProtectorKVODebugInfoEnable=enable;
 }
 
 @end

@@ -10,8 +10,6 @@
 #import "LSSafeProtector.h"
 #import <objc/message.h>
 
-#define LSKVOSafeLog(fmt, ...) NSLog(fmt,##__VA_ARGS__)
-//#define LSKVOSafeLog(fmt, ...)
 
 
 @interface LSKVOObserverInfo()
@@ -189,7 +187,14 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     }else{
         method=@"removeObserver";
     }
-    LSKVOSafeLog(@"\n*******   %@:     ##################\n\t%@(%p)  %@ %@(%p)   keyPath:%@  context:%p\n----------------------------------------",text,[self class],self,method,[observer class],observer,keyPath,context);
+    NSString *emoji;
+    if ([text rangeOfString:@"成功"].length>0) {
+        emoji=@"😀😀😀😀😀";
+    }else{
+        emoji=@"😡😡😡😡😡";
+    }
+
+    LSKVOSafeLog(@"\n*******   %@ %@:     ##################\n\t%@(%p)  %@ %@(%p)   keyPath:%@  context:%p\n----------------------------------------",text,emoji,[self class],self,method,[observer class],observer,keyPath,context);
 }
 
 -(void)safe_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context

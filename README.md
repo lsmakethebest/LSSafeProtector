@@ -31,6 +31,8 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 7+ 和ARC ，请使用最新正式版来
 //此方法相对于上面的方法，好处在于bugly后台查看bug崩溃位置时，不用点击跟踪数据，再点击crash_attach.log，查看里面的额外信息来查看崩溃位置
 [Bugly reportExceptionWithCategory:3 name:exception.name reason:[NSString stringWithFormat:@"%@  崩溃位置:%@",exception.reason,exception.userInfo[@"location"]] callStack:@[exception.userInfo[@"callStackSymbols"]] extraInfo:exception.userInfo terminateApp:NO];
 }];
+//打开KVO添加，移除的日志信息
+[LSSafeProtector setLogEnable:YES];
 ```
 
 ### 下面是防止崩溃的效果
