@@ -261,6 +261,7 @@ NSMutableArray增加以下方法的hook
 # 联系    
 - 如果使用过程中遇到什么问题或有什么建议可以联系我，我会在收到后尽快回复您
 - email at: song@ysui.cn
+- email at: isliusong@163.com
 
 - QQ at:623501561 
 
