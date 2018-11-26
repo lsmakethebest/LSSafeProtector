@@ -34,7 +34,16 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 7+ 和ARC ，请使用最新正式版来
 //打开KVO添加，移除的日志信息
 [LSSafeProtector setLogEnable:YES];
 ```
-
+- 当然你也可以设置防止指定类型的crash，但还是建议直接使用上面方法，防止所有类型的crash来防止闪退
+```
+[LSSafeProtector openSafeProtectorWithIsDebug:isDebug types:LSSafeProtectorCrashTypeNSArrayContainer|LSSafeProtectorCrashTypeNSDictionaryContainer block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
+//[Bugly reportException:exception];
+//此方法方便在bugly后台查看bug崩溃位置，而不用点击跟踪数据，再点击crash_attach.log来查看崩溃位置
+[Bugly reportExceptionWithCategory:3 name:exception.name reason:[NSString stringWithFormat:@"%@  崩溃位置:%@",exception.reason,exception.userInfo[@"location"]] callStack:@[exception.userInfo[@"callStackSymbols"]] extraInfo:exception.userInfo terminateApp:NO];
+}];
+//打开KVO添加，移除的日志信息
+[LSSafeProtector setLogEnable:YES];
+```
 ### 下面是防止崩溃的效果
 
 - 可导致崩溃的代码
@@ -255,7 +264,7 @@ NSMutableData
 ```
 将__NSCFArray的hook使用MRC编写
 NSMutableArray增加以下方法的hook
- - (void)replaceObjectsInRange:(NSRange)range withObjectsFromArray:(NSArray*)otherArray;
+- (void)replaceObjectsInRange:(NSRange)range withObjectsFromArray:(NSArray*)otherArray;
 
 ```
 # 联系    
