@@ -1,6 +1,6 @@
 {
   "name": "LSSafeProtector",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "summary": "强大的防止crash框架，支持自释放KVO等19种crash",
   "homepage": "https://github.com/lsmakethebest/LSSafeProtector",
   "license": {
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/lsmakethebest/LSSafeProtector.git",
-    "tag": "2.0.1"
+    "tag": "2.1.1"
   },
   "frameworks": "Foundation",
   "platforms": {
