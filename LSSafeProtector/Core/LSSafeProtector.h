@@ -13,10 +13,29 @@
 
 @interface LSSafeProtector : NSObject
     
-//打开目前所支持的所有安全保护
-//isDebug=YES 代表测试环境，当捕获到crash时会利用断言闪退， 同时回调block
-//isDebug=NO  代表正式环境，当捕获到crash时不会利用断言闪退，会回调block
+
+
+
+/**
+打开目前所支持的所有安全保护
+ 
+ @param isDebug
+ //isDebug=YES 代表测试环境，当捕获到crash时会利用断言闪退， 同时回调block
+ //isDebug=NO  代表正式环境，当捕获到crash时不会利用断言闪退，会回调block
+ @param block  回调的block
+ */
 + (void)openSafeProtectorWithIsDebug:(BOOL)isDebug block:(LSSafeProtectorBlock)block;
+
+/**
+开启防止指定类型的crash
+
+ @param isDebug
+ //isDebug=YES 代表测试环境，当捕获到crash时会利用断言闪退， 同时回调block
+ //isDebug=NO  代表正式环境，当捕获到crash时不会利用断言闪退，会回调block
+ @param types 想防止哪些类crash
+ @param block 回调的block
+ */
++ (void)openSafeProtectorWithIsDebug:(BOOL)isDebug types:(LSSafeProtectorCrashType)types block:(LSSafeProtectorBlock)block;
 
 + (void)safe_logCrashWithException:(NSException *)exception crashType:(LSSafeProtectorCrashType)crashType;
 

@@ -304,7 +304,13 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
     LSKVOObserverInfo *info=[self safe_canAddOrRemoveObserverWithKeypathWithObserver:observer keyPath:keyPath context:context haveContext:isContext isAdd:NO];
     if (info==nil) {
         // 重复删除观察者或不含有 或者keypath=nil  observer=nil
-        [self safe_logKVODebugInfoWithText:@"移除失败" observer:observer keyPath:keyPath context:context];
+        NSString *text=@"";
+        if (observer.safe_notNeedRemoveKeypathFromCrashArray) {
+        }else{
+            //observer走完了dealloc，然后去移除，事实上我已经替他移除完了
+            text=@"主动";
+        }
+        [self safe_logKVODebugInfoWithText: [NSString stringWithFormat:@"%@移除失败",text] observer:observer keyPath:keyPath context:context];
         [lock unlock];
         return;
     }
@@ -453,7 +459,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
  */
 -(void)safe_KVODealloc
 {
-    LSKVOSafeLog(@"%@  safe_KVODealloc",[self class]);
+    LSKVOSafeLog(@"\n******* 🚗🚗🚗🚗🚗  %@(%p)  safe_KVODealloc  🚗🚗🚗🚗🚗\n----------------------------------------",[self class],self);
     if (self.safe_upObservedArray.count>0) {
         @synchronized(KVOSafeDeallocCrashes()){
             NSString *currentKey=LSFormatterStringFromObject(self);

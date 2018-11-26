@@ -32,28 +32,90 @@ static  BOOL LSSafeProtectorKVODebugInfoEnable=NO;
 
 +(void)openSafeProtectorWithIsDebug:(BOOL)isDebug block:(LSSafeProtectorBlock)block
 {
+    [self openSafeProtectorWithIsDebug:isDebug types:LSSafeProtectorCrashTypeAll block:block];
+}
+
++(void)openSafeProtectorWithIsDebug:(BOOL)isDebug types:(LSSafeProtectorCrashType)types block:(LSSafeProtectorBlock)block
+{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [NSObject openSafeProtector];//开启防止selecetor crash
-        [NSArray openSafeProtector];
-        [NSMutableArray openSafeProtector];
-        [NSDictionary openSafeProtector];
-        [NSMutableDictionary openSafeProtector];
-        [NSMutableArray openMRCSafeProtector];
-        [NSString openSafeProtector];
-        [NSMutableString openSafeProtector];
-        [NSAttributedString openSafeProtector];
-        [NSMutableAttributedString openSafeProtector];
-        [NSNotificationCenter openSafeProtector];
-        [NSObject openKVOSafeProtector];
-        [NSUserDefaults openSafeProtector];
-        [NSCache openSafeProtector];
-        [NSSet openSafeProtector];
-        [NSMutableSet openSafeProtector];
-        [NSOrderedSet openSafeProtector];
-        [NSMutableOrderedSet openSafeProtector];
-        [NSData openSafeProtector];
-        [NSMutableData openSafeProtector];
+        if (types & LSSafeProtectorCrashTypeSelector) {
+            //开启防止selecetor crash
+            [NSObject openSafeProtector];
+        }
+        if (types & LSSafeProtectorCrashTypeNSArray) {
+            [NSArray openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSMutableArray) {
+            [NSMutableArray openSafeProtector];
+            [NSMutableArray openMRCSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSDictionary) {
+            [NSDictionary openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSMutableDictionary) {
+            [NSMutableDictionary openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSStirng) {
+            [NSString openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSMutableString) {
+            [NSMutableString openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSAttributedString) {
+            [NSAttributedString openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSMutableAttributedString) {
+            [NSMutableAttributedString openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSNotificationCenter) {
+            [NSNotificationCenter openSafeProtector];
+        }
+    
+        if (types & LSSafeProtectorCrashTypeKVO) {
+            [NSObject openKVOSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSUserDefaults) {
+            [NSUserDefaults openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSCache) {
+            [NSCache openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSSet) {
+            [NSSet openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSMutableSet) {
+            [NSMutableSet openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSOrderedSet) {
+            [NSOrderedSet openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSMutableOrderedSet) {
+            [NSMutableOrderedSet openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSData) {
+            [NSData openSafeProtector];
+        }
+        
+        if (types & LSSafeProtectorCrashTypeNSMutableData) {
+            [NSMutableData openSafeProtector];
+        }
+        
         if (isDebug) {
             ls_safe_logType=LSSafeProtectorLogTypeAll;
         }else{
@@ -62,6 +124,7 @@ static  BOOL LSSafeProtectorKVODebugInfoEnable=NO;
         lsSafeProtectorBlock=block;
     });
 }
+
 
 + (void)safe_logCrashWithException:(NSException *)exception crashType:(LSSafeProtectorCrashType)crashType
 {
