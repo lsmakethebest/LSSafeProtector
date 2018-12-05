@@ -26,9 +26,9 @@
 //    [self.kvo removeObserver:self forKeyPath:@"name"];
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-    id con=(__bridge id)(context);
-    NSLog(@"11111111%@",con);
-}
+//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+//{
+//    id con=(__bridge id)(context);
+//    NSLog(@"11111111%@",con);
+//}
 @end

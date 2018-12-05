@@ -11,9 +11,6 @@
 
 @interface NSObject (SafeSwizzle)
 
-//交换类方法
-+ (void)safe_exchangeClassMethod:(Class)dClass    originalSel:(SEL)originalSelector newSel:(SEL)newSelector;
-
 //交换对象方法
 + (void)safe_exchangeInstanceMethod:(Class)dClass originalSel:(SEL)originalSelector newSel: (SEL)newSelector;
 

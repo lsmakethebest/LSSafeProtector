@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'LSSafeProtector'
-  s.version          = '2.1.1'
+  s.version          = '2.1.2'
   s.summary          = '强大的防止crash框架，支持自释放KVO等19种crash'
 
 #s.description      = '更新了地址被释放又被重新使用导致的误报crash问题，以及野指针问题'
