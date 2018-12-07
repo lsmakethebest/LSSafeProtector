@@ -41,7 +41,7 @@
 @end
 
 @interface NSObject()
-@property (nonatomic,weak) LSKVOObserverInfo *safe_willRemoveObserverInfo;
+@property (nonatomic,strong) LSKVOObserverInfo *safe_willRemoveObserverInfo;
 //dealloc时标记有多少没移除，然后手动替他移除，比如有7个 我都替他移除掉，数量还是7，然后用户手动移除时，数量会减少，然后计算最终剩多少就是用户没有移除的，提示用户有没移除的KVO  默认为YES dealloc时改为NO
 @property (nonatomic,assign) BOOL safe_notNeedRemoveKeypathFromCrashArray;
 @property (nonatomic,strong) LSRecursiveLock *safe_lock;
