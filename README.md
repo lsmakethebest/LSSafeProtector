@@ -21,9 +21,14 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 7+ 和ARC ，请使用最新正式版来
 导入 `LSSafeProtector.h` 。
 ## 使用
 
+# 切记  切记  切记!!!
+#### `[LSSafeProtector openSafeProtectorWithIsDebug]`一定要在其他SDK之前调用
+
 - 通过如下方式开启防止闪退功能,debug模式会打印crash日志，同时会利用断言来让程序闪退，也会回调block,达到测试环境及时发现及时修改，Release模式既不打印也不会断言闪退，会回调block，自己可以上传exception到bugly(注意线上环境isDebug一定要设置为NO)
 
 ```
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
 //注意线上环境isDebug一定要设置为NO)
 [LSSafeProtector openSafeProtectorWithIsDebug:YES block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
 //[Bugly reportException:exception];
@@ -33,9 +38,16 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 7+ 和ARC ，请使用最新正式版来
 }];
 //打开KVO添加，移除的日志信息
 [LSSafeProtector setLogEnable:YES];
+[Bugly startWithAppId:@"5c825b6c8d"];
+//···调用其他SDK或初始化东西
+return YES;
+}
+
 ```
 - 当然你也可以设置防止指定类型的crash，但还是建议直接使用上面方法，防止所有类型的crash来防止闪退
 ```
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
 [LSSafeProtector openSafeProtectorWithIsDebug:isDebug types:LSSafeProtectorCrashTypeNSArrayContainer|LSSafeProtectorCrashTypeNSDictionaryContainer block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
 //[Bugly reportException:exception];
 //此方法方便在bugly后台查看bug崩溃位置，而不用点击跟踪数据，再点击crash_attach.log来查看崩溃位置
@@ -43,6 +55,10 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 7+ 和ARC ，请使用最新正式版来
 }];
 //打开KVO添加，移除的日志信息
 [LSSafeProtector setLogEnable:YES];
+[Bugly startWithAppId:@"5c825b6c8d"];
+//···调用其他SDK或初始化东西
+return YES;
+}
 ```
 ### 下面是防止崩溃的效果
 
