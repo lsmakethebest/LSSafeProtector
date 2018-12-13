@@ -29,18 +29,18 @@ LSSafeProtector 基于 "Xcode 7.3 , iOS 7+ 和ARC ，请使用最新正式版来
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//注意线上环境isDebug一定要设置为NO)
-[LSSafeProtector openSafeProtectorWithIsDebug:YES block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
-//[Bugly reportException:exception];
+    //注意线上环境isDebug一定要设置为NO)
+    [LSSafeProtector openSafeProtectorWithIsDebug:YES block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
+    //[Bugly reportException:exception];
 
-//此方法相对于上面的方法，好处在于bugly后台查看bug崩溃位置时，不用点击跟踪数据，再点击crash_attach.log，查看里面的额外信息来查看崩溃位置
-[Bugly reportExceptionWithCategory:3 name:exception.name reason:[NSString stringWithFormat:@"%@  崩溃位置:%@",exception.reason,exception.userInfo[@"location"]] callStack:@[exception.userInfo[@"callStackSymbols"]] extraInfo:exception.userInfo terminateApp:NO];
-}];
-//打开KVO添加，移除的日志信息
-[LSSafeProtector setLogEnable:YES];
-[Bugly startWithAppId:@"5c825b6c8d"];
-//···调用其他SDK或初始化东西
-return YES;
+    //此方法相对于上面的方法，好处在于bugly后台查看bug崩溃位置时，不用点击跟踪数据，再点击crash_attach.log，查看里面的额外信息来查看崩溃位置
+    [Bugly reportExceptionWithCategory:3 name:exception.name reason:[NSString stringWithFormat:@"%@  崩溃位置:%@",exception.reason,exception.userInfo[@"location"]] callStack:@[exception.userInfo[@"callStackSymbols"]] extraInfo:exception.userInfo terminateApp:NO];
+    }];
+    //打开KVO添加，移除的日志信息
+    [LSSafeProtector setLogEnable:YES];
+    [Bugly startWithAppId:@"5c825b6c8d"];
+    //···调用其他SDK或初始化东西
+    return YES;
 }
 
 ```
@@ -48,16 +48,16 @@ return YES;
 ```
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-[LSSafeProtector openSafeProtectorWithIsDebug:isDebug types:LSSafeProtectorCrashTypeNSArrayContainer|LSSafeProtectorCrashTypeNSDictionaryContainer block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
-//[Bugly reportException:exception];
-//此方法方便在bugly后台查看bug崩溃位置，而不用点击跟踪数据，再点击crash_attach.log来查看崩溃位置
-[Bugly reportExceptionWithCategory:3 name:exception.name reason:[NSString stringWithFormat:@"%@  崩溃位置:%@",exception.reason,exception.userInfo[@"location"]] callStack:@[exception.userInfo[@"callStackSymbols"]] extraInfo:exception.userInfo terminateApp:NO];
-}];
-//打开KVO添加，移除的日志信息
-[LSSafeProtector setLogEnable:YES];
-[Bugly startWithAppId:@"5c825b6c8d"];
-//···调用其他SDK或初始化东西
-return YES;
+    [LSSafeProtector openSafeProtectorWithIsDebug:isDebug types:LSSafeProtectorCrashTypeNSArrayContainer|LSSafeProtectorCrashTypeNSDictionaryContainer block:^(NSException *exception, LSSafeProtectorCrashType crashType) {
+    //[Bugly reportException:exception];
+    //此方法方便在bugly后台查看bug崩溃位置，而不用点击跟踪数据，再点击crash_attach.log来查看崩溃位置
+    [Bugly reportExceptionWithCategory:3 name:exception.name reason:[NSString stringWithFormat:@"%@  崩溃位置:%@",exception.reason,exception.userInfo[@"location"]] callStack:@[exception.userInfo[@"callStackSymbols"]] extraInfo:exception.userInfo terminateApp:NO];
+    }];
+    //打开KVO添加，移除的日志信息
+    [LSSafeProtector setLogEnable:YES];
+    [Bugly startWithAppId:@"5c825b6c8d"];
+    //···调用其他SDK或初始化东西
+    return YES;
 }
 ```
 ### 下面是防止崩溃的效果
