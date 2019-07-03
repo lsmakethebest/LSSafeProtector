@@ -382,7 +382,7 @@ static NSMutableDictionary *KVOSafeDeallocCrashes() {
         NSMutableArray *array=dic[@"keyPaths"];
         __block NSMutableDictionary *willRemoveDic;
         if(array.count>0){
-            [array enumerateObjectsUsingBlock:^(NSMutableDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [[array copy] enumerateObjectsUsingBlock:^(NSMutableDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if([obj[@"targetName"] isEqualToString:NSStringFromClass([self class])]&&[obj[@"targetAddress"] isEqualToString:[NSString stringWithFormat:@"%p",self]]&&[keyPath isEqualToString:obj[@"keyPath"]]){
                     willRemoveDic=obj;
                     *stop=YES;
