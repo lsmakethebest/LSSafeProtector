@@ -15,6 +15,7 @@
 {
     [Bugly startWithAppId:@"5c825b6c8d"];
     //6666
+    //7777
     return YES;
 }
 
