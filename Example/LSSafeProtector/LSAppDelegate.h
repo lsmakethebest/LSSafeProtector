@@ -8,6 +8,7 @@
 
 @import UIKit;
 
+//测试test
 @interface LSAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
