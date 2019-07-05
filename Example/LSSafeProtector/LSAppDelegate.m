@@ -12,7 +12,7 @@
 
 
 @implementation LSAppDelegate
-
+//222
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Bugly startWithAppId:@"5c825b6c8d"];
