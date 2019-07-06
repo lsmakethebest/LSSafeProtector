@@ -289,7 +289,7 @@ NSMutableArray增加以下方法的hook
 
 - QQ群 :922898729
 
-- email at: song@ysui.cn
+- email at: song@xueit.cn
 - email at: isliusong@163.com
 
 # 注意
