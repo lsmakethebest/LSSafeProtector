@@ -17,7 +17,7 @@
 
 
 /**
-打开目前所支持的所有安全保护
+打开目前所支持的所有安全保护(但不包含KVO防护，如果需要开启包含KVO在内的所有防护，需要使用下面的方法，设置types为：LSSafeProtectorCrashTypeAll)
  
  @param isDebug
  //isDebug=YES 代表测试环境，当捕获到crash时会利用断言闪退， 同时回调block

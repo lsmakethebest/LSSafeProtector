@@ -32,7 +32,17 @@ static  BOOL LSSafeProtectorKVODebugInfoEnable=NO;
 
 +(void)openSafeProtectorWithIsDebug:(BOOL)isDebug block:(LSSafeProtectorBlock)block
 {
-    [self openSafeProtectorWithIsDebug:isDebug types:LSSafeProtectorCrashTypeAll block:block];
+    [self openSafeProtectorWithIsDebug:isDebug types: LSSafeProtectorCrashTypeSelector
+     |LSSafeProtectorCrashTypeNSNotificationCenter
+     |LSSafeProtectorCrashTypeNSUserDefaults
+     |LSSafeProtectorCrashTypeNSCache
+     |LSSafeProtectorCrashTypeNSArrayContainer
+     |LSSafeProtectorCrashTypeNSDictionaryContainer
+     |LSSafeProtectorCrashTypeNSStringContainer
+     |LSSafeProtectorCrashTypeNSAttributedStringContainer
+     |LSSafeProtectorCrashTypeNSSetContainer
+     |LSSafeProtectorCrashTypeNSDataContainer
+     |LSSafeProtectorCrashTypeNSOrderedSetContainer block:block];
 }
 
 +(void)openSafeProtectorWithIsDebug:(BOOL)isDebug types:(LSSafeProtectorCrashType)types block:(LSSafeProtectorBlock)block
